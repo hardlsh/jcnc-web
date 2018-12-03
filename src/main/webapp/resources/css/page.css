@@ -1,0 +1,24 @@
+#box_banner{width:100%;float:none;height:500px; overflow:hidden;}
+.FrontSpecifies_show01-d1_c1{margin:0 auto;width:100%}
+.FrontSpecifies_show01-d1_c1{margin:0 auto;width:100%}
+.FrontSpecifies_show01-d1_c1 .membernavlist{width:100%;background:#fff}
+.FrontSpecifies_show01-d1_c1 .membernavlist LI{height:25px}
+.FrontSpecifies_show01-d1_c1 .membernavlist LI A{line-height:24px;width:100%;background:#ebf7fe;float:left;height:24px;text-decoration:none}
+.FrontSpecifies_show01-d1_c1.membernavlist LI A:hover{background:#abe7fa}
+.FrontPublic_slideShow01-d3_c1 img{border-top-style:none;border-right-style:none;border-bottom-style:none;border-left-style:none}
+.FrontPublic_slideShow01-d3_c1 ul{list-style:none}
+.FrontPublic_slideShow01-d3_c1 a{color:#538c9f}
+.FrontPublic_slideShow01-d3_c1 a:hover{color:#84b263}
+.FrontPublic_slideShow01-d3_c1 div .wrapper{height:500px;overflow:hidden;position:relative}
+.FrontPublic_slideShow01-d3_c1 .fn-clear{zoom:1;left:50%;width:1440px;height:500px;overflow:hidden;margin-left:-720px;position:absolute}
+.FrontPublic_slideShow01-d3_c1 .box_skitter ul{display:none;width:999999px;height:400px;position:relative}
+.FrontPublic_slideShow01-d3_c1 .box_skitter ul li{width:1440px;height:500px;text-align:center;font-size:0;float:left;display:inline}
+.FrontPublic_slideShow01-d3_c1 .box_skitter .container_skitter{overflow:hidden;position:relative}
+.FrontPublic_slideShow01-d3_c1 .box_skitter .image{overflow:hidden;position:relative}
+.FrontPublic_slideShow01-d3_c1 .box_skitter .image img{display:none}
+.FrontPublic_slideShow01-d3_c1 .box_skitter .box_clone{position:absolute;top:0;left:0;width:100px;overflow:hidden;display:none;z-index:20}
+.FrontPublic_slideShow01-d3_c1 .box_skitter .box_clone img{position:absolute;top:0;left:0;z-index:20}
+.FrontPublic_slideShow01-d3_c1 .box_skitter .prev_button{position:absolute;top:50%;left:13%;width:57px;height:62px;margin-top:-61px;overflow:hidden; background:url(../images/cpl.png) no-repeat left top!important;z-index:999;text-indent:-9999em}
+.FrontPublic_slideShow01-d3_c1 .box_skitter .next_button{position:absolute;top:50%;right:13%;width:57px;height:62px;margin-top:-61px;overflow:hidden;z-index:999;text-indent:-9999em; background:url(../images/cpr.png) no-repeat left top!important}
+.FrontPublic_slideShow01-d3_c1 .box_skitter .label_skitter{z-index:150;position:absolute;display:none}
+#slideshow ul{display:none}
