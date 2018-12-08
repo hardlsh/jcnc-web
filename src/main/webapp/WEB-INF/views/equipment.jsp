@@ -284,7 +284,7 @@
     <div class="clear"></div>
 </div>
 
-<%@include file="foot.jsp"%>
+<%@include file="footer.jsp"%>
 
 </body>
 </html>

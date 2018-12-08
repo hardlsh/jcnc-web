@@ -10,14 +10,16 @@
 <link href="${basePath}/resources/css/css.css" rel="stylesheet" type="text/css"/>
 <link href="${basePath}/resources/css/float.css" rel="stylesheet" type="text/css" charset="utf-8">
 <link href="${basePath}/resources/css/page.css" rel="stylesheet" type="text/css">
+<link href="${basePath}/resources/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 <%-- css end --%>
 
 <%-- js start --%>
+<script type="text/javascript" src="${basePath}/resources/js/jquery.js" ></script>
+<script type="text/javascript" src="${basePath}/resources/plugins/bootstrap/js/bootstrap.js" ></script>
+<script type="text/javascript" src="${basePath}/resources/js/NSW_Index.js"></script>
+<script type="text/javascript" src="${basePath}/resources/js/ScrollPicLeft.js"></script>
 <script charset="utf-8" src="${basePath}/resources/js/b.js"></script>
 <script type="text/javascript" src="${basePath}/resources/js/slideshow.js"></script>
-<script type="text/javascript" src="${basePath}/resources/js/jquery.js" style="color: rgb(51, 51, 51);"></script></script>
-<script type="text/javascript" src="${basePath}/resources/js/NSW_Index.js"></script>
-</script><script type="text/javascript" src="${basePath}/resources/js/ScrollPicLeft.js" style="color: rgb(0, 0, 0);"></script>
 
 <%-- js end --%>
 
