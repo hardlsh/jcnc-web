@@ -1,0 +1,23 @@
+/* Created by hard on 2018/12/11. */
+
+/*-- copy-right --*/
+.copy-right {
+    padding: 2em 1em;
+    background: #333333;
+}
+.copy-right p {
+    float: left;
+    color: #fff;
+}
+.copy-right p a{
+    color: #cddc39;
+    text-decoration:none;
+}
+.copy-right p a:hover{
+    color: #fff;
+}
+/*-- copy-right --*/
+
+.custom-footer{
+    padding-left: 2px;
+}

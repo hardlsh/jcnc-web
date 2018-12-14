@@ -17,9 +17,9 @@ public class MainController {
      * 跳转到网站首页
      * @return
      */
-    @RequestMapping("/toFirst")
-    public ModelAndView toFirst(){
-        ModelAndView mav = new ModelAndView("first");
+    @RequestMapping("/toTestIndex")
+    public ModelAndView toTestIndex(){
+        ModelAndView mav = new ModelAndView("new/testindex");
         return mav;
     }
 
