@@ -79,7 +79,7 @@ public class MainController {
      */
     @RequestMapping("/toContact")
     public ModelAndView toContact(){
-        ModelAndView mav = new ModelAndView("contact");
+        ModelAndView mav = new ModelAndView("new/contact");
         return mav;
     }
 

@@ -49,7 +49,7 @@
                         </li>
                         <li><a href="gallery.html">应用实例</a></li>
                         <li><a href="gallery.html">设备能力</a></li>
-                        <li><a href="contact.html">联系我们</a></li>
+                        <li><a href="${basePath}/main/toContact.do">联系我们</a></li>
                     </ul>
                     <%-- 清除浮动 --%>
                     <div class="clearfix"> </div>
@@ -60,26 +60,6 @@
 </div>
 
 
-
-
-
-
-<%-- 导航栏 --%>
-<%--<nav class="navbar navbar-default" role="navigation">
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="background:#5796cc">
-        <div class="container">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="${basePath}/main/toFirst.do">网站首页</a></li>
-                <li><a href="${basePath}/main/toBrief.do">走进金诚耐材</a></li>
-                <li><a href="${basePath}/main/toProductCenter.do">产品中心</a></li>
-                <li><a href="${basePath}/main/toExamples.do">应用实例</a></li>
-                <li><a href="${basePath}/main/toEquipment.do">设备能力</a></li>
-                <li><a href="${basePath}/main/toAptitudeHonor.do">资质荣誉</a></li>
-                <li><a href="${basePath}/main/toContact.do">联系我们</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>--%>
 
 <%-- 轮播效果图 --%>
 <div id="myCarousel" class="carousel slide">
