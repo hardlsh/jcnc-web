@@ -569,7 +569,7 @@ p.w3ls-speech:after {
 /*-- //Testimonials --*/
 /*-- footer --*/
 .footer {
-    background: #333;
+    background: #dfdfdd;
     padding: 4em 0;
 }
 .footer-grid li {
@@ -578,17 +578,18 @@ p.w3ls-speech:after {
 }
 .footer h3 {
     font-size: 2em;
-    color: #cddc39;
+    color: #000000;
     margin-bottom: 0.8em;
     font-weight: 400;
 }
 .footer-grid li a {
     font-size: 1em;
-    color: #fff;
+    color: #000000;
     display: inline-block;
 	text-decoration: none;
 	font-weight: 300;
-	outline: none;
+    font-family: 微软雅黑;
+    outline: none;
 }
 .footer-grid li a:hover {
     margin-left: 1em;

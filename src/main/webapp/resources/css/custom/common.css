@@ -5,19 +5,76 @@
     padding: 2em 1em;
     background: #333333;
 }
+
 .copy-right p {
     float: left;
     color: #fff;
 }
-.copy-right p a{
+
+.copy-right p a {
     color: #cddc39;
-    text-decoration:none;
+    text-decoration: none;
 }
-.copy-right p a:hover{
+
+.copy-right p a:hover {
     color: #fff;
 }
+
 /*-- copy-right --*/
 
-.custom-footer{
+
+
+/* 自定义顶部样式 */
+.top{
+    height: 30px;
+    line-height: 30px;
+    background: #dedede;
+    color: #666;
+}
+
+/* 自定义导航样式 */
+.navbar-default {
+    background-color: #fff;
+    border-color: transparent;
+}
+.navbar-header {
+    float: none;
+    min-width: 768px
+}
+.navbar-header .navbar-brand {
+    float: left;
+    height: 100px;
+    padding: 10px 5px;
+}
+.tel{
+    background: url(../../img/icon/tel.png) no-repeat center;
+    padding-left: 240px;
+    margin-top: 30px;
+}
+.tel b{
+    display: block;
+    font-size: 28px;
+    line-height: 30px;
+    color: #000000;
+    font-weight: normal;
+    font-family: Impact , Arial;
+}
+.tel .tu{
+    width:40px;
+    height:40px;
+    overflow:hidden;
+    background: url(../../img/icon/weixin.png) repeat-x;
+    margin-top:-10px;
+}
+
+
+/* 自定义轮播样式 */
+.slider-banner {
+    position: relative;
+    overflow: hidden
+}
+
+/* 自定义底部样式 */
+.custom-footer {
     padding-left: 2px;
 }

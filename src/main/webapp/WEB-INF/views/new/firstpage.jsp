@@ -8,23 +8,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <%-- html页面自动适应调整 --%>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>新密市金诚耐材耐火材料有限公司</title>
+    <title>郑州北海金诚耐材有限公司</title>
     <%-- 关键字，告诉搜索引擎网页的关键字 --%>
     <meta name="keywords" content="耐火砖价格,耐火砖规格,河南耐火砖厂,耐火砖厂家,耐火砖生产厂家,高铝耐火砖">
     <%-- 网页描述，搜索引擎根据描述进行收录排名 --%>
-    <meta name="description" content="河南超裕耐火材料是专业耐火砖生产厂家,耐火砖规格齐全,以高铝耐火砖为核心,专注浇注料,粘土砖,异型耐火砖,关于耐火砖价格,咨询电话:15517585977">
-
+    <meta name="description" content="郑州北海金诚耐材是专业耐火砖生产厂家,耐火砖规格齐全,以高铝耐火砖为核心,专注浇注料,粘土砖,异型耐火砖,关于耐火砖价格,咨询电话:15093218658">
+    <link rel="icon" type="image/png" sizes="64x64"
+          href="${basePath}/resources/img/logo/logo-64-64.png">
 </head>
 <%@include file="../base.jsp"%>
 
 <body>
-<div class="top">
+<div class="top hidden-xs">
     <div class="container">
         <span class="pull-left" id="inn"></span>
-        <span class="pull-left">&nbsp;&nbsp;&nbsp;您好，欢迎来到郑州金诚耐材耐火材料有限公司官网！</span>
+        <span class="pull-left">&nbsp;&nbsp;&nbsp;您好，欢迎来到郑州北海金诚耐材有限公司官网！</span>
         <span class="pull-right">
             <a rel="nofollow" rel="nofollow" href="http://www.cynhz.com/about/" target="_blank">关于我们</a> |
             <a rel="nofollow" href="http://www.cynhz.com/contact/" target="_blank">联系我们</a></span>
+    </div>
+</div>
+
+<div class="navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://www.jinchengnaicai.com/" title="郑州北海金诚耐材有限公司">
+                <img src="${basePath}/resources/img/logo/logo-top.png"/>
+            </a>
+            <div class="tel navbar-right hidden-xs">
+                <div class="tu"></div>
+                <b>15093218658</b>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -61,51 +76,63 @@
 
 
 
+
+
+<div class="content">
+    <div class="section home-banner">
+
+    </div>
+
+</div>
+
+
+
 <%-- 轮播效果图 --%>
-<div id="myCarousel" class="carousel slide">
-    <!-- 轮播（Carousel）指标 -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-    </ol>
-    <!-- 轮播（Carousel）项目 -->
-    <div class="carousel-inner">
-        <div class="item active">
-            <a href="#"><img src="${basePath}/resources/img/carousel/flash.jpg" border="0"></a>
-        </div>
-        <div class="item">
-            <a href="#"><img src="${basePath}/resources/img/carousel/flash1.jpg" border="0"></a>
-        </div>
-        <div class="item">
-            <a href="#"><img src="${basePath}/resources/img/carousel/flash2.jpg" border="0"></a>
+<div class="slider-banner">
+    <div id="myCarousel" class="carousel slide">
+        <!-- 轮播（Carousel）指标 -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+        </ol>
+        <!-- 轮播（Carousel）项目 -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div align="center">
+                    <a href="#"><img src="${basePath}/resources/img/carousel/flash.jpg" border="0"></a>
+                </div>
+            </div>
+            <div class="item">
+                <div align="center">
+                    <a href="#"><img src="${basePath}/resources/img/carousel/flash1.jpg" border="0"></a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
 
 <!-- footer -->
 <div class="footer">
     <div class="container">
         <div class="col-md-3 col-sm-6 footer-grid">
-            <h3>Useful Info</h3>
+            <h3>产品列表</h3>
             <ul>
                 <li>
                     <a href="single.html">
                         <img src="${basePath}/resources/img/icon/right-circle.png"/>
-                        <i class="custom-footer" >Amet consectetur</i>
+                        <i class="custom-footer" >高铝砖</i>
                     </a>
                 </li>
                 <li>
                     <a href="single.html">
                         <img src="${basePath}/resources/img/icon/right-circle.png"/>
-                        <i class="custom-footer" >Donec ut lectus</i>
+                        <i class="custom-footer" >粘土砖</i>
                     </a>
                 </li>
                 <li>
                     <a href="single.html">
                         <img src="${basePath}/resources/img/icon/right-circle.png"/>
-                        <i class="custom-footer" >Iquam hendrerit</i>
+                        <i class="custom-footer" >保温砖</i>
                     </a>
                 </li>
             </ul>
@@ -200,7 +227,7 @@
             case 5: week1='星期五'; break;
             case 6: week1='星期六'; break;
         }
-        inn.innerHTML='今天是'+year+'年'+month+'月'+day+'日 '+week1;
+        inn.innerHTML=year+'年'+month+'月'+day+'日 '+week1;
     }
     today1();
 </script>
