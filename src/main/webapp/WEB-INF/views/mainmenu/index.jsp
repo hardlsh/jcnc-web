@@ -16,28 +16,38 @@
                 <c:forEach items="${menus }" var="item" varStatus="status">
                     <c:if test="${status.index==0}">
                         <li class="start active open">
-                            <a href="javascript:;">
-                                <i class="icon-credit-card"></i>
-                                <span class="title">${item.menu.getResourceName() }</span>
-                                <span class="selected"></span>
-                                <span class="arrow open"></span>
-                            </a>
+                        <a href="javascript:;">
+                            <i class="icon-credit-card"></i>
+                            <span class="title">${item.menu.getResourceName() }</span>
+                            <span class="selected"></span>
+                            <span class="arrow open"></span>
+                        </a>
                     </c:if>
                     <c:if test="${status.index!=0}">
-                        <li class="open">
-                            <a href="javascript:;">
-                                <i class="icon-credit-card"></i>
-                                <span class="title">${item.menu.getResourceName() }</span>
-                                <span class="arrow"></span>
-                            </a>
+                        <li>
+                        <a href="javascript:;">
+                            <i class="icon-credit-card"></i>
+                            <span class="title">${item.menu.getResourceName() }</span>
+                            <span class="arrow"></span>
+                        </a>
                     </c:if>
                     <c:if test="${fn:length(item.getChildren())>0}">
                         <ul class="sub-menu">
                             <c:forEach items="${item.getChildren() }" var="child" varStatus="stat">
-                                <li class="active">
-                                    <a class="ajaxify start" href="${basePath}/${child.getResourcePath() }">
-                                        <i class="icon-credit-card"></i>
-                                            ${child.getResourceName() }</a>
+                                <c:if test="${stat.index==0 && status.index==0}">
+                                    <li class="active">
+                                        <a class="ajaxify start" href="${basePath}/${child.getResourcePath() }">
+                                            <i class="icon-credit-card"></i>
+                                                ${child.getResourceName() }</a>
+                                    </li>
+                                </c:if>
+                                <c:if test="${stat.index!=0 || status.index!=0}">
+                                    <li>
+                                        <a class="ajaxify" href="${basePath}/${child.getResourcePath() }">
+                                            <i class="icon-credit-card"></i>
+                                                ${child.getResourceName()}</a>
+                                    </li>
+                                </c:if>
                             </c:forEach>
                         </ul>
                     </c:if>
@@ -64,6 +74,15 @@
         $(entity).removeClass();
     });
     $('#firstpage').addClass("active");
+</script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        Metronic.init(); // init metronic core components
+        Layout.init(); // init current layout
+        $('.page-sidebar .ajaxify.start').click() // load the content for the dashboard page.
+        $body_cache = $("body");
+    });
 </script>
 
 </body>
