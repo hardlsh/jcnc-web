@@ -13,9 +13,9 @@
     <context:annotation-config/>
     <!--启动注解驱动的springmvc功能-->
     <mvc:annotation-driven/>
-    <!--启动包扫面功能-->
+    <!--启动包扫描功能-->
     <context:component-scan base-package="com.jcnc.controller"/>
-    <context:component-scan base-package="com.jcnc.service"/>
+    <context:component-scan base-package="com.jcnc.services"/>
 
     <!--视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

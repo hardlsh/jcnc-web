@@ -59,7 +59,7 @@
   </filter-mapping>
 
   <welcome-file-list>
-    <welcome-file>/WEB-INF/views/new/firstpage.jsp</welcome-file>
+    <welcome-file>/WEB-INF/views/mainmenu/index.jsp</welcome-file>
   </welcome-file-list>
 
 </web-app>

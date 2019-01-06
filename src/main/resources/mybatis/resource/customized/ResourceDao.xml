@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcnc.services.resource.dao.customized.ResourceDao" >
+
+	<resultMap id="ResourceModel" extends="BaseResultMap" type="com.jcnc.services.resource.model.customized.ResourceModel" >
+
+	</resultMap>
+
+  	<sql id="R_Column_List" >
+  		r.resource_id, r.resource_name, r.resource_type, r.parent_id, r.resource_path,
+  		r.level, r.sequence, r.remark
+  	</sql>
+  	
+  	<select id="queryUserResources" resultMap="ResourceModel"
+  		parameterType="com.jcnc.services.resource.model.customized.ResourceModel">
+		SELECT 
+			<include refid="R_Column_List"/>
+		FROM
+			tp_sys_resource r
+		<where>
+			<if test="resourceType != null">
+				AND r.resource_type = #{resourceType, jdbcType=INTEGER}
+			</if>
+		</where>
+		ORDER BY r.sequence
+  	</select>
+  	
+
+</mapper>

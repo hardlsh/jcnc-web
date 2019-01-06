@@ -3,7 +3,7 @@
 /*-- copy-right --*/
 .copy-right {
     padding: 2em 1em;
-    background: #333333;
+    background: #424242;
 }
 
 .copy-right p {
@@ -74,7 +74,116 @@
     overflow: hidden
 }
 
+/* 自定义展示内容样式 */
+.core-value-area {
+    background: #f7f7f7;
+    padding: 4em 0;
+}
+.sec-title-two {
+    margin-top: -1px;
+    padding-bottom: 20px;
+    position: relative;
+}
+.sec-title-two h1{
+    color: #3d3d3d;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 32px;
+    margin: 0;
+    text-transform: capitalize;
+}
+.sec-title-two .border {
+    background: #ececec none repeat scroll 0 0;
+    display: block;
+    height: 1px;
+    width: 70px;
+    margin: 20px 0 0;
+}
+.core-value-area .text-holder {}
+.core-value-area .text-holder .single-item {
+    padding-left: 25px;
+    position: relative;
+    padding-bottom: 40px;
+}
+.core-value-area .text-holder .single-item .icon-box {
+    width: 25px;
+    height: 28px;
+    position: absolute;
+    top: -1px;
+    left: 0;
+}
+.core-value-area .text-holder .single-item .icon-box .custom-thumb-up{
+    background: url(../../img/icon/thumb-up.png) center;
+    color: #43c3ea;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: -1px;
+    left: 0;
+}
+.core-value-area .text-holder .single-item .icon-box .custom-heart{
+    background: url(../../img/icon/heart.png) center;
+    color: #43c3ea;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: -1px;
+    left: 0;
+}
+.core-value-area .text-holder .single-item .text-box {
+    padding-left: 20px;
+}
+.core-value-area .text-holder .single-item .text-box h3 {
+    color: #252525;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin: 0 0 14px;
+}
+.footer-grid {
+    padding: 0px 0px 10px 0px;
+}
+.custom-title {
+    padding: 0px 0px 50px 0px;
+}
+
+/* 自定义图标样式 */
+.custom-locate {
+    background: url(../../img/icon/locate.png) center;
+    color: #43c3ea;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+}
+
+/* 自定义地图样式 */
+.custom-map {
+    width: 100%;
+    min-height: 500px;
+    border:#ccc solid 1px;
+}
+
+
 /* 自定义底部样式 */
 .custom-footer {
     padding-left: 2px;
+}
+
+/* 自定义提交按钮样式 */
+.custom-submit {
+    outline: none;
+    color: #fff;
+    padding: 0.6em 4em;
+    font-size: 1em;
+    margin: 1em 0 0 0;
+    -webkit-appearance: none;
+    background: #CDDC39;
+    border: 2px solid #CDDC39;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    transition: 0.5s all;
+}
+.custom-submit:hover {
+    background: none;
+    color: #CDDC39;
 }
