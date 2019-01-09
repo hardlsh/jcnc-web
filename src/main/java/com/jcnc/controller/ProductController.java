@@ -14,8 +14,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class ProductController {
 
     @RequestMapping("/toMainProduct")
-    public ModelAndView toMainProduct () {
+    public ModelAndView toMainProduct() {
         ModelAndView mav = new ModelAndView("product/main/mainproducts");
+        return mav;
+    }
+
+    @RequestMapping("/toBaseMainProduct")
+    public ModelAndView toBaseMainProduct() {
+        ModelAndView mav = new ModelAndView("product/main/basemainproduct");
         return mav;
     }
 }
