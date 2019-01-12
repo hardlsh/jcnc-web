@@ -10,7 +10,7 @@
         </li>
         <li>
             <i class="fa fa-cart-arrow-down"></i>
-            <a >主打产品</a>
+            <a >品质产品</a>
             <i class="fa fa-angle-right"></i>
         </li>
         <li>

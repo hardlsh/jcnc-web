@@ -45,7 +45,7 @@
 
                 </div>
 
-                <img src="${basePath}/product/tofindPic.do">
+                <img src="${basePath}/product/toLoadPicture.do">
             </div>
         </div>
     </div>

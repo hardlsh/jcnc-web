@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcnc.services.product.dao.customized.ProductDao" >
+
+	<resultMap id="ProductModel" extends="BaseResultMap" type="com.jcnc.services.product.model.customized.ProductModel" >
+
+	</resultMap>
+
+  	<sql id="P_Column_List" >
+  		p.product_id, p.product_name, p.product_type, p.product_img_name, p.product_info, p.product_details,
+    	p.product_details_img_name, p.sequence, p.status, p.remark
+  	</sql>
+  	
+  	<select id="getProductById" resultMap="ProductModel" parameterType="java.lang.Long">
+		SELECT 
+			<include refid="P_Column_List"/>
+		FROM
+			tb_product p
+		where
+			p.product_id = #{productId, jdbcType=BIGINT}
+  	</select>
+
+	<select id="getProductByModel" resultMap="ProductModel" parameterType="com.jcnc.services.product.model.customized.ProductModel">
+		SELECT
+			<include refid="P_Column_List"/>
+		FROM
+			tb_product p
+		where
+			p.product_type = #{productType, jdbcType=INTEGER}
+	</select>
+
+</mapper>

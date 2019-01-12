@@ -1,29 +1,26 @@
 package com.jcnc.controller;
 
+import com.jcnc.common.constant.Constants;
+import com.jcnc.common.util.CommonUtil;
 import com.jcnc.common.util.PropertiesUtil;
 import com.jcnc.common.vo.JCResponse;
 import com.jcnc.common.vo.RetCode;
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageDecoder;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
-import jdk.nashorn.internal.objects.Global;
+import com.jcnc.services.product.enums.ProductTypeEnum;
+import com.jcnc.services.product.model.customized.ProductModel;
+import com.jcnc.services.product.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.image.BufferedImage;
 import java.io.*;
-import java.math.BigDecimal;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 产品控制器类
@@ -34,15 +31,52 @@ import java.util.UUID;
 @RequestMapping("product")
 public class ProductController {
 
+    @Autowired
+    private ProductService productService;
+
     @RequestMapping("/toMainProduct")
     public ModelAndView toMainProduct() {
         ModelAndView mav = new ModelAndView("product/main/mainproducts");
+        ProductModel productModel = new ProductModel();
+        productModel.setProductType(ProductTypeEnum.MAIN_PRODUCT.getKey());
+        List<ProductModel> productList = productService.getProductByModel(productModel);
+
+        Integer rowNum;
+        if (productList == null) {
+            rowNum = 0;
+        } else {
+            if (productList.size() % Constants.COLUMN_NUM == 0) {
+                rowNum = productList.size() / Constants.COLUMN_NUM;
+            } else {
+                rowNum = productList.size() / Constants.COLUMN_NUM + 1;
+            }
+        }
+        mav.addObject("rowNum", rowNum);
+        mav.addObject("columnNum", Constants.COLUMN_NUM);
+        mav.addObject("productList",productList);
+        mav.addObject("jumpPath", "/product/toBaseMainProduct.do?productId=");
         return mav;
     }
 
     @RequestMapping("/toBaseMainProduct")
-    public ModelAndView toBaseMainProduct() {
+    public ModelAndView toBaseMainProduct(Long productId) {
         ModelAndView mav = new ModelAndView("product/main/basemainproduct");
+        ProductModel productModel = productService.getProductById(productId);
+        mav.addObject("product", productModel);
+        return mav;
+    }
+
+    @RequestMapping("/toQualityProduct")
+    public ModelAndView toQualityProduct() {
+        ModelAndView mav = new ModelAndView("product/main/qualityproducts");
+        return mav;
+    }
+
+    @RequestMapping("/toBaseQualityProduct")
+    public ModelAndView toBaseQualityProduct(Long productId) {
+        ModelAndView mav = new ModelAndView("product/main/basequalityproduct");
+        ProductModel productModel = productService.getProductById(productId);
+        mav.addObject("product", productModel);
         return mav;
     }
 
@@ -60,7 +94,8 @@ public class ProductController {
         String fileName = file.getOriginalFilename();
 
         try {
-            File fileMkdir = new File("E:\\photoTest");
+            String imagePath = getProductString(Constants.PRODUCT_PROPERTIES, Constants.PRODUCT_IMAGE_PATH);
+            File fileMkdir = new File(imagePath);
 
             if (!fileMkdir.exists()) {
                 fileMkdir.mkdir();
@@ -78,16 +113,12 @@ public class ProductController {
     }
 
     //根据请求的路径中的参数id,从本地磁盘中读取图片，picUrl是从配置文件中读取出来的
-    @RequestMapping("/tofindPic")
+    @RequestMapping("/toLoadPicture")
     @ResponseBody
-    public String tofindPic(HttpServletRequest request,HttpServletResponse response){
-        String fileName = "product.properties";
-        String key = "product.imagePath";
-
-        String imagePath = getProductString(fileName, key)+"营业执照.jpg";
+    public String toLoadPicture(HttpServletRequest request,HttpServletResponse response){
+        String imagePath = getProductString(Constants.PRODUCT_PROPERTIES, Constants.PRODUCT_IMAGE_PATH)+"营业执照.jpg";
         FileInputStream in;
         try {
-            //图片读取路径
 
             in = new FileInputStream(imagePath);
             //写图片
