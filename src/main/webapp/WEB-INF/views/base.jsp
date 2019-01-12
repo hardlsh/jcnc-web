@@ -31,9 +31,10 @@
 <script type="text/javascript" src="${basePath}/resources/js/SmoothScroll.min.js" ></script>
 <script type="text/javascript" src="${basePath}/resources/js/metronic.js" ></script>
 <script type="text/javascript" src="${basePath}/resources/js/layout.js" ></script>
-<script type="text/javascript" src="${basePath}/resources/js/bootbox.js" ></script>
 
 <script type="text/javascript" src="${basePath}/resources/plugins/bootstrap/js/bootstrap.min.js" ></script>
+<script type="text/javascript" src="${basePath}/resources/js/jquery.form.js" ></script>
+<script type="text/javascript" src="${basePath}/resources/js/bootbox.js" ></script>
 
 <%--
 百度免费在线客服
