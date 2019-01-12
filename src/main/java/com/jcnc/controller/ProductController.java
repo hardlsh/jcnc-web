@@ -1,5 +1,6 @@
 package com.jcnc.controller;
 
+import com.jcnc.common.util.PropertiesUtil;
 import com.jcnc.common.vo.JCResponse;
 import com.jcnc.common.vo.RetCode;
 import com.sun.image.codec.jpeg.JPEGCodec;
@@ -80,7 +81,10 @@ public class ProductController {
     @RequestMapping("/tofindPic")
     @ResponseBody
     public String tofindPic(HttpServletRequest request,HttpServletResponse response){
-        String imagePath = "E:\\photoTest\\"+"营业执照.jpg";
+        String fileName = "product.properties";
+        String key = "product.imagePath";
+
+        String imagePath = getProductString(fileName, key)+"营业执照.jpg";
         FileInputStream in;
         try {
             //图片读取路径
@@ -102,4 +106,7 @@ public class ProductController {
         return "ok";
     }
 
+    public static String getProductString(String fileName, String key) {
+        return PropertiesUtil.getPropertiesValue(fileName, key);
+    }
 }
