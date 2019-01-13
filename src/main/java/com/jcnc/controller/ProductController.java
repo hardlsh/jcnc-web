@@ -41,6 +41,20 @@ public class ProductController {
         productModel.setProductType(ProductTypeEnum.MAIN_PRODUCT.getKey());
         List<ProductModel> productList = productService.getProductByModel(productModel);
 
+        Integer rowNum = getRowNum(productList);
+        mav.addObject("rowNum", rowNum);
+        mav.addObject("columnNum", Constants.COLUMN_NUM);
+        mav.addObject("productList",productList);
+        mav.addObject("jumpPath", "/product/toBaseMainProduct.do?productId=");
+        return mav;
+    }
+
+    /**
+     * 获取产品展示行数
+     * @param productList
+     * @return
+     */
+    private Integer getRowNum(List<ProductModel> productList) {
         Integer rowNum;
         if (productList == null) {
             rowNum = 0;
@@ -51,11 +65,7 @@ public class ProductController {
                 rowNum = productList.size() / Constants.COLUMN_NUM + 1;
             }
         }
-        mav.addObject("rowNum", rowNum);
-        mav.addObject("columnNum", Constants.COLUMN_NUM);
-        mav.addObject("productList",productList);
-        mav.addObject("jumpPath", "/product/toBaseMainProduct.do?productId=");
-        return mav;
+        return rowNum;
     }
 
     @RequestMapping("/toBaseMainProduct")
@@ -68,13 +78,22 @@ public class ProductController {
 
     @RequestMapping("/toQualityProduct")
     public ModelAndView toQualityProduct() {
-        ModelAndView mav = new ModelAndView("product/main/qualityproducts");
+        ModelAndView mav = new ModelAndView("product/quality/qualityproducts");
+        ProductModel productModel = new ProductModel();
+        productModel.setProductType(ProductTypeEnum.QUALITY_PRODUCT.getKey());
+        List<ProductModel> productList = productService.getProductByModel(productModel);
+
+        Integer rowNum = getRowNum(productList);
+        mav.addObject("rowNum", rowNum);
+        mav.addObject("columnNum", Constants.COLUMN_NUM);
+        mav.addObject("productList",productList);
+        mav.addObject("jumpPath", "/product/toBaseQualityProduct.do?productId=");
         return mav;
     }
 
     @RequestMapping("/toBaseQualityProduct")
     public ModelAndView toBaseQualityProduct(Long productId) {
-        ModelAndView mav = new ModelAndView("product/main/basequalityproduct");
+        ModelAndView mav = new ModelAndView("product/quality/basequalityproduct");
         ProductModel productModel = productService.getProductById(productId);
         mav.addObject("product", productModel);
         return mav;

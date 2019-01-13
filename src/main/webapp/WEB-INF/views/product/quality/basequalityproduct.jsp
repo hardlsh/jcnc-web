@@ -35,7 +35,7 @@
                     <div class="col-md-12">
                         <div class="col-md-4">
                             <a class="thumbnail">
-                                <img src="${basePath}/resources/img/product/main/${product.productImgName}" alt="${product.productName}" title="${product.productName}" />
+                                <img src="${basePath}/resources/img/product/quality/${product.productImgName}" alt="${product.productName}" title="${product.productName}" />
                             </a>
                         </div>
                         <div class="col-md-8 img-info">
@@ -55,7 +55,7 @@
                                 ${product.productDetails}
                                 <br>
                                     <img alt=""
-                                         src="${basePath}/resources/img/product/main/${product.productDetailsImgName}"
+                                         src="${basePath}/resources/img/product/quality/${product.productDetailsImgName}"
                                          style="width: 790px; height: 475px;"/>
                                 <br>
                             </div>

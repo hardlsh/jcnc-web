@@ -59,8 +59,6 @@
 
 		},
 		goToURL : function (product) {
-            alert("${basePath}" + mainProductsHelper.jumpPath);
-
             $('#body2').load("${basePath}" + mainProductsHelper.jumpPath + $(product).data('id'));
         }
 

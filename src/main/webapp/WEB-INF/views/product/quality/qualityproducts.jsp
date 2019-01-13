@@ -27,135 +27,47 @@
 			</div>
 			<div class="portlet-body">
 				<div class="table-toolbar">
-					<div class="col-md-12">
-						<div class="row main-con-product">
-							<div class="col-md-3 main-product-list">
-								<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-									<img src="${basePath}/resources/img/product/main/yiji_lvfantushuliao.jpg"
-										 class="img-responsive" alt="一级铝矾土熟料" title="一级铝矾土熟料">
-								</a>
-								<span class="text-center center-block">
-									<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-										一级铝矾土熟料
-									</a>
-								</span>
-							</div>
-							<div class="col-md-3 main-product-list">
-								<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-									<img src="${basePath}/resources/img/product/main/lz65_gaolvzhuan.png"
-										 class="img-responsive" alt="lz-65高铝砖" title="lz-65高铝砖">
-								</a>
-								<span class="text-center center-block">
-									<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-										lz-65高铝砖
-									</a>
-								</span>
-							</div>
-							<div class="col-md-3 main-product-list">
-								<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-									<img src="${basePath}/resources/img/product/main/shihuiyaoyonglz75_gaolvzhuan.jpg"
-										 class="img-responsive" alt="石灰窑用lz-75高铝砖" title="石灰窑用lz-75高铝砖">
-								</a>
-								<span class="text-center center-block">
-									<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-										石灰窑用lz-75高铝砖
-									</a>
-								</span>
-							</div>
-							<div class="col-md-3 main-product-list">
-								<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-									<img src="${basePath}/resources/img/product/main/diqikongzhantu_naihuozhuan.jpg"
-										 class="img-responsive" alt="低气孔粘土耐火砖" title="低气孔粘土耐火砖">
-								</a>
-								<span class="text-center center-block">
-									<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-										低气孔粘土耐火砖
-									</a>
-								</span>
+					<c:forEach begin="0" end="${rowNum}" step="1" varStatus="item">
+						<div class="col-md-12">
+							<div class="row main-con-product">
+								<c:forEach items="${productList}" begin="${item.index * columnNum}"
+										   end="${((item.index + 1) * columnNum) -1}" step="1" var="product">
+									<div class="col-md-3 main-product-list">
+										<a data-id="${product.productId}" target="_blank" onclick="qualityProductsHelper.goToURL(this)">
+											<img src="${basePath}/resources/img/product/quality/${product.productImgName}"
+												 class="img-responsive" alt="${product.productName}" title="${product.productName}"/>
+											<span class="text-center center-block">
+													${product.productName}
+											</span>
+										</a>
+									</div>
+								</c:forEach>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="row main-con-product">
-							<div class="col-md-3 main-product-list">
-								<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-									<img src="${basePath}/resources/img/product/main/zhantu_naihuozhuan.jpg"
-										 class="img-responsive" alt="粘土耐火砖" title="粘土耐火砖">
-								</a>
-								<span class="text-center center-block">
-									<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-										粘土耐火砖
-									</a>
-								</span>
-							</div>
-							<div class="col-md-3 main-product-list">
-								<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-									<img src="${basePath}/resources/img/product/main/qingzhizhantu_baowenzhuan.jpg"
-										 class="img-responsive" alt="轻质粘土保温砖" title="轻质粘土保温砖">
-								</a>
-								<span class="text-center center-block">
-									<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-										轻质粘土保温砖
-									</a>
-								</span>
-							</div>
-							<div class="col-md-3 main-product-list">
-								<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-									<img src="${basePath}/resources/img/product/main/boliyaoyong_zhantudazhuan.jpg"
-										 class="img-responsive" alt="玻璃窑用粘土大砖" title="玻璃窑用粘土大砖">
-								</a>
-								<span class="text-center center-block">
-									<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-										玻璃窑用粘土大砖
-									</a>
-								</span>
-							</div>
-							<div class="col-md-3 main-product-list">
-								<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-									<img src="${basePath}/resources/img/product/main/qingzhi_guizhuan.jpg"
-										 class="img-responsive" alt="轻质硅砖" title="轻质硅砖">
-								</a>
-								<span class="text-center center-block">
-									<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-										轻质硅砖
-									</a>
-								</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="row main-con-product">
-							<div class="col-md-3 main-product-list">
-								<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-									<img src="${basePath}/resources/img/product/main/jizhigaolv_naihuoqiu.jpg"
-										 class="img-responsive" alt="机制高铝耐火球" title="机制高铝耐火球">
-								</a>
-								<span class="text-center center-block">
-									<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-										机制高铝耐火球
-									</a>
-								</span>
-							</div>
-							<div class="col-md-3 main-product-list">
-								<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-									<img src="${basePath}/resources/img/product/main/xureqiu.jpg"
-										 class="img-responsive" alt="12、20、25mm蓄热球" title="12、20、25mm蓄热球">
-								</a>
-								<span class="text-center center-block">
-									<a href="http://www.zzcync.com/products/aluminum/2018/1110/JLZ.html" target="_blank">
-										12、20、25mm蓄热球
-									</a>
-								</span>
-							</div>
-
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 
 			</div>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+    var qualityProductsHelper = {
+        jumpPath : '${jumpPath}',
+        init : function() {
+
+        },
+        goToURL : function (product) {
+            $('#body2').load("${basePath}" + qualityProductsHelper.jumpPath + $(product).data('id'));
+        }
+
+    }
+
+    $(function() {
+        qualityProductsHelper.init();
+    });
+</script>
 
 
 
