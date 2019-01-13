@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="../../base.jsp"%>
 
-<div class="page-bar">
+<div class="page-bar" id="mainDesignatedSpot">
     <ul class="page-breadcrumb">
         <li>
             <i class="fa fa-cart-arrow-down"></i>
@@ -16,9 +16,10 @@
         <li>
             <a >${product.productName}</a>
             <i class="fa"></i>
-            <i class="fa fa-angle-right"></i>
         </li>
     </ul>
+    <%-- 模拟点击，跳转到指定页面位置 --%>
+    <button style="display: none;" id="mainGangplank"/>
 </div>
 
 <!-- 展示区 -->
@@ -67,3 +68,15 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#mainGangplank").click(function() {
+            $("html, body").animate({
+                scrollTop: $("#mainDesignatedSpot").offset().top }, {duration: 300,easing: "swing"});
+            return false;
+        });
+
+        $("#mainGangplank").trigger("click");
+    });
+</script>

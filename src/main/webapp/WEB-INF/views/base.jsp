@@ -18,7 +18,7 @@
 <link href="${basePath}/resources/css/components.css" rel="stylesheet" type="text/css" />
 <link href="${basePath}/resources/css/plugins.css" rel="stylesheet" type="text/css" />
 <link href="${basePath}/resources/css/layout.css" rel="stylesheet" type="text/css"/>
-<link href="${basePath}/resources/css/darkblue.css" rel="stylesheet" type="text/css"/>
+<link href="${basePath}/resources/css/light.css" rel="stylesheet" type="text/css"/>
 <%-- css end --%>
 
 <%-- js start --%>

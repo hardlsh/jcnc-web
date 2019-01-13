@@ -8,8 +8,9 @@
 
 <div class="clearfix">
 </div>
+
 <%-- 产品菜单展示 --%>
-<div class="page-container">
+<div class="container">
     <div class="page-sidebar-wrapper">
         <div class="page-sidebar navbar-collapse collapse">
             <ul class="page-sidebar-menu" data-slide-speed="200" data-auto-scroll="true" data-auto-scroll="true" data-slide-speed="200">
