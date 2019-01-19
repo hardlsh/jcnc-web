@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html>
 
-<%@include file="../base.jsp"%>
+<%@include file="base.jsp"%>
 <body>
-<jsp:include page="../basebody.jsp"/>
+<jsp:include page="basebody.jsp"/>
 
 <div class="clearfix">
 </div>
@@ -71,13 +71,24 @@
 
 
 
-<%@include file="../copyright.jsp"%>
+<%@include file="copyright.jsp"%>
 
 <script type="text/javascript">
-    $('[name="custom_menu"]').each(function(index, entity) {
-        $(entity).removeClass();
+    var mainHelper = {
+        mainMenu: '${mainMenu}',
+        init: function () {
+            $('[name="custom_menu"]').each(function (index, entity) {
+                $(entity).removeClass();
+            });
+
+            $('#' + mainHelper.mainMenu).addClass("active");
+        }
+
+    }
+
+    $(function() {
+        mainHelper.init();
     });
-    $('#firstpage').addClass("active");
 </script>
 
 <script type="text/javascript">

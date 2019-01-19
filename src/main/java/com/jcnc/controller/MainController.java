@@ -1,5 +1,6 @@
 package com.jcnc.controller;
 
+import com.jcnc.common.constant.Constants;
 import com.jcnc.services.resource.model.customized.ResourceModel;
 import com.jcnc.services.resource.service.ResourceService;
 import com.jcnc.services.resource.vo.ResourceVo;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,11 +27,12 @@ public class MainController {
      * 跳转到网站首页
      * @return
      */
-    @RequestMapping("/toIndex")
-    public ModelAndView toIndex(){
-        ModelAndView mav = new ModelAndView("mainmenu/index");
+    @RequestMapping("/toMain")
+    public ModelAndView toMain(){
+        ModelAndView mav = new ModelAndView("main");
         List<ResourceVo> resourceVoList = resourceService.queryPackageMenuUserResources(new ResourceModel());
         mav.addObject("menus", resourceVoList);
+        mav.addObject("mainMenu", Constants.MAIN_MENU_INDEX);
         return mav;
     }
 
@@ -42,6 +43,7 @@ public class MainController {
     @RequestMapping("/toAbout")
     public ModelAndView toAbout(){
         ModelAndView mav = new ModelAndView("mainmenu/about");
+        mav.addObject("mainMenu", Constants.MAIN_MENU_ABOUT);
         return mav;
     }
 
@@ -92,6 +94,7 @@ public class MainController {
     @RequestMapping("/toContact")
     public ModelAndView toContact(){
         ModelAndView mav = new ModelAndView("mainmenu/contact");
+        mav.addObject("mainMenu", Constants.MAIN_MENU_CONTACT);
         return mav;
     }
 

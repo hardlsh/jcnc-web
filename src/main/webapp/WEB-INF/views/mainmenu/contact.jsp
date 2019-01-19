@@ -1,62 +1,54 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@include file="../base.jsp"%>
 
-<body>
-<jsp:include page="../basebody.jsp"/>
 
 <div class="contact agileits">
-    <div class="container">
-        <h3 class="agileits-title">联系我们</h3>
-        <div class="contact-agileinfo">
-            <div class="col-md-7 contact-form wthree">
-                <form id="filter_form" action="#" method="post">
-                    <input type="text" name="Name" placeholder="Name" required="">
-                    <input class="email" type="email" name="Email" placeholder="Email" required="">
-                    <input type="text" class="mobile" type="mobile" name="Mobile" placeholder="Mobile" required="">
-                    <textarea placeholder="Message" name="Message" required=""></textarea>
-                    <button id="btnSave" class="custom-submit" type="button">提交留言</button>
-                </form>
-            </div>
-            <div class="col-md-4 contact-right wthree">
-                <div class="contact-text w3-agileits">
-                    <h4>联系方式 :</h4>
-                    <p>
-                        <img src="${basePath}/resources/img/icon/locate.png"/>
-                        <i class="custom-footer">地址：河南省郑州市新密市青屏街办事处嵩山大道青屏公寓905室</i>
-                    </p>
-                    <p>
-                        <img src="${bathPath}/resources/img/icon/mbile.png"/>
-                        <i class="custom-footer">电话：15093218658</i>
-                    </p>
-                    <p>
-                        <img src="${bathPath}/resources/img/icon/email.png"/>
-                        <i class="custom-footer">电子邮箱：beihaijincheng@163.com</i>
-                    </p>
-                </div>
-            </div>
-            <div class="clearfix"> </div>
+    <h3 class="agileits-title">联系我们</h3>
+    <div class="contact-agileinfo">
+        <div class="col-md-7 contact-form wthree">
+            <form id="filter_form" action="#" method="post">
+                <input type="text" name="Name" placeholder="姓名" required="">
+                <input class="email" type="email" name="Email" placeholder="邮箱" required="">
+                <input type="text" class="mobile" type="mobile" name="Mobile" placeholder="电话" required="">
+                <textarea placeholder="留言记录" name="Message" required=""></textarea>
+                <button id="btnSave" class="custom-submit" type="button">提交留言</button>
+            </form>
         </div>
+        <div class="col-md-4 contact-right wthree">
+            <div class="contact-text w3-agileits">
+                <h4>联系方式 :</h4>
+                <p>
+                    <img src="${basePath}/resources/img/icon/locate.png"/>
+                    <i class="custom-footer">地址：河南省郑州市新密市青屏街办事处嵩山大道青屏公寓905室</i>
+                </p>
+                <p>
+                    <img src="${bathPath}/resources/img/icon/mbile.png"/>
+                    <i class="custom-footer">电话：15093218658</i>
+                </p>
+                <p>
+                    <img src="${bathPath}/resources/img/icon/email.png"/>
+                    <i class="custom-footer">电子邮箱：beihaijincheng@163.com</i>
+                </p>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
     </div>
 </div>
 
 <!--百度地图容器-->
 <div class="contact agileits">
-    <div class="container">
-        <div class="custom-map" id="dituContent">
-        </div>
+    <div class="custom-map" id="dituContent">
     </div>
 </div>
 <!--百度地图容器-->
-
-<%@include file="../copyright.jsp"%>
 
 <script type="text/javascript">
-    $('[name="custom_menu"]').each(function(index, entity) {
+    var mainMenu = '${mainMenu}';
+    $('[name="custom_menu"]').each(function (index, entity) {
         $(entity).removeClass();
     });
-    $('#contract').addClass("active");
 
+    $('#' + mainMenu).addClass("active");
 
     var contactHelper = {
         init : function() {
@@ -182,6 +174,3 @@
 
     initMap();//创建和初始化地图
 </script>
-
-</body>
-</html>

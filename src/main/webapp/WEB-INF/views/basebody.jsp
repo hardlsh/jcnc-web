@@ -33,12 +33,12 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a name="custom_menu" id="firstpage" href="${basePath}/main/toIndex.do" class="active">
+                            <a name="custom_menu" id="index" href="${basePath}/main/toMain.do" class="active">
                                 网站首页
                             </a>
                         </li>
                         <li>
-                            <a name="custom_menu" id="about" href="${basePath}/main/toAbout.do">金诚耐材</a>
+                            <a name="custom_menu" id="about" onclick="toAbout()">金诚耐材</a>
                         </li>
                         <li>
                             <a name="custom_menu" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -56,7 +56,7 @@
                             <a name="custom_menu" href="gallery.html">设备能力</a>
                         </li>
                         <li>
-                            <a name="custom_menu" id="contract" href="${basePath}/main/toContact.do">联系我们</a>
+                            <a name="custom_menu" id="contact" onclick="toContact()">联系我们</a>
                         </li>
                     </ul>
                     <%-- 清除浮动 --%>
@@ -114,4 +114,14 @@
         inn.innerHTML=year+'年'+month+'月'+day+'日 '+week1;
     }
     today1();
+
+    // 跳转到公司介绍页
+    function toAbout() {
+        $('#body2').load("${basePath}/main/toAbout.do");
+    }
+    // 跳转到联系我们页
+    function toContact() {
+        $('#body2').load("${basePath}/main/toContact.do");
+    }
+
 </script>

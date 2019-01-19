@@ -18,4 +18,17 @@ public class Constants {
      * 产品展示，每行数量
      */
     public static final Integer COLUMN_NUM = 4;
+    /**
+     * 主菜单，首页
+     */
+    public static final String MAIN_MENU_INDEX = "index";
+    /**
+     * 主菜单，公司介绍页
+     */
+    public static final String MAIN_MENU_ABOUT = "about";
+    /**
+     * 主菜单，联系我们页
+     */
+    public static final String MAIN_MENU_CONTACT = "contact";
+
 }
