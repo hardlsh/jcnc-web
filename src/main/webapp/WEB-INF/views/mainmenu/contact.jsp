@@ -7,10 +7,13 @@
     <div class="contact-agileinfo">
         <div class="col-md-7 contact-form wthree">
             <form id="filter_form" action="#" method="post">
-                <input type="text" name="Name" placeholder="姓名" required="">
-                <input class="email" type="email" name="Email" placeholder="邮箱" required="">
-                <input type="text" class="mobile" type="mobile" name="Mobile" placeholder="电话" required="">
-                <textarea placeholder="留言记录" name="Message" required=""></textarea>
+                <!-- 隐藏的复位按钮 -->
+                <input type="reset" style="display: none;" />
+                <input type="text" name="visitorName" placeholder="姓名" required="" />
+                <input class="email" type="email" name="email" placeholder="邮箱" required="" />
+                <input type="text" class="mobile" type="mobile" name="mobile" placeholder="电话" required="" />
+                <textarea placeholder="留言记录" name="Message" required="">
+                </textarea>
                 <button id="btnSave" class="custom-submit" type="button">提交留言</button>
             </form>
         </div>
@@ -57,13 +60,16 @@
             $('#btnSave').click(me.btnSave);
         },
         btnSave : function() {
+            $("#btnSave").attr({"disabled":"disabled"});
             $.ajax({
-                url : "${basePath}/visitor/saveMessage.do",
+                url : "${basePath}/visitor/saveVisitorMessage.do",
                 data : $("#filter_form").serialize(),
                 dataType: "json",
                 type : "POST",
                 success : function(data) {
+                    $("#btnSave").removeAttr("disabled");
                     if (data.resultCode == '0000') {
+                        $("input[type=reset]").trigger("click");
                         bootbox.alert(data.resultMsg);
                     } else {
                         bootbox.alert(data.resultMsg);

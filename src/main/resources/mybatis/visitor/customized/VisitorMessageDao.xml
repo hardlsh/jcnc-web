@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcnc.services.visitor.dao.customized.VisitorMessageDao" >
+
+	<resultMap id="VisitorMessageModel" extends="BaseResultMap" type="com.jcnc.services.visitor.model.customized.VisitorMessageModel" >
+
+	</resultMap>
+
+  	<sql id="M_Column_List" >
+  		m.message_id, m.visitor_name, m.mobile, m.email, m.handle_name, m.status, m.remark, m.create_time,
+    	m.update_time
+  	</sql>
+  	
+  	<insert id="saveVisitorMessage"
+  		parameterType="com.jcnc.services.visitor.model.customized.VisitorMessageModel">
+		INSERT INTO
+		tb_visitor_message (visitor_name, mobile,
+		   email, status, message)
+		VALUES (#{visitorName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+		#{message,jdbcType=LONGVARCHAR})
+  	</insert>
+  	
+
+</mapper>
