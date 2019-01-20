@@ -13,5 +13,5 @@ public interface VisitorMessageDao extends VisitorMessageMapper{
      * 保存访客留言信息
      * @param param
      */
-    void saveVisitorMessage(VisitorMessageModel param);
+    int saveVisitorMessage(VisitorMessageModel param);
 }

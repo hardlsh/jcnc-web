@@ -19,7 +19,7 @@ public class VisitorMessageServiceImpl extends BaseService implements VisitorMes
     }
 
     @Override
-    public void saveVisitorMessage(VisitorMessageModel param) {
-        getVisitorMessageDao().saveVisitorMessage(param);
+    public int saveVisitorMessage(VisitorMessageModel param) {
+        return getVisitorMessageDao().saveVisitorMessage(param);
     }
 }

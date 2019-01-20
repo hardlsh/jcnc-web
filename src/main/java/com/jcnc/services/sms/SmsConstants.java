@@ -31,6 +31,14 @@ public class SmsConstants {
      */
     public static final String TEMPLATE_CODE = "SMS_156276855";
     /**
+     * 短信接收者手机号码,测试
+     */
+    public static final String TEST_RECEIVE_MOBLIE = "13525507576";
+    /**
+     * 短信接收者手机号码
+     */
+    public static final String RECEIVE_MOBLIE = "15838055811";
+    /**
      * 发送短信超时时间
      */
     public static final String TIME_OUT = "10000";

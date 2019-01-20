@@ -51,7 +51,7 @@ public class SmsUtil {
         SendSmsRequest request = new SendSmsRequest();
         //组装请求对象-具体描述见控制台-文档部分内容
         //必填:待发送手机号
-        request.setPhoneNumbers("13525507576");
+        request.setPhoneNumbers(SmsConstants.TEST_RECEIVE_MOBLIE);
         //必填:短信签名-可在短信控制台中找到
         request.setSignName(SmsConstants.SIGN_NAME);
         //必填:短信模板-可在短信控制台中找到
