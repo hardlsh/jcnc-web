@@ -224,34 +224,12 @@
             </excludes>
           </resource>
           <resource>
-            <directory>${profiles.dir}/dev</directory>
+            <directory>src/main/resources/profiles/dev</directory>
           </resource>
         </resources>
       </build>
     </profile>
 
-    <profile>
-      <id>prod</id>
-      <build>
-        <resources>
-          <resource>
-            <directory>src/main/resources</directory>
-            <includes>
-              <include>**/*.xml</include>
-              <include>**/*.properties</include>
-              <include>**/*.xls</include>
-              <include>**/*.xlsx</include>
-            </includes>
-            <excludes>
-              <exclude>**/mbg/*</exclude>
-            </excludes>
-          </resource>
-          <resource>
-            <directory>${profiles.dir}/prod</directory>
-          </resource>
-        </resources>
-      </build>
-    </profile>
   </profiles>
 
 

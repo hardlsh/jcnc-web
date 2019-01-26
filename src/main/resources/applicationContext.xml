@@ -21,7 +21,7 @@
 	<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="locations">
 			<list>
-				<value>classpath:db.properties</value>
+				<value>classpath:profiles/dev/db.properties</value>
 			</list>
 		</property>
 		<property name="fileEncoding" value="UTF-8"/>
@@ -30,7 +30,7 @@
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
 		<property name="properties" ref="configProperties" />
 	</bean>
-	<context:property-placeholder location="classpath*:*.properties" ignore-unresolvable="true" />
+	<context:property-placeholder location="classpath*:profiles/dev/*.properties" ignore-unresolvable="true" />
 
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		  init-method="init" destroy-method="close">

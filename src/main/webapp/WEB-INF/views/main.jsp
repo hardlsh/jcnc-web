@@ -14,10 +14,10 @@
     <div class="container">
         <div class="page-sidebar-wrapper">
             <div class="page-sidebar navbar-collapse collapse">
-                <ul class="page-sidebar-menu" data-slide-speed="200" data-auto-scroll="true" data-auto-scroll="true" data-slide-speed="200">
+                <ul class="page-sidebar-menu" data-slide-speed="200" data-auto-scroll="false" data-auto-scroll="false" data-slide-speed="200">
                     <c:forEach items="${menus }" var="item" varStatus="status">
                         <c:if test="${status.index==0}">
-                            <li class="start active open">
+                            <li class="open">
                             <a href="javascript:;">
                                 <i class="icon-credit-card"></i>
                                 <span class="title">${item.menu.getResourceName() }</span>
@@ -26,11 +26,11 @@
                             </a>
                         </c:if>
                         <c:if test="${status.index!=0}">
-                            <li>
+                            <li open>
                             <a href="javascript:;">
                                 <i class="icon-credit-card"></i>
                                 <span class="title">${item.menu.getResourceName() }</span>
-                                <span class="arrow"></span>
+                                <span class="arrow open"></span>
                             </a>
                         </c:if>
                         <c:if test="${fn:length(item.getChildren())>0}">

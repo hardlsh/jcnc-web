@@ -42,6 +42,7 @@ public class SmsUtil {
         return sendSmsResponse;
     }
 
+    /* 实例Demo
     public static void main(String[] args) {
         TemplateParam templateParam = new TemplateParam();
         templateParam.setVisitorName("林家果");
@@ -71,5 +72,6 @@ public class SmsUtil {
         }
         logger.info("[发送短信]结束");
     }
+    */
 
 }
