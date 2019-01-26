@@ -11,7 +11,7 @@
 
 <%-- 产品菜单展示 --%>
 <section class="core-value-area">
-    <div class="container">
+    <div class="custom-container">
         <div class="page-sidebar-wrapper">
             <div class="page-sidebar navbar-collapse collapse">
                 <ul class="page-sidebar-menu" data-slide-speed="200" data-auto-scroll="false" data-auto-scroll="false" data-slide-speed="200">

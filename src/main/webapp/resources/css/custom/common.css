@@ -236,6 +236,25 @@
     padding-left: 2px;
 }
 
+/** 自定义展示区样式 */
+@media (min-width: 768px) {
+    .custom-container {
+        width: 896px
+    }
+}
+
+@media (min-width: 992px) {
+    .custom-container {
+        width: 1156px
+    }
+}
+
+@media (min-width: 1200px) {
+    .custom-container {
+        width: 1400px
+    }
+}
+
 /* 自定义提交按钮样式 */
 .custom-submit {
     outline: none;
