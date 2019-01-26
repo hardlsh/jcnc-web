@@ -19,7 +19,6 @@
 <link href="${basePath}/resources/css/plugins.css" rel="stylesheet" type="text/css" />
 <link href="${basePath}/resources/css/layout.css" rel="stylesheet" type="text/css"/>
 <link href="${basePath}/resources/css/light.css" rel="stylesheet" type="text/css"/>
-<%-- css end --%>
 
 <%-- js start --%>
 <script type="text/javascript" src="${basePath}/resources/js/jquery.min.js" ></script>
@@ -36,9 +35,5 @@
 <script type="text/javascript" src="${basePath}/resources/js/jquery.form.js" ></script>
 <script type="text/javascript" src="${basePath}/resources/js/bootbox.js" ></script>
 
-<%--
-百度免费在线客服
-<script type="text/javascript" src="${basePath}/resources/js/hm.js" ></script>
---%>
 <%-- js end --%>
 

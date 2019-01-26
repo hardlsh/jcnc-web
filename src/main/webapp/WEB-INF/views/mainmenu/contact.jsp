@@ -26,7 +26,7 @@
                 </p>
                 <p>
                     <img src="${bathPath}/resources/img/icon/mbile.png"/>
-                    <i class="custom-footer">电话：15093218658</i>
+                    <i class="custom-footer">电话：15838055811</i>
                 </p>
                 <p>
                     <img src="${bathPath}/resources/img/icon/email.png"/>
@@ -122,7 +122,7 @@
     }
 
     //标注点数组
-    var markerArr = [{title:"北海金诚耐材",content:"地址：郑州市新密市嵩山大道青屏公寓905室<br/>联系人：李沛丽<br/>电话：15093218658",point:"113.386417|34.537955",isOpen:1,icon:{w:21,h:21,l:46,t:0,x:6,lb:5}}
+    var markerArr = [{title:"北海金诚耐材",content:"地址：郑州市新密市嵩山大道青屏公寓905室<br/>联系人：李欢欢<br/>电话：15838055811",point:"113.386417|34.537955",isOpen:1,icon:{w:21,h:21,l:46,t:0,x:6,lb:5}}
     ];
     //创建marker
     function addMarker(){

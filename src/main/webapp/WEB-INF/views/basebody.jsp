@@ -18,7 +18,7 @@
             </a>
             <div class="tel navbar-right hidden-xs">
                 <div class="tu"></div>
-                <b>15093218658</b>
+                <b>15838055811</b>
             </div>
         </div>
     </div>
@@ -53,7 +53,7 @@
                             <a name="custom_menu" href="gallery.html">应用实例</a>
                         </li>
                         <li>
-                            <a name="custom_menu" href="gallery.html">设备能力</a>
+                            <a name="custom_menu" href="${basePath}/main/toTest.do">设备能力</a>
                         </li>
                         <li>
                             <a name="custom_menu" id="contact" onclick="toContact()">联系我们</a>

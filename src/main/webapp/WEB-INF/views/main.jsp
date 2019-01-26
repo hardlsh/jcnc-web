@@ -69,6 +69,16 @@
     </div>
 </section>
 
+<%-- 百度商桥 --%>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?39c68affd1a9a95efb7fd697cb674ea8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 
 
 <%@include file="copyright.jsp"%>

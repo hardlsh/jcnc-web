@@ -44,7 +44,7 @@
                                 <p style="font-size:13px; line-height:26px;">
                                     ${product.productInfo}
                                 </p>
-                            <span class="img-tel"><span>订购热线：</span> 15093218658</span>
+                            <span class="img-tel"><span>订购热线：</span> 15838055811</span>
                         </div>
                     </div>
                     <div class="col-md-12">
