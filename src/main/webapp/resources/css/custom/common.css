@@ -237,6 +237,12 @@
 }
 
 /** 自定义展示区样式 */
+.custom-container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
 @media (min-width: 768px) {
     .custom-container {
         width: 896px

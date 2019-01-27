@@ -11,9 +11,7 @@
     <meta name="keywords" content="耐火砖价格,耐火砖规格,河南耐火砖厂,耐火砖厂家,耐火砖生产厂家,高铝耐火砖">
     <%-- 网页描述，搜索引擎根据描述进行收录排名 --%>
     <meta name="description" content="郑州北海金诚耐材是专业耐火砖生产厂家,耐火砖规格齐全,以高铝耐火砖为核心,专注浇注料,粘土砖,异型耐火砖,关于耐火砖价格,咨询电话:15838055811">
-    <link rel="icon" type="image/png" sizes="64x64"
-          href="${basePath}/resources/img/logo/logo-64-64.png">
-
+    <link rel="icon" href="${basePath}/resources/img/logo/favicon.ico" type="image/x-icon">
     <!--引用百度地图API-->
     <style type="text/css">
         html,body{margin:0;padding:0;}

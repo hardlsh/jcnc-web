@@ -98,4 +98,9 @@ public class MainController {
         return mav;
     }
 
+    @RequestMapping("/toTest")
+    public ModelAndView toTest(){
+        ModelAndView mav = new ModelAndView("test");
+        return mav;
+    }
 }

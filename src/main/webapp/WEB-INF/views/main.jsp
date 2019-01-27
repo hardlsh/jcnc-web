@@ -26,7 +26,7 @@
                             </a>
                         </c:if>
                         <c:if test="${status.index!=0}">
-                            <li open>
+                            <li class="my-sidebar-menu">
                             <a href="javascript:;">
                                 <i class="icon-credit-card"></i>
                                 <span class="title">${item.menu.getResourceName() }</span>
@@ -96,6 +96,11 @@
         $('.page-sidebar .ajaxify.start').click() // load the content for the dashboard page.
         $body_cache = $("body");
     });
+    // 模拟点击其他一级菜单
+    $('.my-sidebar-menu').on('click',function(){
+        $(this).children('ul').slideDown();
+    })
+    $('.my-sidebar-menu').trigger("click");
 </script>
 
 <%-- 百度商桥 --%>
