@@ -19,9 +19,9 @@ public class Product {
     private Integer productType;
 
     /**
-     *产品图片名称
+     *图片名称
      */
-    private String productImgName;
+    private String imageName;
 
     /**
      *产品信息
@@ -34,9 +34,9 @@ public class Product {
     private String productDetails;
 
     /**
-     *产品详情图片名称
+     *详情图片名称
      */
-    private String productDetailsImgName;
+    private String detailsImageName;
 
     /**
      *顺序
@@ -106,17 +106,17 @@ public class Product {
     }
 
     /**
-     *产品图片名称
+     *图片名称
      */
-    public String getProductImgName() {
-        return productImgName;
+    public String getImageName() {
+        return imageName;
     }
 
     /**
-     *产品图片名称
+     *图片名称
      */
-    public void setProductImgName(String productImgName) {
-        this.productImgName = productImgName == null ? null : productImgName.trim();
+    public void setImageName(String imageName) {
+        this.imageName = imageName == null ? null : imageName.trim();
     }
 
     /**
@@ -148,17 +148,17 @@ public class Product {
     }
 
     /**
-     *产品详情图片名称
+     *详情图片名称
      */
-    public String getProductDetailsImgName() {
-        return productDetailsImgName;
+    public String getDetailsImageName() {
+        return detailsImageName;
     }
 
     /**
-     *产品详情图片名称
+     *详情图片名称
      */
-    public void setProductDetailsImgName(String productDetailsImgName) {
-        this.productDetailsImgName = productDetailsImgName == null ? null : productDetailsImgName.trim();
+    public void setDetailsImageName(String detailsImageName) {
+        this.detailsImageName = detailsImageName == null ? null : detailsImageName.trim();
     }
 
     /**

@@ -34,7 +34,7 @@
 										   end="${((item.index + 1) * columnNum) -1}" step="1" var="product">
 									<div class="col-md-3 main-product-list">
 										<a data-id="${product.productId}" target="_blank" onclick="mainProductsHelper.goToURL(this)">
-											<img src="${basePath}/resources/img/product/main/${product.productImgName}"
+											<img src="${basePath}/resources/img/product/main/${product.imageName}"
 												 class="img-responsive" alt="${product.productName}" title="${product.productName}"/>
 											<span class="text-center center-block">
 													${product.productName}

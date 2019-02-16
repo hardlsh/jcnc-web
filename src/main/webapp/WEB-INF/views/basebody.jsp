@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="header.jsp"%>
+<%@include file="base.jsp"%>
 <div class="top hidden-xs">
     <div class="container">
         <span class="pull-left" id="inn"></span>
@@ -41,6 +42,9 @@
                             <a name="custom_menu" id="about" onclick="toAbout()">金诚耐材</a>
                         </li>
                         <li>
+                            <a name="custom_menu" id="product" onclick="toProduct()">产品中心</a>
+                        </li>
+                        <%--<li>
                             <a name="custom_menu" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 产品中心
                                 <span class="caret"></span></a>
@@ -48,7 +52,7 @@
                                 <li><a href="icons.html">Web Icons</a></li>
                                 <li><a href="codes.html">Short Codes</a></li>
                             </ul>
-                        </li>
+                        </li>--%>
                         <li>
                             <a name="custom_menu" href="gallery.html">应用实例</a>
                         </li>
@@ -122,6 +126,10 @@
     // 跳转到联系我们页
     function toContact() {
         $('#body2').load("${basePath}/main/toContact.do");
+    }
+    // 跳转到主打产品页
+    function toProduct() {
+        $('#body2').load("${basePath}/product/toMainProduct.do");
     }
 
 </script>

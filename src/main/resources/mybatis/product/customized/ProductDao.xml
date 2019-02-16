@@ -7,8 +7,8 @@
 	</resultMap>
 
   	<sql id="P_Column_List" >
-  		p.product_id, p.product_name, p.product_type, p.product_img_name, p.product_info, p.product_details,
-    	p.product_details_img_name, p.sequence, p.status, p.remark
+  		p.product_id, p.product_name, p.product_type, p.image_name, p.product_info, p.product_details,
+    	p.details_image_name, p.sequence, p.status, p.remark
   	</sql>
   	
   	<select id="getProductById" resultMap="ProductModel" parameterType="java.lang.Long">

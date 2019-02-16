@@ -20,7 +20,6 @@
     </style>
     <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
 </head>
-<%@include file="base.jsp"%>
 
 <%-- move-top start --%>
 <script type="text/javascript" src="${basePath}/resources/js/move-top.js" ></script>

@@ -20,6 +20,16 @@
 <link href="${basePath}/resources/css/layout.css" rel="stylesheet" type="text/css"/>
 <link href="${basePath}/resources/css/light.css" rel="stylesheet" type="text/css"/>
 
+
+<!--[if lt IE 9]>
+
+<script src="/resources/js/html5shiv.min.js"></script>
+
+<script src="/resources/js/respond.min.js"></script>
+
+<![endif]-->
+
+
 <%-- js start --%>
 <script type="text/javascript" src="${basePath}/resources/js/jquery.min.js" ></script>
 <script type="text/javascript" src="${basePath}/resources/js/easing.js" ></script>
