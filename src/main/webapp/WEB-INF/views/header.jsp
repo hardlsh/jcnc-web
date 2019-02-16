@@ -12,6 +12,15 @@
     <%-- 网页描述，搜索引擎根据描述进行收录排名 --%>
     <meta name="description" content="郑州北海金诚耐材是专业耐火砖生产厂家,耐火砖规格齐全,以高铝耐火砖为核心,专注浇注料,粘土砖,异型耐火砖,关于耐火砖价格,咨询电话:15838055811">
     <link rel="icon" href="${basePath}/resources/img/logo/favicon.ico" type="image/x-icon">
+
+    <!--[if lt IE 9]>
+
+    <script src="/resources/js/html5shiv.min.js"></script>
+
+    <script src="/resources/js/respond.min.js"></script>
+
+    <![endif]-->
+
     <!--引用百度地图API-->
     <style type="text/css">
         html,body{margin:0;padding:0;}
