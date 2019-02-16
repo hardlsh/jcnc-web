@@ -12,9 +12,14 @@ import java.util.List;
  */
 public interface ResourceService {
     /**
-     * 根据参数,获取组装好的用户菜单资源
+     * 根据参数,获取组装好的资源
      * @param model
      * @return
      */
-    List<ResourceVo> queryPackageMenuUserResources(ResourceModel model);
+    List<ResourceVo> queryPackageResources(ResourceModel model);
+    /**
+     * 获取组装好的所有资源
+     * @return
+     */
+    List<ResourceVo> queryPackageAllResources();
 }

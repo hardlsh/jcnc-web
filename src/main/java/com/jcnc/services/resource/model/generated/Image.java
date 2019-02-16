@@ -14,6 +14,11 @@ public class Image {
     private String imageName;
 
     /**
+     *状态 0-不可用 1-可用
+     */
+    private Integer status;
+
+    /**
      *备注
      */
     private String remark;
@@ -59,6 +64,20 @@ public class Image {
      */
     public void setImageName(String imageName) {
         this.imageName = imageName == null ? null : imageName.trim();
+    }
+
+    /**
+     *状态 0-不可用 1-可用
+     */
+    public Integer getStatus() {
+        return status;
+    }
+
+    /**
+     *状态 0-不可用 1-可用
+     */
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     /**

@@ -135,6 +135,13 @@
       <version>2.3</version>
     </dependency>
     <!-- apache -->
+    <!-- shiro -->
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-core</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+    <!-- shiro -->
 
     <!--lombok-->
     <dependency>

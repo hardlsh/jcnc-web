@@ -37,7 +37,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="tp_sys_image" domainObjectName="Image">
+		<table tableName="tp_sys_resource" domainObjectName="Resource">
 			<property name="useActualColumnNames" value="false" />
 		</table>
 
@@ -46,6 +46,9 @@
 			<property name="useActualColumnNames" value="false" />
 		</table>
 		<table tableName="tb_visitor_message" domainObjectName="VisitorMessage">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table tableName="tp_sys_image" domainObjectName="Image">
 			<property name="useActualColumnNames" value="false" />
 		</table>
 		<table tableName="tp_sys_user" domainObjectName="User">

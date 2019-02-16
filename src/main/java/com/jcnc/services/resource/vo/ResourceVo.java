@@ -1,6 +1,5 @@
 package com.jcnc.services.resource.vo;
 
-
 import com.jcnc.services.resource.model.customized.ResourceModel;
 import com.jcnc.services.resource.model.generated.Resource;
 
@@ -19,7 +18,7 @@ public class ResourceVo {
     /**
      * 子菜单
      */
-    private List<ResourceModel> children;
+    private List<ResourceModel> childs;
     /**
      * Node属性
      */
@@ -27,6 +26,7 @@ public class ResourceVo {
     private String text;
     private String type;
     private State state;
+    private List<ResourceVo> children;
 
     public class State {
         Boolean selected;
@@ -86,11 +86,19 @@ public class ResourceVo {
         this.menu = menu;
     }
 
-    public List<ResourceModel> getChildren() {
+    public List<ResourceVo> getChildren() {
         return children;
     }
 
-    public void setChildren(List<ResourceModel> children) {
+    public void setChildren(List<ResourceVo> children) {
         this.children = children;
+    }
+
+    public List<ResourceModel> getChilds() {
+        return childs;
+    }
+
+    public void setChilds(List<ResourceModel> childs) {
+        this.childs = childs;
     }
 }

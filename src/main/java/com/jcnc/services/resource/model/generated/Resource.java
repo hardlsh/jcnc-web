@@ -39,6 +39,11 @@ public class Resource {
     private Integer sequence;
 
     /**
+     *状态 0-不可用 1-可用
+     */
+    private Integer status;
+
+    /**
      *备注
      */
     private String remark;
@@ -149,6 +154,20 @@ public class Resource {
      */
     public void setSequence(Integer sequence) {
         this.sequence = sequence;
+    }
+
+    /**
+     *状态 0-不可用 1-可用
+     */
+    public Integer getStatus() {
+        return status;
+    }
+
+    /**
+     *状态 0-不可用 1-可用
+     */
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     /**

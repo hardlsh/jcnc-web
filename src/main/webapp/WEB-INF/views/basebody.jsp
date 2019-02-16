@@ -1,13 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@include file="base.jsp"%>
 <div class="top hidden-xs">
     <div class="container">
         <span class="pull-left" id="inn"></span>
         <span class="pull-left">&nbsp;&nbsp;&nbsp;您好，欢迎来到郑州北海金诚耐材有限公司官网！</span>
         <span class="pull-right">
-            <a rel="nofollow" rel="nofollow" href="http://www.cynhz.com/about/" target="_blank">关于我们</a> |
-            <a rel="nofollow" href="http://www.cynhz.com/contact/" target="_blank">联系我们</a></span>
+            <a onclick="toAbout()" >关于我们</a> |
+            <a onclick="toContact()" >联系我们</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;<a href="${basePath}/index/toLogin.do" style="color:#DEDEDE">逗你玩</a>
+        </span>
     </div>
 </div>
 
@@ -131,5 +132,38 @@
     function toProduct() {
         $('#body2').load("${basePath}/product/toMainProduct.do");
     }
-
 </script>
+
+<script type="text/javascript">
+    // 设置轮播速度
+    $(function(){
+        $('#myCarousel').carousel({interval:3000});
+    })
+</script>
+
+<%-- move-top start --%>
+<script type="text/javascript" src="${basePath}/resources/js/move-top.js" ></script>
+<script type="text/javascript">
+    $(window).load(function(){
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider){
+                $('body').removeClass('loading');
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $(".scroll").click(function(event){
+            event.preventDefault();
+            $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $().UItoTop({ easingType: 'easeOutQuart' });
+    });
+</script>
+<%-- move-top end --%>

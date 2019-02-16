@@ -30,8 +30,8 @@ public class MainController {
     @RequestMapping("/toMain")
     public ModelAndView toMain(){
         ModelAndView mav = new ModelAndView("main");
-        List<ResourceVo> resourceVoList = resourceService.queryPackageMenuUserResources(new ResourceModel());
-        mav.addObject("menus", resourceVoList);
+        List<ResourceVo> resourceVoList = resourceService.queryPackageResources(new ResourceModel());
+        mav.addObject("leftMenus", resourceVoList);
         mav.addObject("mainMenu", Constants.MAIN_MENU_INDEX);
         return mav;
     }

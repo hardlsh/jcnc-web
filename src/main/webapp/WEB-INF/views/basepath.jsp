@@ -37,4 +37,3 @@
 <script type="text/javascript" src="${basePath}/resources/js/bootbox.js" ></script>
 
 <%-- js end --%>
-

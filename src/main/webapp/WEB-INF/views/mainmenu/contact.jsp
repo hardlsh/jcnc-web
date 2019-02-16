@@ -1,6 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@include file="../base.jsp"%>
-
+<%@include file="../basepath.jsp"%>
+<!--引用百度地图API-->
+<style type="text/css">
+    html,body{margin:0;padding:0;}
+    .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+    .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
 
 <div class="contact agileits">
     <h3 class="agileits-title">联系我们</h3>
@@ -122,7 +128,7 @@
     }
 
     //标注点数组
-    var markerArr = [{title:"北海金诚耐材",content:"地址：郑州市新密市嵩山大道青屏公寓905室<br/>联系人：李欢欢<br/>电话：15838055811",point:"113.386417|34.537955",isOpen:1,icon:{w:21,h:21,l:46,t:0,x:6,lb:5}}
+    var markerArr = [{title:"北海金诚耐材",content:"地址：郑州市新密市嵩山大道青屏公寓905室<br/>联系人：李经理<br/>电话：15838055811",point:"113.386417|34.537955",isOpen:1,icon:{w:21,h:21,l:46,t:0,x:6,lb:5}}
     ];
     //创建marker
     function addMarker(){

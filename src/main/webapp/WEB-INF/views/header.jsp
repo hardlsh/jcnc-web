@@ -21,46 +21,6 @@
 
     <![endif]-->
 
-    <!--引用百度地图API-->
-    <style type="text/css">
-        html,body{margin:0;padding:0;}
-        .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
-        .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
-    </style>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
 </head>
 
-<%-- move-top start --%>
-<script type="text/javascript" src="${basePath}/resources/js/move-top.js" ></script>
-<script type="text/javascript">
-    $(window).load(function(){
-        $('.flexslider').flexslider({
-            animation: "slide",
-            start: function(slider){
-                $('body').removeClass('loading');
-            }
-        });
-    });
-</script>
-<script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $(".scroll").click(function(event){
-            event.preventDefault();
-            $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-        });
-    });
-</script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $().UItoTop({ easingType: 'easeOutQuart' });
-    });
-</script>
-<%-- move-top end --%>
-
-<script type="text/javascript">
-    // 设置轮播速度
-    $(function(){
-        $('#myCarousel').carousel({interval:3000});
-    })
-</script>
 

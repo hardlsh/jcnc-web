@@ -4,8 +4,9 @@
 
 <!DOCTYPE html>
 <html>
-
 <%@include file="header.jsp"%>
+<jsp:include page="basepath.jsp"/>
+
 <body>
 <jsp:include page="basebody.jsp"/>
 
@@ -18,7 +19,7 @@
         <div class="page-sidebar-wrapper">
             <div class="page-sidebar navbar-collapse collapse">
                 <ul class="page-sidebar-menu" data-slide-speed="200" data-auto-scroll="false" data-auto-scroll="false" data-slide-speed="200">
-                    <c:forEach items="${menus }" var="item" varStatus="status">
+                    <c:forEach items="${leftMenus }" var="item" varStatus="status">
                         <c:if test="${status.index==0}">
                             <li class="open">
                             <a href="javascript:;">
@@ -36,9 +37,9 @@
                                 <span class="arrow open"></span>
                             </a>
                         </c:if>
-                        <c:if test="${fn:length(item.getChildren())>0}">
+                        <c:if test="${fn:length(item.getChilds())>0}">
                             <ul class="sub-menu">
-                                <c:forEach items="${item.getChildren() }" var="child" varStatus="stat">
+                                <c:forEach items="${item.getChilds() }" var="child" varStatus="stat">
                                     <c:if test="${stat.index==0 && status.index==0}">
                                         <li class="active">
                                             <a class="ajaxify start" href="${basePath}/${child.getResourcePath() }">
@@ -78,6 +79,7 @@
     var mainHelper = {
         mainMenu: '${mainMenu}',
         init: function () {
+            // 导航栏效果
             $('[name="custom_menu"]').each(function (index, entity) {
                 $(entity).removeClass();
             });
