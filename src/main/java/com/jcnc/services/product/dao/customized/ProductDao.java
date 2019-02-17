@@ -1,5 +1,6 @@
 package com.jcnc.services.product.dao.customized;
 
+import com.jcnc.common.param.UserParam;
 import com.jcnc.services.product.dao.generated.ProductMapper;
 import com.jcnc.services.product.model.customized.ProductModel;
 
@@ -24,4 +25,11 @@ public interface ProductDao extends ProductMapper {
      * @return
      */
     List<ProductModel> getProductByModel(ProductModel productModel);
+
+    /**
+     * 分页查询所有产品
+     * @param param
+     * @return
+     */
+    List<ProductModel> queryPageProduct(UserParam param);
 }

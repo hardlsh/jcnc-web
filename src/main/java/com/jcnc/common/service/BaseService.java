@@ -1,5 +1,7 @@
 package com.jcnc.common.service;
 
+import com.github.pagehelper.PageHelper;
+import com.jcnc.common.param.BaseQuery;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,4 +24,10 @@ public abstract class BaseService {
         this.sqlSession = sqlSession;
     }
 
+    protected void setStartPage(BaseQuery query) {
+        int startNo = query.getStart() != null ? query.getStart() : 0;
+        int pageSize = query.getLength() != null ? query.getLength() : 10;
+        int pageNum = startNo / pageSize + 1;
+        PageHelper.startPage(pageNum, pageSize);
+    }
 }

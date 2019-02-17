@@ -1,9 +1,12 @@
 package com.jcnc.services.product.service.impl;
 
+import com.github.pagehelper.PageInfo;
+import com.jcnc.common.param.UserParam;
 import com.jcnc.common.service.BaseService;
 import com.jcnc.services.product.dao.customized.ProductDao;
 import com.jcnc.services.product.model.customized.ProductModel;
 import com.jcnc.services.product.service.ProductService;
+import com.jcnc.services.user.model.customized.UserModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,5 +31,14 @@ public class ProductServiceImpl extends BaseService implements ProductService{
     @Override
     public List<ProductModel> getProductByModel(ProductModel productModel) {
         return getProductDao().getProductByModel(productModel);
+    }
+
+    @Override
+    public PageInfo<ProductModel> queryPageProduct() {
+        UserParam param = new UserParam();
+        setStartPage(param);
+        List<ProductModel> list = getProductDao().queryPageProduct(param);
+        PageInfo<ProductModel> pageInfo = new PageInfo<>(list);
+        return pageInfo;
     }
 }

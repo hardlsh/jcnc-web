@@ -29,4 +29,11 @@
 			p.product_type = #{productType, jdbcType=INTEGER}
 	</select>
 
+	<select id="queryPageProduct" resultMap="ProductModel"
+			parameterType="com.jcnc.common.param.UserParam">
+		SELECT
+			<include refid="P_Column_List"/>
+		FROM
+			tb_product p
+	</select>
 </mapper>

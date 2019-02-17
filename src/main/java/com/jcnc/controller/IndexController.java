@@ -10,7 +10,6 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ThreadContext;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
-import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +32,7 @@ public class IndexController {
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
-    private ResourceController resourceController;
+    private UserController userController;
 
     /**
      * 跳转到登录页
@@ -68,7 +67,7 @@ public class IndexController {
 
         logger.info("【登录】进入登录方法");
         if (user != null && StringUtils.isNotBlank(user.getUserName())) {
-            return resourceController.toResource();
+            return userController.toUser();
         }
 
         ModelAndView mav = new ModelAndView("system/login");

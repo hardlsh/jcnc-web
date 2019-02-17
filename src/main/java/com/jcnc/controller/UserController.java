@@ -1,9 +1,13 @@
 package com.jcnc.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 import com.jcnc.common.util.EnumJsonConverter;
+import com.jcnc.common.util.PaginationResult;
 import com.jcnc.common.vo.JCResponse;
 import com.jcnc.common.vo.RetCode;
+import com.jcnc.services.product.model.customized.ProductModel;
+import com.jcnc.services.product.service.ProductService;
 import com.jcnc.services.resource.enums.AvailStatusEnum;
 import com.jcnc.services.resource.model.generated.Resource;
 import com.jcnc.services.resource.service.ResourceService;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -26,18 +31,52 @@ import java.util.List;
  * @date 2019-2-16
  */
 @Controller
-@RequestMapping("resource")
-public class ResourceController {
+@RequestMapping("user")
+public class UserController extends BaseController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ResourceController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
+    @Autowired
+    private ProductService productService;
     @Autowired
     private ResourceService resourceService;
 
     private Gson gson = new Gson();
 
     /**
-     * 跳转到资源页面
+     * 跳转到用户管理页面
+     * @return
+     */
+    @RequestMapping("/toUser")
+    public ModelAndView toUser() {
+        ModelAndView mav = new ModelAndView("system/user");
+        return mav;
+    }
+
+    /**
+     * 跳转到产品管理页面
+     * @return
+     */
+    @RequestMapping("/toProduct")
+    public ModelAndView toProduct() {
+        ModelAndView mav = new ModelAndView("system/product/product");
+        mav.addObject("availStatusEnum", EnumJsonConverter.buildEnumJson(AvailStatusEnum.class));
+        return mav;
+    }
+
+    /**
+     * 跳转到新增产品页面
+     * @return
+     */
+    @RequestMapping("/toAddProduct")
+    public ModelAndView toAddProduct() {
+        ModelAndView mav = new ModelAndView("system/product/addProduct");
+        mav.addObject("availStatusEnum", EnumJsonConverter.buildEnumJson(AvailStatusEnum.class));
+        return mav;
+    }
+
+    /**
+     * 跳转到资源管理页面
      * @return
      */
     @RequestMapping("/toResource")
@@ -74,9 +113,24 @@ public class ResourceController {
         return mav;
     }
 
+    @RequestMapping("/getProductList")
+    public void getProductList(HttpServletResponse response) {
+        try {
+            // 分页查询
+            PageInfo<ProductModel> pageInfo = productService.queryPageProduct();
+            int total = (int) pageInfo.getTotal();
+            PaginationResult<List<ProductModel>> result = PaginationResult.newInstance(pageInfo.getList());
+
+            result.setiTotalRecords(total);
+            result.setiTotalDisplayRecords(total);
+            actionResult4Json(result.json(), response);
+        } catch (Exception e) {
+            logger.error("【用户管理】查询产品_异常,异常原因:", e);
+        }
+    }
+
     /**
      * 根据资源id,获取对应的资源
-     *
      * @param resource
      * @return
      */

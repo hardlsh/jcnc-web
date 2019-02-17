@@ -1,5 +1,6 @@
 package com.jcnc.services.product.service;
 
+import com.github.pagehelper.PageInfo;
 import com.jcnc.services.product.model.customized.ProductModel;
 
 import java.util.List;
@@ -23,4 +24,10 @@ public interface ProductService {
      * @return
      */
     List<ProductModel> getProductByModel(ProductModel productModel);
+
+    /**
+     * 分页查询所有产品
+     * @return
+     */
+    PageInfo<ProductModel> queryPageProduct();
 }

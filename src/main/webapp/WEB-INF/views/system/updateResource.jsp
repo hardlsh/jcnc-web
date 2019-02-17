@@ -12,7 +12,7 @@
 						<i class="fa fa-globe"></i>修改资源
 					</div>
 					<div class="actions">
-						<button id="goBack" class="btn btn-sm green" type="button">返回上一级</button>
+						<button id="goBack" class="btn btn-sm green" type="button">返回用户主页</button>
 					</div>
 				</div>
 			</div>
