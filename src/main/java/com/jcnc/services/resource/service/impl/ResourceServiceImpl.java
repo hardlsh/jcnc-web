@@ -147,12 +147,27 @@ public class ResourceServiceImpl extends BaseService implements ResourceService{
         return voList;
     }
 
+    @Override
+    public List<Resource> queryResourceByExample(Resource resource) {
+        ResourceExample example = convertResourceToExample(resource);
+        return getResourceDao().selectByExample(example);
+    }
+
     /**
      * 转换参数    resource-->example
      */
     private ResourceExample convertResourceToExample(Resource resource){
         ResourceExample example = new ResourceExample();
         ResourceExample.Criteria criteria = example.createCriteria();
+        if (resource.getStatus() != null) {
+            criteria.andStatusEqualTo(resource.getStatus());
+        }
+        if (resource.getResourceType() != null) {
+            criteria.andResourceTypeEqualTo(resource.getResourceType());
+        }
+        if (resource.getResourceId() != null) {
+            criteria.andResourceIdEqualTo(resource.getResourceId());
+        }
         if (resource.getLevel() != null) {
             criteria.andLevelEqualTo(resource.getLevel());
         }

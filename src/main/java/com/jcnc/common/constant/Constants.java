@@ -31,4 +31,9 @@ public class Constants {
      */
     public static final String MAIN_MENU_CONTACT = "contact";
 
+    /**
+     * 加密盐
+     */
+    public static final String SALT = "HXWcjvQWVG0wI3FQBLZpQ3pWj48AV63d";
+
 }

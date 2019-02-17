@@ -1,12 +1,13 @@
 package com.jcnc.services.user.service.impl;
 
 import com.jcnc.common.service.BaseService;
-import com.jcnc.common.util.MD5Util;
 import com.jcnc.services.user.dao.customized.UserDao;
-import com.jcnc.services.user.model.customized.UserModel;
 import com.jcnc.services.user.model.generated.User;
+import com.jcnc.services.user.model.generated.UserExample;
 import com.jcnc.services.user.service.UserService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 用户服务
@@ -21,14 +22,13 @@ public class UserServiceImpl extends BaseService implements UserService{
     }
 
     @Override
-    public String userLogin(String userName, String password) {
-        String encryptPassword = MD5Util.getEncryptData(password);
-        User user = new User();
-        user.setUserName(userName);
-        user.setPassword(encryptPassword);
-        UserModel userModel = getUserDao().userLogin(user);
-        if (userModel != null) {
-           return encryptPassword;
+    public User queryUserByName(String userName) {
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andUserNameEqualTo(userName);
+        List<User> list = getUserDao().selectByExample(userExample);
+        if (list != null && list.size() == 1) {
+            return list.get(0);
         }
         return null;
     }

@@ -10,10 +10,5 @@ import com.jcnc.services.user.model.generated.User;
  * @date 2019-2-16
  */
 public interface UserDao extends UserMapper {
-    /**
-     * 校验用户登录
-     * @param user
-     * @return
-     */
-    UserModel userLogin(User user);
+
 }

@@ -1,6 +1,8 @@
 package com.jcnc.services.resource.service;
 
 import com.jcnc.services.resource.model.customized.ResourceModel;
+import com.jcnc.services.resource.model.generated.Resource;
+import com.jcnc.services.resource.model.generated.ResourceExample;
 import com.jcnc.services.resource.vo.ResourceVo;
 
 import java.util.List;
@@ -22,4 +24,10 @@ public interface ResourceService {
      * @return
      */
     List<ResourceVo> queryPackageAllResources();
+    /**
+     * 单表查询所有资源
+     * @param resource
+     * @return
+     */
+    List<Resource> queryResourceByExample(Resource resource);
 }

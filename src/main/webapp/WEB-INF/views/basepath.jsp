@@ -23,6 +23,7 @@
 
 <%-- js start --%>
 <script type="text/javascript" src="${basePath}/resources/js/jquery.min.js" ></script>
+<script type="text/javascript" src="${basePath}/resources/js/custom/common.js" ></script>
 <script type="text/javascript" src="${basePath}/resources/js/easing.js" ></script>
 <script type="text/javascript" src="${basePath}/resources/js/jquery.flexslider.js" ></script>
 <script type="text/javascript" src="${basePath}/resources/js/jzBox.js" ></script>

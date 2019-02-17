@@ -1,5 +1,7 @@
 package com.jcnc.services.user.service;
 
+import com.jcnc.services.user.model.generated.User;
+
 /**
  * 用户服务
  * @author shihao.li
@@ -7,10 +9,9 @@ package com.jcnc.services.user.service;
  */
 public interface UserService {
     /**
-     * 校验用户登录,并返回加密密码
+     * 根据用户名查询用户
      * @param userName
-     * @param password
      * @return
      */
-    String userLogin(String userName, String password);
+    User queryUserByName(String userName);
 }

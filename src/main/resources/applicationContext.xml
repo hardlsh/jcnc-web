@@ -61,5 +61,6 @@
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 
+	<import resource="classpath:applicationContext_shiro.xml"/>
 
 </beans>

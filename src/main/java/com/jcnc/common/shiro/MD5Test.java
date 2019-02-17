@@ -1,15 +1,15 @@
-package com.jcnc.common.util;
+package com.jcnc.common.shiro;
 
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
 
 /**
- * MD5加密工具方法类
+ * MD5加密类
  *
  * @author shihao.li
  * @date 2019-2-16
  */
-public class MD5Util {
+public class MD5Test {
 
     public static void main(String[] args) {
         //原始 密码
@@ -32,16 +32,4 @@ public class MD5Util {
         System.out.println(simpleHash.toString());
     }
 
-    /**
-     * 获取加密数据
-     * @return
-     */
-    public static String getEncryptData(String source) {
-        //盐
-        String salt = "HXWcjvQWVG0wI3FQBLZpQ3pWj48AV63d";
-        //散列次数
-        int hashIterations = 2;
-        Md5Hash md5Hash = new Md5Hash(source, salt, hashIterations);
-        return md5Hash.toString();
-    }
 }

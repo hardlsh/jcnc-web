@@ -49,23 +49,6 @@
                 return;
             }
             $('#body2').load("${basePath}/resource/toAddResource.do?",{resourceId : resourceId});
-        },
-        // 删除资源
-        doDel : function () {
-            var resourceId = $("#resourceId").val();
-            $("#doDel").attr({"disabled":"disabled"});
-            $.ajax({
-                url : "${basePath}/resource/delResource.do",
-                data : { resourceId : resourceId },
-                dataType : "json",
-                type : "POST",
-                success : function(data) {
-                    bootbox.alert(data.resultMsg);
-                    $("#doDel").removeAttr("disabled");
-
-                    $('#body2').load("${basePath}/resource/toResource.do");
-                }
-            });
         }
     };
 
@@ -87,12 +70,11 @@
                         bootbox.alert(data.resultMsg);
                     } else {
                         var resource = data.data;
-                        var tableT = '<table class="table table-striped table-bordered table-hover table-condensed">'+
+                        var tableT = '<table class="table table-striped table-bordered table-hover table-condensed table-responsive">'+
                             '<tr>'+
                             '<th>操作</th>'+
                             '<th>id</th>'+
                             '<th>资源名称</th>'+
-                            '<th>资源类型</th>'+
                             '<th>parentId</th>'+
                             '<th>资源地址</th>'+
                             '<th>级别</th>'+
@@ -100,13 +82,12 @@
                             '<th>状态</th>'+
                             '<th>备注</th>'+
                             '</tr>'+
-                            '<tr>'+
+                            '<tr class="warning">'+
                             '<td>'+
                             '<a class="ajaxify btn default btn-xs purple" href="${basePath}/resource/toUpdateResource.do?resourceId='+resource.resourceId+'">修改</a>'+
                             '</td>'+
                             '<td>'+ resource.resourceId +'</td>'+
                             '<td>'+ resource.resourceName +'</td>'+
-                            '<td>'+ myJson.getText(resource.resourceType, resourceHelper.resourceTypeEnum) +'</td>'+
                             '<td>'+ resource.parentId +'</td>'+
                             '<td>'+ resource.resourcePath +'</td>'+
                             '<td>'+ resource.level +'</td>'+
@@ -118,7 +99,6 @@
                             '<input type="hidden" name="resourceId" id="resourceId" value="'+ resource.resourceId +'">'
                         ;
                         $("#contextText").html(tableT);
-                        $("#doDel").click(resourceHelper.doDel);
                     }
                 }
             });
