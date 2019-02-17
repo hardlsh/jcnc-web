@@ -16,7 +16,7 @@
 			<include refid="P_Column_List"/>
 		FROM
 			tb_product p
-		where
+		WHERE
 			p.product_id = #{productId, jdbcType=BIGINT}
   	</select>
 
@@ -36,4 +36,24 @@
 		FROM
 			tb_product p
 	</select>
+
+	<insert id="insertProduct" parameterType="com.jcnc.services.product.model.generated.Product">
+		INSERT INTO
+			tb_product (product_name, product_info, product_details)
+    	VALUES
+    		(#{productName,jdbcType=VARCHAR},
+      		#{productInfo,jdbcType=VARCHAR}, #{productDetails,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="updateProductById" parameterType="com.jcnc.services.product.model.generated.Product">
+		UPDATE
+			tb_product
+		SET
+			product_name = #{productName,jdbcType=VARCHAR},
+			product_info = #{productInfo,jdbcType=VARCHAR},
+			product_details = #{productDetails,jdbcType=VARCHAR},
+			status = #{status,jdbcType=INTEGER}
+		WHERE
+			product_id = #{productId,jdbcType=BIGINT}
+	</update>
 </mapper>

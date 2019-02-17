@@ -2,11 +2,13 @@ package com.jcnc.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
+import com.jcnc.common.param.UserParam;
 import com.jcnc.common.util.EnumJsonConverter;
 import com.jcnc.common.util.PaginationResult;
 import com.jcnc.common.vo.JCResponse;
 import com.jcnc.common.vo.RetCode;
 import com.jcnc.services.product.model.customized.ProductModel;
+import com.jcnc.services.product.model.generated.Product;
 import com.jcnc.services.product.service.ProductService;
 import com.jcnc.services.resource.enums.AvailStatusEnum;
 import com.jcnc.services.resource.model.generated.Resource;
@@ -71,6 +73,19 @@ public class UserController extends BaseController {
     @RequestMapping("/toAddProduct")
     public ModelAndView toAddProduct() {
         ModelAndView mav = new ModelAndView("system/product/addProduct");
+        return mav;
+    }
+
+    /**
+     * 跳转到修改产品页面
+     * @param productId
+     * @return
+     */
+    @RequestMapping("/toUpdateProduct")
+    public ModelAndView toUpdateProduct(Long productId) {
+        ModelAndView mav = new ModelAndView("system/product/updateProduct");
+        ProductModel productModel = productService.getProductById(productId);
+        mav.addObject("product", productModel);
         mav.addObject("availStatusEnum", EnumJsonConverter.buildEnumJson(AvailStatusEnum.class));
         return mav;
     }
@@ -113,10 +128,13 @@ public class UserController extends BaseController {
         return mav;
     }
 
+    /**
+     * 分页查询产品
+     * @param response
+     */
     @RequestMapping("/getProductList")
     public void getProductList(HttpServletResponse response) {
         try {
-            // 分页查询
             PageInfo<ProductModel> pageInfo = productService.queryPageProduct();
             int total = (int) pageInfo.getTotal();
             PaginationResult<List<ProductModel>> result = PaginationResult.newInstance(pageInfo.getList());
@@ -152,6 +170,46 @@ public class UserController extends BaseController {
             res = new JCResponse(RetCode.FAILURE);
         }
         logger.info("【资源管理】根据资源id获取资源_结束");
+        return res;
+    }
+
+    /**
+     * 新增产品保存
+     * @param product
+     * @return
+     */
+    @RequestMapping("/addSaveProduct")
+    @ResponseBody
+    public Object addSaveProduct(Product product) {
+        JCResponse res;
+        try {
+            productService.insertProduct(product);
+            res = new JCResponse(RetCode.SUCCESS);
+        } catch (Exception e) {
+            logger.error("【产品管理】新增产品保存_异常,异常原因:", e);
+            res = new JCResponse(RetCode.FAILURE);
+        }
+        logger.info("【产品管理】新增产品保存_结束");
+        return res;
+    }
+
+    /**
+     * 修改产品保存
+     * @param product
+     * @return
+     */
+    @RequestMapping("/updateSaveProduct")
+    @ResponseBody
+    public Object updateSaveProduct(Product product) {
+        JCResponse res;
+        try {
+            productService.updateProductById(product);
+            res = new JCResponse(RetCode.SUCCESS);
+        } catch (Exception e) {
+            logger.error("【产品管理】修改产品保存_异常,异常原因:", e);
+            res = new JCResponse(RetCode.FAILURE);
+        }
+        logger.info("【产品管理】修改产品保存_结束");
         return res;
     }
 
