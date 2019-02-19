@@ -2,7 +2,9 @@ package com.jcnc.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
+import com.jcnc.common.constant.Constants;
 import com.jcnc.common.param.UserParam;
+import com.jcnc.common.util.CommonUtil;
 import com.jcnc.common.util.EnumJsonConverter;
 import com.jcnc.common.util.PaginationResult;
 import com.jcnc.common.vo.JCResponse;
@@ -11,6 +13,7 @@ import com.jcnc.services.product.model.customized.ProductModel;
 import com.jcnc.services.product.model.generated.Product;
 import com.jcnc.services.product.service.ProductService;
 import com.jcnc.services.resource.enums.AvailStatusEnum;
+import com.jcnc.services.resource.model.generated.Image;
 import com.jcnc.services.resource.model.generated.Resource;
 import com.jcnc.services.resource.service.ResourceService;
 import com.jcnc.services.resource.vo.ResourceVo;
@@ -20,10 +23,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -234,5 +243,32 @@ public class UserController extends BaseController {
         }
         logger.info("【资源管理】修改资源_结束");
         return res;
+    }
+
+    /**
+     * 上传产品图片
+     * @param file
+     * @return
+     */
+    @RequestMapping(value="/upImg")
+    @ResponseBody
+    public Object upImg(@RequestParam(value = "multipartFile", required = false) MultipartFile file,
+                        HttpServletRequest request) throws IOException {
+        String fileName = file.getOriginalFilename();
+        Long productId = Long.valueOf(request.getParameter("productId"));
+        try {
+            Image image = new Image();
+            // 计算出文件的大小
+            image.setSize(CommonUtil.getFileSize(file.getSize()));
+            image.setImage(file.getBytes());
+
+            // TODO shihao.li 写到这里了
+            // 修改产品表，插入图片表，添加事务
+
+
+        } catch (Exception e) {
+            return new JCResponse(RetCode.FAILURE);
+        }
+        return new JCResponse(RetCode.SUCCESS);
     }
 }

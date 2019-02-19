@@ -14,6 +14,11 @@ public class Image {
     private String imageName;
 
     /**
+     *图片大小(kb)
+     */
+    private Double size;
+
+    /**
      *状态 0-不可用 1-可用
      */
     private Integer status;
@@ -64,6 +69,20 @@ public class Image {
      */
     public void setImageName(String imageName) {
         this.imageName = imageName == null ? null : imageName.trim();
+    }
+
+    /**
+     *图片大小(kb)
+     */
+    public Double getSize() {
+        return size;
+    }
+
+    /**
+     *图片大小(kb)
+     */
+    public void setSize(Double size) {
+        this.size = size;
     }
 
     /**

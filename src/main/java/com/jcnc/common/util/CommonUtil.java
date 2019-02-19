@@ -1,5 +1,6 @@
 package com.jcnc.common.util;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,4 +50,16 @@ public class CommonUtil {
         }
         return ret;
     }
+
+    /**
+     * 把byte转化为KB
+     * @param size
+     * @return
+     */
+    public static Double getFileSize(long size) {
+        DecimalFormat format = new DecimalFormat("###.0");
+        double i = (size / (1024.0));
+        return Double.valueOf(format.format(i));
+    }
+
 }

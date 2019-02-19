@@ -101,7 +101,7 @@
                     if (data.resultCode != '0000') {
                         bootbox.alert(data.resultMsg);
                     } else {
-                        $.alert(data.resultMsg);
+                        bootbox.alert("请点击上传图片按钮, 上传对应的产品图片和详情图片!");
                         $('#cancel').click();// 执行成功,返回产品管理页面
                     }
                 }

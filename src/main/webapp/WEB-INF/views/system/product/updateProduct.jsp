@@ -89,33 +89,6 @@
 	</div>
 </div>
 
-<%-- 上传产品图片弹窗 --%>
-<div class="modal" id="upImgModal" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"/>
-				<h4 class="modal-title">上传产品图片</h4>
-			</div>
-			<div class="modal-body">
-				<form id="upImgForm" action="${basePath}/user/uploadImage.do"
-					  class="form-horizontal" enctype="multipart/form-data" method="post">
-					<!-- 隐藏域,存储productId-->
-					<input type="hidden" name="productId" id="upImgProductId">
-					<div class="col-md-4">
-						<input type="file" style="width:350px;" name="multipartFile" id="image_id">
-					</div>
-					<button type="reset" id="upImgReset" style="display: none;"></button>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn blue" id="upImgBtn">上传</button>
-				<button type="button" class="btn default" data-dismiss="modal">关闭</button>
-			</div>
-		</div>
-	</div>
-</div>
-
 <script type="text/javascript">
     var updateProductHelper = {
 
@@ -125,6 +98,7 @@
             $('#goBack').click(me.goBack);//返回用户管理按钮
             $('#save').click(me.save);//保存按钮
             $('#cancel').click(me.cancel);//取消按钮
+			$('#upImgBtn').click(me.upImgBtn);//上传产品图片
         },
         //返回产品管理
         goBackProduct : function () {
@@ -153,15 +127,12 @@
                         bootbox.alert(data.resultMsg);
                     } else {
                         $.alert(data.resultMsg);
-                        bootbox.confirm("是否需要上传产品图片？",function (result){
-                            if (result) {
-
-                            }
-                        })
+                        $('#cancel').click();// 执行成功,返回产品管理页面
                     }
                 }
             });
         }
+
     };
 
     $(function(){

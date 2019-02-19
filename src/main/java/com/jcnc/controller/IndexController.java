@@ -53,17 +53,6 @@ public class IndexController {
     public ModelAndView login(HttpServletRequest request) {
         Subject subject = SecurityUtils.getSubject();
         User user = (User) subject.getPrincipal();
-        DefaultWebSessionManager shiroSessionManager = new DefaultWebSessionManager();
-        long sessionStartTime = subject.getSession().getStartTimestamp().getTime();
-        long lengthenTimeOut = subject.getSession().getTimeout();
-        // 提前1秒去判断,防止if没进,等执行下面的时候它却失效了      user为null,是第一次进login方法,还没有登陆
-        if (((System.currentTimeMillis() - sessionStartTime) >= lengthenTimeOut - 1000) ||
-                user == null) {
-            // 移除线程里面的subject
-            ThreadContext.remove(ThreadContext.SUBJECT_KEY);
-            // 移除失效的session
-            shiroSessionManager.getSessionDAO().delete(subject.getSession());
-        }
 
         logger.info("【登录】进入登录方法");
         if (user != null && StringUtils.isNotBlank(user.getUserName())) {
