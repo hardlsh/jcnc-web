@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.jcnc.common.param.UserParam;
 import com.jcnc.services.product.model.customized.ProductModel;
 import com.jcnc.services.product.model.generated.Product;
+import com.jcnc.services.resource.model.generated.Image;
 
 import java.util.List;
 
@@ -38,6 +39,13 @@ public interface ProductService {
      * @param product
      */
     void insertProduct(Product product);
+
+    /**
+     * 修改产品图片名，并插入图片
+     * @param product
+     * @param image
+     */
+    void updateImageBusiness(Product product, Image image);
 
     /**
      * 根据主键，修改产品

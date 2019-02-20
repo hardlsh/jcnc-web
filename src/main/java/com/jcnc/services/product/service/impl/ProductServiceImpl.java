@@ -7,8 +7,13 @@ import com.jcnc.services.product.dao.customized.ProductDao;
 import com.jcnc.services.product.model.customized.ProductModel;
 import com.jcnc.services.product.model.generated.Product;
 import com.jcnc.services.product.service.ProductService;
+import com.jcnc.services.resource.model.generated.Image;
+import com.jcnc.services.resource.service.ImageService;
 import com.jcnc.services.user.model.customized.UserModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,6 +25,9 @@ import java.util.List;
  */
 @Service
 public class ProductServiceImpl extends BaseService implements ProductService {
+
+    @Autowired
+    private ImageService imageService;
 
     private ProductDao getProductDao() {
         return sqlSession.getMapper(ProductDao.class);
@@ -51,6 +59,19 @@ public class ProductServiceImpl extends BaseService implements ProductService {
         record.setProductInfo(product.getProductInfo());
         record.setProductDetails(product.getProductDetails());
         getProductDao().insertProduct(record);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void updateImageBusiness(Product product, Image image) {
+        Image record = imageService.queryImageByName(image.getImageName());
+        if (record == null) {
+            imageService.insertSelective(image);
+        } else {
+            image.setImageId(record.getImageId());
+            imageService.updateByPrimaryKeySelective(image);
+        }
+        getProductDao().updateByPrimaryKeySelective(product);
     }
 
     @Override

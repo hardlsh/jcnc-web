@@ -15,6 +15,7 @@ import com.jcnc.services.product.service.ProductService;
 import com.jcnc.services.resource.enums.AvailStatusEnum;
 import com.jcnc.services.resource.model.generated.Image;
 import com.jcnc.services.resource.model.generated.Resource;
+import com.jcnc.services.resource.service.ImageService;
 import com.jcnc.services.resource.service.ResourceService;
 import com.jcnc.services.resource.vo.ResourceVo;
 import org.apache.commons.lang3.StringUtils;
@@ -51,6 +52,8 @@ public class UserController extends BaseController {
     private ProductService productService;
     @Autowired
     private ResourceService resourceService;
+    @Autowired
+    private ImageService imageService;
 
     private Gson gson = new Gson();
 
@@ -258,15 +261,17 @@ public class UserController extends BaseController {
         Long productId = Long.valueOf(request.getParameter("productId"));
         try {
             Image image = new Image();
-            // 计算出文件的大小
+            image.setImageName(fileName);
             image.setSize(CommonUtil.getFileSize(file.getSize()));
             image.setImage(file.getBytes());
-
-            // TODO shihao.li 写到这里了
-            // 修改产品表，插入图片表，添加事务
-
-
+            image.setStatus(AvailStatusEnum.AVAILABLE.getKey());
+            Product product = new Product();
+            product.setProductId(productId);
+            product.setImageName(fileName);
+            productService.updateImageBusiness(product, image);
+            logger.info("【资源管理】上传图片_完成,图片名:" + fileName);
         } catch (Exception e) {
+            logger.error("【资源管理】上传图片_错误,", e);
             return new JCResponse(RetCode.FAILURE);
         }
         return new JCResponse(RetCode.SUCCESS);
