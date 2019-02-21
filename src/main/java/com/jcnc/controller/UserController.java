@@ -2,7 +2,6 @@ package com.jcnc.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
-import com.jcnc.common.constant.Constants;
 import com.jcnc.common.param.UserParam;
 import com.jcnc.common.util.CommonUtil;
 import com.jcnc.common.util.EnumJsonConverter;
@@ -15,7 +14,6 @@ import com.jcnc.services.product.service.ProductService;
 import com.jcnc.services.resource.enums.AvailStatusEnum;
 import com.jcnc.services.resource.model.generated.Image;
 import com.jcnc.services.resource.model.generated.Resource;
-import com.jcnc.services.resource.service.ImageService;
 import com.jcnc.services.resource.service.ResourceService;
 import com.jcnc.services.resource.vo.ResourceVo;
 import org.apache.commons.lang3.StringUtils;
@@ -31,13 +29,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
 /**
- * 资源控制类
+ * 用户资源控制类
  *
  * @author shihao.li
  * @date 2019-2-16
@@ -52,8 +48,6 @@ public class UserController extends BaseController {
     private ProductService productService;
     @Autowired
     private ResourceService resourceService;
-    @Autowired
-    private ImageService imageService;
 
     private Gson gson = new Gson();
 
@@ -143,11 +137,12 @@ public class UserController extends BaseController {
     /**
      * 分页查询产品
      * @param response
+     * @param param
      */
     @RequestMapping("/getProductList")
-    public void getProductList(HttpServletResponse response) {
+    public void getProductList(HttpServletResponse response, UserParam param) {
         try {
-            PageInfo<ProductModel> pageInfo = productService.queryPageProduct();
+            PageInfo<ProductModel> pageInfo = productService.queryPageProduct(param);
             int total = (int) pageInfo.getTotal();
             PaginationResult<List<ProductModel>> result = PaginationResult.newInstance(pageInfo.getList());
 

@@ -21,7 +21,7 @@
 					<div class="container">
 						<form id="filter_from" method="post">
 							<!-- 隐藏域 -->
-							<input type="hidden" id="productId" value="${product.productId }">
+							<input type="hidden" name="productId" id="productId" value="${product.productId }">
 							<div class="row">
 								<div class="form-group">
 									<label class="control-label col-md-3">产品名称</label>
@@ -98,7 +98,6 @@
             $('#goBack').click(me.goBack);//返回用户管理按钮
             $('#save').click(me.save);//保存按钮
             $('#cancel').click(me.cancel);//取消按钮
-			$('#upImgBtn').click(me.upImgBtn);//上传产品图片
         },
         //返回产品管理
         goBackProduct : function () {
@@ -123,11 +122,9 @@
                 type : "POST",
                 success : function(data) {
                     $('#save').removeAttr("disabled");
-                    if (data.resultCode != '0000') {
-                        bootbox.alert(data.resultMsg);
-                    } else {
-                        $.alert(data.resultMsg);
-                        $('#cancel').click();// 执行成功,返回产品管理页面
+                    bootbox.alert(data.resultMsg);
+                    if (data.resultCode == '0000') {
+                        updateProductHelper.cancel();// 执行成功,返回产品管理页面
                     }
                 }
             });

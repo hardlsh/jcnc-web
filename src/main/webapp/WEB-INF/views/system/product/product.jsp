@@ -125,7 +125,7 @@
                 },
 				{"data" : function(e) {
 				    var html = '<a class="ajaxify btn btn-sm purple " ' +
-                        'href="${basePath}/user/toUpdateProduct.do?productId=' + e.productId + '">修改图片</a></div>' +
+                        'href="${basePath}/user/toUpdateProduct.do?productId=' + e.productId + '">修改产品</a></div>' +
                         '<button type="button" onclick ="productHelper.btnUpImg(\'' + e.productId + '\',\'' + e.imageName + '\')" class="btn btn-sm ';
                     if (e.imageName != null && e.imageName != "") {
                         html += 'red">修改图片</button>';

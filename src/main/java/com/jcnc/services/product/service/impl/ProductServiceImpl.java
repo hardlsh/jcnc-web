@@ -44,8 +44,7 @@ public class ProductServiceImpl extends BaseService implements ProductService {
     }
 
     @Override
-    public PageInfo<ProductModel> queryPageProduct() {
-        UserParam param = new UserParam();
+    public PageInfo<ProductModel> queryPageProduct(UserParam param) {
         setStartPage(param);
         List<ProductModel> list = getProductDao().queryPageProduct(param);
         PageInfo<ProductModel> pageInfo = new PageInfo<>(list);
@@ -71,17 +70,11 @@ public class ProductServiceImpl extends BaseService implements ProductService {
             image.setImageId(record.getImageId());
             imageService.updateByPrimaryKeySelective(image);
         }
-        getProductDao().updateByPrimaryKeySelective(product);
+        updateProductById(product);
     }
 
     @Override
     public void updateProductById(Product product) {
-        Product record = new Product();
-        record.setProductId(product.getProductId());
-        record.setProductName(product.getProductName());
-        record.setStatus(product.getStatus());
-        record.setProductInfo(product.getProductInfo());
-        record.setProductDetails(product.getProductDetails());
-        getProductDao().updateProductById(record);
+        getProductDao().updateByPrimaryKeySelective(product);
     }
 }

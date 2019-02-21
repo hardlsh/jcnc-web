@@ -13,10 +13,10 @@
 					</div>
 				</div>
 				<div class="portlet-body">
-					<a class="ajaxify btn btn-primary" href="${basePath}/user/toProduct.do?">产品管理</a>
+					<a class="ajaxify btn btn-primary" href="${basePath}/user/toProduct.do">产品管理</a>
 					<br/>
 					<br/>
-					<a class="ajaxify btn btn-primary" href="${basePath}/user/toResource.do?">资源管理</a>
+					<a class="ajaxify btn btn-primary" href="${basePath}/user/toResource.do">资源管理</a>
 				</div>
 			</div>
 		</div>

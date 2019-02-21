@@ -26,13 +26,13 @@
 		<property name="filterChainDefinitions">
 			<value>
 				<!-- anon可匿名访问,authc需要认证 -->
-				/resources/**=anon
-				**/main/**=anon
-				/product/**=anon
-				/visitor/**=anon
-				/index.jsp=anon
-				/views/basepath.jsp=anon
-				/**=authc
+				/resources/** = anon
+				/main/** = anon
+				/product/** = anon
+				/visitor/** = anon
+				/index.jsp = anon
+				/views/basepath.jsp = anon
+				/** = authc
 			</value>
 		</property>
 	</bean>

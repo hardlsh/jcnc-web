@@ -30,9 +30,10 @@ public interface ProductService {
 
     /**
      * 分页查询所有产品
+     * @param param
      * @return
      */
-    PageInfo<ProductModel> queryPageProduct();
+    PageInfo<ProductModel> queryPageProduct(UserParam param);
 
     /**
      * 新增产品
