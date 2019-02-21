@@ -148,18 +148,18 @@
         },
 		// 上传图片按钮
         btnUpImg : function (productId, imageName) {
-            if (imageName != null || imageName != "") {
+            if (imageName == "" || imageName == "null") {
+                $("#upImgReset").click();
+                $('#upImgProductId').val(productId);
+                $('#upImgModal').modal('show');
+			} else {
                 bootbox.confirm("修改图片将覆盖原来的产品图片，是否确认上传？",function (result){
                     if (result) {
                         $("#upImgReset").click();
                         $('#upImgProductId').val(productId);
                         $('#upImgModal').modal('show');
-					}
+                    }
                 })
-			} else {
-                $("#upImgReset").click();
-                $('#upImgProductId').val(productId);
-                $('#upImgModal').modal('show');
 			}
         },
 		// 保存图片

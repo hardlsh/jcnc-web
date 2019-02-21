@@ -57,7 +57,7 @@
 									<label class="control-label col-md-3">产品信息</label>
 									<div class="col-md-9">
 										<textarea name="productInfo" class="form-control" rows="3"
-												  placeholder="请输入产品信息"></textarea>
+												  placeholder="请输入产品信息" value="${product.productInfo}">${product.productInfo}</textarea>
 									</div>
 								</div>
 							</div>
@@ -67,7 +67,7 @@
 									<label class="control-label col-md-3">产品详细信息</label>
 									<div class="col-md-9">
 										<textarea name="productDetails" class="form-control" rows="5"
-												  placeholder="请输入产品详细信息"></textarea>
+												  placeholder="请输入产品详细信息" value="${product.productDetails}">${product.productDetails}</textarea>
 									</div>
 								</div>
 							</div>
