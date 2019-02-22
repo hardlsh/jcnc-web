@@ -261,6 +261,7 @@ public class UserController extends BaseController {
         Long productId = Long.valueOf(request.getParameter("productId"));
         // 覆盖标识
         Boolean coverFlag = Boolean.valueOf(request.getParameter("coverFlag"));
+        Integer type = Integer.valueOf(request.getParameter("type"));
         try {
             Image image = imageService.queryImageByName(filename);
             if (image != null && coverFlag.equals(false)) {
@@ -272,7 +273,7 @@ public class UserController extends BaseController {
                     return new JCResponse(RetCode.IMG_DUPLICATE_NAME);
                 }
             }
-            productService.updateImageBusiness(file, filename, fileSize, productId);
+            productService.updateImageBusiness(file, filename, fileSize, productId, type);
             logger.info("【资源管理】上传图片_完成,图片名:" + filename);
         } catch (Exception e) {
             logger.error("【资源管理】上传图片_错误,", e);

@@ -49,8 +49,9 @@
 				<div class="table-toolbar">
 					<form id="upImgForm" action="${basePath}/user/uploadImage.do"
 						  class="form-horizontal" enctype="multipart/form-data" method="post">
-						<!-- 隐藏域,存储productId-->
+						<!-- 隐藏域,存储productId, type-->
 						<input type="hidden" name="productId" id="upImgProductId">
+						<input type="hidden" name="type" id="imgType" value="1">
 						<div class="col-md-4">
 							<input type="file" style="width:350px;" name="multipartFile" id="imgId">
 						</div>
@@ -77,8 +78,9 @@
 			<div class="modal-body">
 				<form id="upDetailImgForm" action="${basePath}/user/uploadDetailImage.do"
 					  class="form-horizontal" enctype="multipart/form-data" method="post">
-					<!-- 隐藏域,存储productId-->
+					<!-- 隐藏域,存储productId, type-->
 					<input type="hidden" name="productId" id="upDetailImgProductId">
+					<input type="hidden" name="type" id="detailImgType" value="2">
 					<div class="col-md-4">
 						<input type="file" style="width:350px;" name="multipartFile" id="detailImgId">
 					</div>
@@ -86,7 +88,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn blue" id="upDetailImgBtn">上传</button>
+				<button type="button" class="btn blue" id="upDetailImgSave">上传</button>
 				<button type="button" class="btn default" data-dismiss="modal">关闭</button>
 			</div>
 		</div>
@@ -102,8 +104,9 @@
 			$('#addProduct').click(me.addProduct);//新增产品按钮
 			$('#goBack').click(me.goBack);//返回用户管理按钮
 			$('#upImgSave').click(me.upImgSave);// 保存产品图片
-			
-			//初始化产品Table
+            $('#upDetailImgSave').click(me.upDetailImgSave);// 保存产品详情图片
+
+            //初始化产品Table
 			me.productTable();
 		},
 		//初始化用户Table,加载表格
@@ -128,10 +131,15 @@
                         'href="${basePath}/user/toUpdateProduct.do?productId=' + e.productId + '">修改产品</a></div>' +
                         '<button type="button" onclick ="productHelper.btnUpImg(\'' + e.productId + '\',\'' + e.imageName + '\')" class="btn btn-sm ';
                     if (e.imageName != null && e.imageName != "") {
-                        html += 'red">修改图片</button>';
+                        html += 'red">修改图片</button> <button type="button" onclick ="productHelper.btnUpImg(\'' + e.productId + '\',\'' + e.detailsImageName + '\')" class="btn btn-sm ';
                     } else {
-                        html += 'green">上传图片</button>';
+                        html += 'green">上传图片</button> <button type="button" onclick ="productHelper.btnUpImg(\'' + e.productId + '\',\'' + e.detailsImageName + '\')" class="btn btn-sm ';
                     }
+                    if (e.detailsImageName != null && e.detailsImageName != "") {
+                        html += 'red">修改详情图片</button>';
+					} else {
+                        html += 'green">上传详情图片</button>';
+					}
                     return html;
 					},
 					"bSortable" : false}
@@ -175,11 +183,12 @@
                 return;
             }
             var productId = $('#upImgProductId').val();
+            var type = $('#imgType').val();
             $('#upImgSave').attr({"disabled":"disabled"});
             $("#upImgForm").ajaxSubmit({
                 type:"post",
                 dataType:"json",
-                url:"${basePath}/user/upImg.do?productId=" + productId + "&coverFlag=" + coverFlag,
+                url:"${basePath}/user/upImg.do?productId=" + productId + "&coverFlag=" + coverFlag + '&type=' + type,
                 success : function(data){
                     $('#upImgSave').removeAttr("disabled");
                     if (data.resultCode == '0000') {
@@ -201,6 +210,65 @@
                     } else {
                         bootbox.alert(data.resultMsg);
 					}
+                }
+            });
+        },
+        // 上传详情图片按钮
+        btnUpDetailImg : function (productId, detailsImageName) {
+            if (detailsImageName == "" || detailsImageName == "null") {
+                $("#upDetailImgReset").click();
+                $('#upDetailImgProductId').val(productId);
+                $('#upDetailImgModal').modal('show');
+            } else {
+                bootbox.confirm("修改详情图片将覆盖原来的产品详情图片，是否确认上传？",function (result){
+                    if (result) {
+                        $("#upDetailImgReset").click();
+                        $('#upDetailImgProductId').val(productId);
+                        $('#upDetailImgModal').modal('show');
+                    }
+                })
+            }
+        },
+		// 保存详情图片
+        upDetailImgSave : function (coverFlag) {
+            var file_id=$("#detailImgId").val();
+            if(file_id == null || file_id == ""){
+                bootbox.alert("上传详情图片不能为空！");
+                return;
+            }
+            var ext = file_id.substr(file_id.lastIndexOf(".")+1).toLowerCase();
+            if( ext !="png" && ext != "jpg" && ext != "gif" && ext != "jpeg"){
+                bootbox.alert("请选择正确的图片类型!");
+                return;
+            }
+            var productId = $('#upDetailImgProductId').val();
+            var type = $('#detailImgType').val();
+            $('#upDetailImgSave').attr({"disabled":"disabled"});
+            $("#upDetailImgForm").ajaxSubmit({
+                type:"post",
+                dataType:"json",
+                url:"${basePath}/user/upImg.do?productId=" + productId + "&coverFlag=" + coverFlag + '&type=' + type,
+                success : function(data){
+                    $('#upDetailImgSave').removeAttr("disabled");
+                    if (data.resultCode == '0000') {
+                        bootbox.alert(data.resultMsg);
+                        $('#upDetailImgReset').trigger("click");
+                        $('#upDetailImgModal').modal('hide');
+                    } else if (data.resultCode == '2001') {
+                        bootbox.confirm("上传产品详情图片与服务器图片重名，是否确认覆盖服务器图片？",function (result){
+                            if (result) {
+                                productHelper.upDetailImgSave(true);
+                            }
+                        })
+                    } else if (data.resultCode == '2002') {
+                        bootbox.confirm("上传产品详情图片与服务器图片重名且大小一致，是否确认覆盖服务器图片？",function (result){
+                            if (result) {
+                                productHelper.upDetailImgSave(true);
+                            }
+                        })
+                    } else {
+                        bootbox.alert(data.resultMsg);
+                    }
                 }
             });
         }

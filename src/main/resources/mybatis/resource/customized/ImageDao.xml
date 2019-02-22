@@ -7,7 +7,7 @@
 	</resultMap>
 
   	<sql id="I_Column_List" >
-  		i.image_id, i.image_name, i.image_path, i.size
+  		i.image_id, i.image_name, i.image_path, i.size, i.type
   	</sql>
   	
 	<select id="queryImageByName" parameterType="java.lang.String"

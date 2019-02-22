@@ -24,6 +24,11 @@ public class Image {
     private Double size;
 
     /**
+     *图片类型(1-产品图片, 2-详情图片)
+     */
+    private Integer type;
+
+    /**
      *
      */
     private Date createTime;
@@ -87,6 +92,20 @@ public class Image {
      */
     public void setSize(Double size) {
         this.size = size;
+    }
+
+    /**
+     *图片类型(1-产品图片, 2-详情图片)
+     */
+    public Integer getType() {
+        return type;
+    }
+
+    /**
+     *图片类型(1-产品图片, 2-详情图片)
+     */
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     /**

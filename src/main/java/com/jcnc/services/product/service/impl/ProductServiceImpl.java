@@ -11,6 +11,7 @@ import com.jcnc.services.product.dao.customized.ProductDao;
 import com.jcnc.services.product.model.customized.ProductModel;
 import com.jcnc.services.product.model.generated.Product;
 import com.jcnc.services.product.service.ProductService;
+import com.jcnc.services.resource.enums.ImageTypeEnum;
 import com.jcnc.services.resource.model.generated.Image;
 import com.jcnc.services.resource.service.ImageService;
 import com.jcnc.services.user.model.customized.UserModel;
@@ -22,9 +23,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -74,7 +73,7 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void updateImageBusiness(MultipartFile file, String filename, Double fileSize, Long productId) {
+    public void updateImageBusiness(MultipartFile file, String filename, Double fileSize, Long productId, Integer type) {
         Image image = imageService.queryImageByName(filename);
         if (image == null) {
             image = new Image();
@@ -89,15 +88,22 @@ public class ProductServiceImpl extends BaseService implements ProductService {
         }
         Product product = new Product();
         product.setProductId(productId);
-        product.setImageName(filename);
+        if (type.equals(ImageTypeEnum.PRODUCT_IMG.getKey())) {
+            product.setImageName(filename);
+        } else if (type.equals(ImageTypeEnum.PRODCUT_DETAIL_IMG.getKey())) {
+            product.setDetailsImageName(filename);
+        }
         this.updateProductById(product);
         try {
             File fileMkdir = new File(Constants.MY_IMAGE_PATH);
             if (!fileMkdir.exists()) {
                 fileMkdir.mkdir();
             }
-            //定义输出流 将文件保存在E盘
-            FileOutputStream out = new FileOutputStream(fileMkdir.getPath()+"\\"+filename);
+            //定义输出流 将文件保存在本地磁盘
+            filename = fileMkdir.getPath()+"\\"+filename;
+            // append 默认为false，false为覆盖
+            FileOutputStream outputStream = new FileOutputStream(filename, false);
+            BufferedOutputStream out = new BufferedOutputStream(outputStream);
             // 写入文件
             out.write(file.getBytes());
             out.flush();

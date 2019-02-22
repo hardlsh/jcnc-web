@@ -48,8 +48,9 @@ public interface ProductService {
      * @param filename
      * @param fileSize
      * @param productId
+     * @param type
      */
-    void updateImageBusiness(MultipartFile file, String filename, Double fileSize, Long productId);
+    void updateImageBusiness(MultipartFile file, String filename, Double fileSize, Long productId, Integer type);
 
     /**
      * 根据主键，修改产品
