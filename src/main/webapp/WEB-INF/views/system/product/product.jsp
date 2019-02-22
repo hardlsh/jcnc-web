@@ -72,20 +72,23 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"/>
+				<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true"></button>
 				<h4 class="modal-title">上传产品详情图片</h4>
 			</div>
 			<div class="modal-body">
-				<form id="upDetailImgForm" action="${basePath}/user/uploadDetailImage.do"
-					  class="form-horizontal" enctype="multipart/form-data" method="post">
-					<!-- 隐藏域,存储productId, type-->
-					<input type="hidden" name="productId" id="upDetailImgProductId">
-					<input type="hidden" name="type" id="detailImgType" value="2">
-					<div class="col-md-4">
-						<input type="file" style="width:350px;" name="multipartFile" id="detailImgId">
-					</div>
-					<button type="reset" id="upDetailImgReset" style="display: none;"></button>
-				</form>
+				<div class="table-toolbar">
+					<form id="upDetailImgForm" action="${basePath}/user/uploadDetailImage.do"
+						  class="form-horizontal" enctype="multipart/form-data" method="post">
+						<!-- 隐藏域,存储productId, type-->
+						<input type="hidden" name="productId" id="upDetailImgProductId">
+						<input type="hidden" name="type" id="detailImgType" value="2">
+						<div class="col-md-4">
+							<input type="file" style="width:350px;" name="multipartFile" id="detailImgId">
+						</div>
+						<button type="reset" id="upDetailImgReset" style="display: none;"></button>
+					</form>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn blue" id="upDetailImgSave">上传</button>
@@ -131,9 +134,9 @@
                         'href="${basePath}/user/toUpdateProduct.do?productId=' + e.productId + '">修改产品</a></div>' +
                         '<button type="button" onclick ="productHelper.btnUpImg(\'' + e.productId + '\',\'' + e.imageName + '\')" class="btn btn-sm ';
                     if (e.imageName != null && e.imageName != "") {
-                        html += 'red">修改图片</button> <button type="button" onclick ="productHelper.btnUpImg(\'' + e.productId + '\',\'' + e.detailsImageName + '\')" class="btn btn-sm ';
+                        html += 'red">修改图片</button> <button type="button" onclick ="productHelper.btnUpDetailImg(\'' + e.productId + '\',\'' + e.detailsImageName + '\')" class="btn btn-sm ';
                     } else {
-                        html += 'green">上传图片</button> <button type="button" onclick ="productHelper.btnUpImg(\'' + e.productId + '\',\'' + e.detailsImageName + '\')" class="btn btn-sm ';
+                        html += 'green">上传图片</button> <button type="button" onclick ="productHelper.btnUpDetailImg(\'' + e.productId + '\',\'' + e.detailsImageName + '\')" class="btn btn-sm ';
                     }
                     if (e.detailsImageName != null && e.detailsImageName != "") {
                         html += 'red">修改详情图片</button>';
