@@ -13,21 +13,26 @@ public enum RetCode implements Serializable {
      * 操作成功
      **/
     SUCCESS("0000", "操作成功"),
-
     /**
      * 操作失败
      **/
     FAILURE("9999", "操作失败"),
-
     /**
      * 输入参数不合法
      **/
     INVALID_ARGS("1001", "输入参数格式非法"),
-
     /**
      * 系统异常
      **/
-    SYSTEM_ERROR("1002", "系统异常");
+    SYSTEM_ERROR("1002", "系统异常"),
+    /**
+     * 图片重名
+     */
+    IMG_DUPLICATE_NAME("2001", "图片重名"),
+    /**
+     * 图片相同
+     */
+    IMG_SAME("2002", "图片相同");
 
     private String description;
 

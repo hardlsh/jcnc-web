@@ -7,17 +7,17 @@
 	</resultMap>
 
   	<sql id="I_Column_List" >
-  		i.image_id, i.image_name, i.size, i.status, i.remark
+  		i.image_id, i.image_name, i.image_path, i.size
   	</sql>
   	
 	<select id="queryImageByName" parameterType="java.lang.String"
-			resultType="com.jcnc.services.resource.model.generated.Image">
+			resultMap="BaseResultMap">
 		SELECT
 			<include refid="I_Column_List"/>
 		FROM
-			tp_sys_image
+			tp_sys_image i
 		WHERE
-			image_name = #{imageName, jdbcType=VARCHAR}
+			i.image_name = #{imageName, jdbcType=VARCHAR}
 	</select>
   	
 

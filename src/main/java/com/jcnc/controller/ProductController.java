@@ -7,6 +7,7 @@ import com.jcnc.common.vo.JCResponse;
 import com.jcnc.common.vo.RetCode;
 import com.jcnc.services.product.enums.ProductTypeEnum;
 import com.jcnc.services.product.model.customized.ProductModel;
+import com.jcnc.services.product.model.generated.Product;
 import com.jcnc.services.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -71,8 +72,8 @@ public class ProductController {
     @RequestMapping("/toBaseMainProduct")
     public ModelAndView toBaseMainProduct(Long productId) {
         ModelAndView mav = new ModelAndView("product/main/basemainproduct");
-        ProductModel productModel = productService.getProductById(productId);
-        mav.addObject("product", productModel);
+        Product product = productService.getProductById(productId);
+        mav.addObject("product", product);
         return mav;
     }
 
@@ -94,8 +95,8 @@ public class ProductController {
     @RequestMapping("/toBaseQualityProduct")
     public ModelAndView toBaseQualityProduct(Long productId) {
         ModelAndView mav = new ModelAndView("product/quality/basequalityproduct");
-        ProductModel productModel = productService.getProductById(productId);
-        mav.addObject("product", productModel);
+        Product product = productService.getProductById(productId);
+        mav.addObject("product", product);
         return mav;
     }
 
@@ -113,7 +114,7 @@ public class ProductController {
         String fileName = file.getOriginalFilename();
 
         try {
-            String imagePath = getProductString(Constants.PRODUCT_PROPERTIES, Constants.PRODUCT_IMAGE_PATH);
+            String imagePath = Constants.MY_IMAGE_PATH;
             File fileMkdir = new File(imagePath);
 
             if (!fileMkdir.exists()) {
@@ -135,7 +136,7 @@ public class ProductController {
     @RequestMapping("/toLoadPicture")
     @ResponseBody
     public String toLoadPicture(HttpServletRequest request,HttpServletResponse response){
-        String imagePath = getProductString(Constants.PRODUCT_PROPERTIES, Constants.PRODUCT_IMAGE_PATH)+"营业执照.jpg";
+        String imagePath = Constants.MY_IMAGE_PATH+"营业执照.jpg";
         FileInputStream in;
         try {
 
@@ -156,7 +157,4 @@ public class ProductController {
         return "ok";
     }
 
-    public static String getProductString(String fileName, String key) {
-        return PropertiesUtil.getPropertiesValue(fileName, key);
-    }
 }

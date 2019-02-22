@@ -7,13 +7,9 @@ package com.jcnc.common.constant;
  */
 public class Constants {
     /**
-     * 产品配置文件名
+     * 本地磁盘图片路径
      */
-    public static final String PRODUCT_PROPERTIES = "product.properties";
-    /**
-     * 产品图片路径
-     */
-    public static final String PRODUCT_IMAGE_PATH = "product.imagePath";
+    public static final String MY_IMAGE_PATH = "C:/MyImage/";
     /**
      * 产品展示，每行数量
      */

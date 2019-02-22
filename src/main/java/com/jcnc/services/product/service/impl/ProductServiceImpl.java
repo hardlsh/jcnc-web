@@ -1,8 +1,12 @@
 package com.jcnc.services.product.service.impl;
 
 import com.github.pagehelper.PageInfo;
+import com.jcnc.common.constant.Constants;
+import com.jcnc.common.exception.BusinessException;
 import com.jcnc.common.param.UserParam;
 import com.jcnc.common.service.BaseService;
+import com.jcnc.common.util.CommonUtil;
+import com.jcnc.controller.UserController;
 import com.jcnc.services.product.dao.customized.ProductDao;
 import com.jcnc.services.product.model.customized.ProductModel;
 import com.jcnc.services.product.model.generated.Product;
@@ -10,11 +14,17 @@ import com.jcnc.services.product.service.ProductService;
 import com.jcnc.services.resource.model.generated.Image;
 import com.jcnc.services.resource.service.ImageService;
 import com.jcnc.services.user.model.customized.UserModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -26,6 +36,8 @@ import java.util.List;
 @Service
 public class ProductServiceImpl extends BaseService implements ProductService {
 
+    private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
+
     @Autowired
     private ImageService imageService;
 
@@ -34,7 +46,7 @@ public class ProductServiceImpl extends BaseService implements ProductService {
     }
 
     @Override
-    public ProductModel getProductById(Long productId) {
+    public Product getProductById(Long productId) {
         return getProductDao().getProductById(productId);
     }
 
@@ -62,15 +74,38 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void updateImageBusiness(Product product, Image image) {
-        Image record = imageService.queryImageByName(image.getImageName());
-        if (record == null) {
-            imageService.insertSelective(image);
-        } else {
-            image.setImageId(record.getImageId());
-            imageService.updateByPrimaryKeySelective(image);
+    public void updateImageBusiness(MultipartFile file, String filename, Double fileSize, Long productId) {
+        Image image = imageService.queryImageByName(filename);
+        if (image == null) {
+            image = new Image();
         }
-        updateProductById(product);
+        image.setImageName(filename);
+        image.setSize(CommonUtil.getFileSize(file.getSize()));
+        image.setImagePath(Constants.MY_IMAGE_PATH + filename);
+        if (image.getImageId() != null) {
+            imageService.updateByPrimaryKeySelective(image);
+        } else {
+            imageService.insertSelective(image);
+        }
+        Product product = new Product();
+        product.setProductId(productId);
+        product.setImageName(filename);
+        this.updateProductById(product);
+        try {
+            File fileMkdir = new File(Constants.MY_IMAGE_PATH);
+            if (!fileMkdir.exists()) {
+                fileMkdir.mkdir();
+            }
+            //定义输出流 将文件保存在E盘
+            FileOutputStream out = new FileOutputStream(fileMkdir.getPath()+"\\"+filename);
+            // 写入文件
+            out.write(file.getBytes());
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            logger.error("【产品服务】保存图片异常,", e);
+            throw new BusinessException("保存图片异常");
+        }
     }
 
     @Override

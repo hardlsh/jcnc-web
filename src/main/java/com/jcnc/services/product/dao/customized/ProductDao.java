@@ -18,7 +18,7 @@ public interface ProductDao extends ProductMapper {
      * @param productId
      * @return
      */
-    ProductModel getProductById(Long productId);
+    Product getProductById(Long productId);
 
     /**
      * 根据model对象，获取产品

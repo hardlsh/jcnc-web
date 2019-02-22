@@ -5,6 +5,7 @@ import com.jcnc.common.param.UserParam;
 import com.jcnc.services.product.model.customized.ProductModel;
 import com.jcnc.services.product.model.generated.Product;
 import com.jcnc.services.resource.model.generated.Image;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface ProductService {
      * @param productId
      * @return
      */
-    ProductModel getProductById(Long productId);
+    Product getProductById(Long productId);
 
     /**
      * 根据model对象，获取产品
@@ -42,11 +43,13 @@ public interface ProductService {
     void insertProduct(Product product);
 
     /**
-     * 修改产品图片名，并插入图片
-     * @param product
-     * @param image
+     * 修改产品图片名，图片表插入数据，并保存图片到磁盘
+     * @param file
+     * @param filename
+     * @param fileSize
+     * @param productId
      */
-    void updateImageBusiness(Product product, Image image);
+    void updateImageBusiness(MultipartFile file, String filename, Double fileSize, Long productId);
 
     /**
      * 根据主键，修改产品

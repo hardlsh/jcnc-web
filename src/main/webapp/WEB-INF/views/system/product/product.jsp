@@ -163,14 +163,14 @@
 			}
         },
 		// 保存图片
-		upImgSave : function () {
+		upImgSave : function (coverFlag) {
             var file_id=$("#imgId").val();
             if(file_id == null || file_id == ""){
                 bootbox.alert("上传图片不能为空！");
                 return;
             }
             var ext = file_id.substr(file_id.lastIndexOf(".")+1).toLowerCase();
-            if( ext !="png" && ext != "jpg" && ext != "gif"){
+            if( ext !="png" && ext != "jpg" && ext != "gif" && ext != "jpeg"){
                 bootbox.alert("请选择正确的图片类型!");
                 return;
             }
@@ -179,15 +179,28 @@
             $("#upImgForm").ajaxSubmit({
                 type:"post",
                 dataType:"json",
-                clearForm: true,
-                resetForm: true,
-                url:"${basePath}/user/upImg.do?productId=" + productId,
+                url:"${basePath}/user/upImg.do?productId=" + productId + "&coverFlag=" + coverFlag,
                 success : function(data){
                     $('#upImgSave').removeAttr("disabled");
-                    bootbox.alert(data.resultMsg);
                     if (data.resultCode == '0000') {
+                        bootbox.alert(data.resultMsg);
+                        $('#upDetailImgReset').trigger("click");
                         $('#upImgModal').modal('hide');
-                    }
+                    } else if (data.resultCode == '2001') {
+                        bootbox.confirm("上传图片与服务器图片重名，是否确认覆盖服务器图片？",function (result){
+                            if (result) {
+                                productHelper.upImgSave(true);
+                            }
+                        })
+					} else if (data.resultCode == '2002') {
+                        bootbox.confirm("上传图片与服务器图片重名且大小一致，是否确认覆盖服务器图片？",function (result){
+                            if (result) {
+                                productHelper.upImgSave(true);
+                            }
+                        })
+                    } else {
+                        bootbox.alert(data.resultMsg);
+					}
                 }
             });
         }

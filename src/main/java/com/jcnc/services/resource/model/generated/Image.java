@@ -14,19 +14,14 @@ public class Image {
     private String imageName;
 
     /**
+     *图片路径
+     */
+    private String imagePath;
+
+    /**
      *图片大小(kb)
      */
     private Double size;
-
-    /**
-     *状态 0-不可用 1-可用
-     */
-    private Integer status;
-
-    /**
-     *备注
-     */
-    private String remark;
 
     /**
      *
@@ -37,11 +32,6 @@ public class Image {
      *
      */
     private Date updateTime;
-
-    /**
-     *图片
-     */
-    private byte[] image;
 
     /**
      *图片ID
@@ -72,6 +62,20 @@ public class Image {
     }
 
     /**
+     *图片路径
+     */
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    /**
+     *图片路径
+     */
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath == null ? null : imagePath.trim();
+    }
+
+    /**
      *图片大小(kb)
      */
     public Double getSize() {
@@ -83,34 +87,6 @@ public class Image {
      */
     public void setSize(Double size) {
         this.size = size;
-    }
-
-    /**
-     *状态 0-不可用 1-可用
-     */
-    public Integer getStatus() {
-        return status;
-    }
-
-    /**
-     *状态 0-不可用 1-可用
-     */
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    /**
-     *备注
-     */
-    public String getRemark() {
-        return remark;
-    }
-
-    /**
-     *备注
-     */
-    public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
     }
 
     /**
@@ -139,19 +115,5 @@ public class Image {
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    /**
-     *图片
-     */
-    public byte[] getImage() {
-        return image;
-    }
-
-    /**
-     *图片
-     */
-    public void setImage(byte[] image) {
-        this.image = image;
     }
 }

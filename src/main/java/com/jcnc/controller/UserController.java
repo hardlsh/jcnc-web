@@ -2,6 +2,7 @@ package com.jcnc.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
+import com.jcnc.common.constant.Constants;
 import com.jcnc.common.param.UserParam;
 import com.jcnc.common.util.CommonUtil;
 import com.jcnc.common.util.EnumJsonConverter;
@@ -14,6 +15,7 @@ import com.jcnc.services.product.service.ProductService;
 import com.jcnc.services.resource.enums.AvailStatusEnum;
 import com.jcnc.services.resource.model.generated.Image;
 import com.jcnc.services.resource.model.generated.Resource;
+import com.jcnc.services.resource.service.ImageService;
 import com.jcnc.services.resource.service.ResourceService;
 import com.jcnc.services.resource.vo.ResourceVo;
 import org.apache.commons.lang3.StringUtils;
@@ -46,6 +48,8 @@ public class UserController extends BaseController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ImageService imageService;
     @Autowired
     private ResourceService resourceService;
 
@@ -90,8 +94,8 @@ public class UserController extends BaseController {
     @RequestMapping("/toUpdateProduct")
     public ModelAndView toUpdateProduct(Long productId) {
         ModelAndView mav = new ModelAndView("system/product/updateProduct");
-        ProductModel productModel = productService.getProductById(productId);
-        mav.addObject("product", productModel);
+        Product product = productService.getProductById(productId);
+        mav.addObject("product", product);
         mav.addObject("availStatusEnum", EnumJsonConverter.buildEnumJson(AvailStatusEnum.class));
         return mav;
     }
@@ -252,19 +256,24 @@ public class UserController extends BaseController {
     @ResponseBody
     public Object upImg(@RequestParam(value = "multipartFile", required = false) MultipartFile file,
                         HttpServletRequest request) throws IOException {
-        String fileName = file.getOriginalFilename();
+        String filename = file.getOriginalFilename();
+        Double fileSize = CommonUtil.getFileSize(file.getSize());
         Long productId = Long.valueOf(request.getParameter("productId"));
+        // 覆盖标识
+        Boolean coverFlag = Boolean.valueOf(request.getParameter("coverFlag"));
         try {
-            Image image = new Image();
-            image.setImageName(fileName);
-            image.setSize(CommonUtil.getFileSize(file.getSize()));
-            image.setImage(file.getBytes());
-            image.setStatus(AvailStatusEnum.AVAILABLE.getKey());
-            Product product = new Product();
-            product.setProductId(productId);
-            product.setImageName(fileName);
-            productService.updateImageBusiness(product, image);
-            logger.info("【资源管理】上传图片_完成,图片名:" + fileName);
+            Image image = imageService.queryImageByName(filename);
+            if (image != null && coverFlag.equals(false)) {
+                if (image.getImageName().equals(filename) && image.getSize().equals(fileSize)) {
+                    logger.info("【资源管理】上传图片相同_待确认,图片名:" + filename);
+                    return new JCResponse(RetCode.IMG_SAME);
+                } else if (image.getImageName().equals(filename)) {
+                    logger.info("【资源管理】上传图片重名_待确认,图片名:" + filename);
+                    return new JCResponse(RetCode.IMG_DUPLICATE_NAME);
+                }
+            }
+            productService.updateImageBusiness(file, filename, fileSize, productId);
+            logger.info("【资源管理】上传图片_完成,图片名:" + filename);
         } catch (Exception e) {
             logger.error("【资源管理】上传图片_错误,", e);
             return new JCResponse(RetCode.FAILURE);

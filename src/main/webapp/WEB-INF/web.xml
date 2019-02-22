@@ -38,8 +38,19 @@
 
   <filter-mapping>
     <filter-name>shiroFilter</filter-name>
+    <url-pattern>/index/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>shiroFilter</filter-name>
     <url-pattern>/user/*</url-pattern>
     <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
   </filter-mapping>
   <!-- shiro 安全过滤器结束 -->
 

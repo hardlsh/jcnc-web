@@ -11,7 +11,7 @@
     	p.details_image_name, p.sequence, p.status, p.remark
   	</sql>
   	
-  	<select id="getProductById" resultMap="ProductModel" parameterType="java.lang.Long">
+  	<select id="getProductById" resultType="com.jcnc.services.product.model.generated.Product" parameterType="java.lang.Long">
 		SELECT 
 			<include refid="P_Column_List"/>
 		FROM
