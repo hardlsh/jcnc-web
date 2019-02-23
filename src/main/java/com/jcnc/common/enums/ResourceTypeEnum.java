@@ -1,4 +1,4 @@
-package com.jcnc.services.user.enums;
+package com.jcnc.common.enums;
 
 import lombok.Getter;
 

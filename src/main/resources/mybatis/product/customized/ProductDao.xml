@@ -20,21 +20,35 @@
 			p.product_id = #{productId, jdbcType=BIGINT}
   	</select>
 
-	<select id="getProductByModel" resultMap="ProductModel" parameterType="com.jcnc.services.product.model.customized.ProductModel">
+	<select id="getProductByName" resultMap="BaseResultMap" parameterType="java.lang.String">
 		SELECT
 			<include refid="P_Column_List"/>
 		FROM
 			tb_product p
-		where
-			p.product_type = #{productType, jdbcType=INTEGER}
+		WHERE
+			p.product_name = #{productName, jdbcType=VARCHAR}
 	</select>
 
-	<select id="queryPageProduct" resultMap="ProductModel"
+	<select id="queryProductByParam" resultMap="ProductModel"
 			parameterType="com.jcnc.common.param.UserParam">
 		SELECT
 			<include refid="P_Column_List"/>
 		FROM
 			tb_product p
+	</select>
+
+	<select id="queryProductList" resultMap="BaseResultMap" parameterType="com.jcnc.services.product.model.generated.Product">
+		SELECT
+			<include refid="P_Column_List"/>
+		FROM
+			tb_product p
+		WHERE
+			<if test="productType != null">
+				p.product_type = #{productType, jdbcType=INTEGER}
+			</if>
+			<if test="status != null">
+				p.status = #{status, jdbcType=INTEGER}
+			</if>
 	</select>
 
 	<insert id="insertProduct" parameterType="com.jcnc.services.product.model.generated.Product">

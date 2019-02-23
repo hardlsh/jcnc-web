@@ -1,12 +1,9 @@
 package com.jcnc.controller;
 
 import com.jcnc.common.constant.Constants;
-import com.jcnc.common.util.CommonUtil;
-import com.jcnc.common.util.PropertiesUtil;
 import com.jcnc.common.vo.JCResponse;
 import com.jcnc.common.vo.RetCode;
-import com.jcnc.services.product.enums.ProductTypeEnum;
-import com.jcnc.services.product.model.customized.ProductModel;
+import com.jcnc.common.enums.ProductTypeEnum;
 import com.jcnc.services.product.model.generated.Product;
 import com.jcnc.services.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,9 +34,9 @@ public class ProductController {
     @RequestMapping("/toMainProduct")
     public ModelAndView toMainProduct() {
         ModelAndView mav = new ModelAndView("product/main/mainproducts");
-        ProductModel productModel = new ProductModel();
-        productModel.setProductType(ProductTypeEnum.MAIN_PRODUCT.getKey());
-        List<ProductModel> productList = productService.getProductByModel(productModel);
+        Product product = new Product();
+        product.setProductType(ProductTypeEnum.MAIN_PRODUCT.getKey());
+        List<Product> productList = productService.queryProductList(product);
 
         Integer rowNum = getRowNum(productList);
         mav.addObject("rowNum", rowNum);
@@ -55,7 +51,7 @@ public class ProductController {
      * @param productList
      * @return
      */
-    private Integer getRowNum(List<ProductModel> productList) {
+    private Integer getRowNum(List<Product> productList) {
         Integer rowNum;
         if (productList == null) {
             rowNum = 0;
@@ -80,9 +76,9 @@ public class ProductController {
     @RequestMapping("/toQualityProduct")
     public ModelAndView toQualityProduct() {
         ModelAndView mav = new ModelAndView("product/quality/qualityproducts");
-        ProductModel productModel = new ProductModel();
-        productModel.setProductType(ProductTypeEnum.QUALITY_PRODUCT.getKey());
-        List<ProductModel> productList = productService.getProductByModel(productModel);
+        Product product = new Product();
+        product.setProductType(ProductTypeEnum.QUALITY_PRODUCT.getKey());
+        List<Product> productList = productService.queryProductList(product);
 
         Integer rowNum = getRowNum(productList);
         mav.addObject("rowNum", rowNum);

@@ -1,6 +1,4 @@
-package com.jcnc.services.visitor.enums;
-
-import com.jcnc.services.product.enums.ProductTypeEnum;
+package com.jcnc.common.enums;
 
 /**
  * 访客留言信息状态枚举类

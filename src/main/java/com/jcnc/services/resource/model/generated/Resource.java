@@ -24,12 +24,27 @@ public class Resource {
     private Long parentId;
 
     /**
+     *父级名称
+     */
+    private String parentName;
+
+    /**
+     *产品ID
+     */
+    private Long productId;
+
+    /**
+     *产品名称
+     */
+    private String productName;
+
+    /**
      *资源地址
      */
     private String resourcePath;
 
     /**
-     *级别(0 根菜单, 1 一级菜单, 2 二级菜单)
+     *级别(0-根菜单, 1-一级菜单, 2-二级菜单, 4-按钮)
      */
     private Integer level;
 
@@ -115,6 +130,48 @@ public class Resource {
     }
 
     /**
+     *父级名称
+     */
+    public String getParentName() {
+        return parentName;
+    }
+
+    /**
+     *父级名称
+     */
+    public void setParentName(String parentName) {
+        this.parentName = parentName == null ? null : parentName.trim();
+    }
+
+    /**
+     *产品ID
+     */
+    public Long getProductId() {
+        return productId;
+    }
+
+    /**
+     *产品ID
+     */
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    /**
+     *产品名称
+     */
+    public String getProductName() {
+        return productName;
+    }
+
+    /**
+     *产品名称
+     */
+    public void setProductName(String productName) {
+        this.productName = productName == null ? null : productName.trim();
+    }
+
+    /**
      *资源地址
      */
     public String getResourcePath() {
@@ -129,14 +186,14 @@ public class Resource {
     }
 
     /**
-     *级别(0 根菜单, 1 一级菜单, 2 二级菜单)
+     *级别(0-根菜单, 1-一级菜单, 2-二级菜单, 4-按钮)
      */
     public Integer getLevel() {
         return level;
     }
 
     /**
-     *级别(0 根菜单, 1 一级菜单, 2 二级菜单)
+     *级别(0-根菜单, 1-一级菜单, 2-二级菜单, 4-按钮)
      */
     public void setLevel(Integer level) {
         this.level = level;

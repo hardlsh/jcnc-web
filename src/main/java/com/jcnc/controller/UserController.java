@@ -2,7 +2,6 @@ package com.jcnc.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
-import com.jcnc.common.constant.Constants;
 import com.jcnc.common.param.UserParam;
 import com.jcnc.common.util.CommonUtil;
 import com.jcnc.common.util.EnumJsonConverter;
@@ -12,7 +11,7 @@ import com.jcnc.common.vo.RetCode;
 import com.jcnc.services.product.model.customized.ProductModel;
 import com.jcnc.services.product.model.generated.Product;
 import com.jcnc.services.product.service.ProductService;
-import com.jcnc.services.resource.enums.AvailStatusEnum;
+import com.jcnc.common.enums.AvailStatusEnum;
 import com.jcnc.services.resource.model.generated.Image;
 import com.jcnc.services.resource.model.generated.Resource;
 import com.jcnc.services.resource.service.ImageService;
@@ -136,7 +135,7 @@ public class UserController extends BaseController {
     @RequestMapping("/getProductList")
     public void getProductList(HttpServletResponse response, UserParam param) {
         try {
-            PageInfo<ProductModel> pageInfo = productService.queryPageProduct(param);
+            PageInfo<ProductModel> pageInfo = productService.queryPageProductByParam(param);
             int total = (int) pageInfo.getTotal();
             PaginationResult<List<ProductModel>> result = PaginationResult.newInstance(pageInfo.getList());
 
@@ -184,6 +183,13 @@ public class UserController extends BaseController {
     public Object addSaveProduct(Product product) {
         JCResponse res;
         try {
+            Product record = productService.getProductByName(product.getProductName());
+            if (record != null) {
+                res = new JCResponse(RetCode.FAILURE);
+                res.setResultMsg("产品名称重复");
+                logger.info("【产品管理】新增产品保存_失败,产品名称重复");
+                return res;
+            }
             productService.insertProduct(product);
             res = new JCResponse(RetCode.SUCCESS);
         } catch (Exception e) {
@@ -204,6 +210,13 @@ public class UserController extends BaseController {
     public Object updateSaveProduct(Product product) {
         JCResponse res;
         try {
+            Product record = productService.getProductByName(product.getProductName());
+            if (record != null) {
+                res = new JCResponse(RetCode.FAILURE);
+                res.setResultMsg("产品名称重复");
+                logger.info("【产品管理】修改产品保存_失败,产品名称重复");
+                return res;
+            }
             productService.updateProductById(product);
             res = new JCResponse(RetCode.SUCCESS);
         } catch (Exception e) {

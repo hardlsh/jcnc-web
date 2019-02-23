@@ -1,17 +1,17 @@
-package com.jcnc.services.user.enums;
+package com.jcnc.common.enums;
 
 import lombok.Getter;
 
 /**
  * 资源级别枚举类
- * @author shihao.li
- * @date 2019-1-3
+ * @author: shihao.li
+ * @date: 2019-2-23
  */
 public enum ResourceLevelEnum {
 	ROOT_MENU(0, "根菜单"),
     FIRST_MENU(1, "一级菜单"),
     SECOND_MENU(2, "二级菜单"),
-    BUTTON(3, "按钮");
+    BUTTON(4, "按钮");
 
     @Getter
     private int key;

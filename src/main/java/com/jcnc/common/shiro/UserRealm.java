@@ -1,10 +1,7 @@
 package com.jcnc.common.shiro;
 
 import com.jcnc.common.constant.Constants;
-import com.jcnc.services.resource.enums.AvailStatusEnum;
-import com.jcnc.services.resource.model.customized.ResourceModel;
 import com.jcnc.services.resource.service.ResourceService;
-import com.jcnc.services.user.enums.ResourceTypeEnum;
 import com.jcnc.services.user.model.generated.User;
 import com.jcnc.services.user.service.UserService;
 import org.apache.shiro.authc.*;
@@ -13,7 +10,6 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -6,15 +6,13 @@ import com.jcnc.common.exception.BusinessException;
 import com.jcnc.common.param.UserParam;
 import com.jcnc.common.service.BaseService;
 import com.jcnc.common.util.CommonUtil;
-import com.jcnc.controller.UserController;
 import com.jcnc.services.product.dao.customized.ProductDao;
 import com.jcnc.services.product.model.customized.ProductModel;
 import com.jcnc.services.product.model.generated.Product;
 import com.jcnc.services.product.service.ProductService;
-import com.jcnc.services.resource.enums.ImageTypeEnum;
+import com.jcnc.common.enums.ImageTypeEnum;
 import com.jcnc.services.resource.model.generated.Image;
 import com.jcnc.services.resource.service.ImageService;
-import com.jcnc.services.user.model.customized.UserModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,16 +48,21 @@ public class ProductServiceImpl extends BaseService implements ProductService {
     }
 
     @Override
-    public List<ProductModel> getProductByModel(ProductModel productModel) {
-        return getProductDao().getProductByModel(productModel);
+    public Product getProductByName(String productName) {
+        return getProductDao().getProductByName(productName);
     }
 
     @Override
-    public PageInfo<ProductModel> queryPageProduct(UserParam param) {
+    public PageInfo<ProductModel> queryPageProductByParam(UserParam param) {
         setStartPage(param);
-        List<ProductModel> list = getProductDao().queryPageProduct(param);
+        List<ProductModel> list = getProductDao().queryProductByParam(param);
         PageInfo<ProductModel> pageInfo = new PageInfo<>(list);
         return pageInfo;
+    }
+
+    @Override
+    public List<Product> queryProductList(Product product) {
+        return getProductDao().queryProductList(product);
     }
 
     @Override

@@ -76,6 +76,8 @@
 	</bean>
 	<task:annotation-driven />
 
+	<bean class="com.jcnc.common.util.SpringUtil"></bean>
+
 	<import resource="classpath:applicationContext_shiro.xml"/>
 
 </beans>

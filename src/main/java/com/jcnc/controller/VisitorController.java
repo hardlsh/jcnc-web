@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.jcnc.common.vo.JCResponse;
 import com.jcnc.common.vo.RetCode;
 import com.jcnc.services.sms.*;
-import com.jcnc.services.visitor.enums.VisitorMessageStatusEnum;
+import com.jcnc.common.enums.VisitorMessageStatusEnum;
 import com.jcnc.services.visitor.model.customized.VisitorMessageModel;
 import com.jcnc.services.visitor.service.VisitorMessageService;
 import org.slf4j.Logger;

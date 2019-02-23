@@ -7,8 +7,8 @@
 	</resultMap>
 
   	<sql id="R_Column_List" >
-  		r.resource_id, r.resource_name, r.resource_type, r.parent_id, r.resource_path,
-  		r.level, r.sequence, r.status, r.remark
+  		r.resource_id, r.resource_name, r.resource_type, r.parent_id, r.parent_name, r.product_id,
+  		r.product_name, r.resource_path, r.level, r.sequence, r.status, r.remark
   	</sql>
   	
   	<select id="queryUserResources" resultMap="ResourceModel"

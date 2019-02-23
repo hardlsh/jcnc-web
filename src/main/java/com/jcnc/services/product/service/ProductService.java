@@ -23,18 +23,25 @@ public interface ProductService {
     Product getProductById(Long productId);
 
     /**
-     * 根据model对象，获取产品
-     * @param productModel
+     * 根据产品名称，获取产品
+     * @param productName
      * @return
      */
-    List<ProductModel> getProductByModel(ProductModel productModel);
+    Product getProductByName(String productName);
 
     /**
      * 分页查询所有产品
      * @param param
      * @return
      */
-    PageInfo<ProductModel> queryPageProduct(UserParam param);
+    PageInfo<ProductModel> queryPageProductByParam(UserParam param);
+
+    /**
+     * 查询产品对象
+     * @param product
+     * @return
+     */
+    List<Product> queryProductList(Product product);
 
     /**
      * 新增产品

@@ -1,4 +1,4 @@
-package com.jcnc.services.product.enums;
+package com.jcnc.common.enums;
 
 /**
  * 产品类型枚举类

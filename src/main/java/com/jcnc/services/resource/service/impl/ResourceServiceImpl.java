@@ -2,14 +2,14 @@ package com.jcnc.services.resource.service.impl;
 
 import com.jcnc.common.service.BaseService;
 import com.jcnc.services.resource.dao.customized.ResourceDao;
-import com.jcnc.services.resource.enums.AvailStatusEnum;
+import com.jcnc.common.enums.AvailStatusEnum;
 import com.jcnc.services.resource.model.customized.ResourceModel;
 import com.jcnc.services.resource.model.generated.Resource;
 import com.jcnc.services.resource.model.generated.ResourceExample;
 import com.jcnc.services.resource.service.ResourceService;
 import com.jcnc.services.resource.vo.ResourceVo;
 import com.jcnc.services.user.enums.ResourceLevelEnum;
-import com.jcnc.services.user.enums.ResourceTypeEnum;
+import com.jcnc.common.enums.ResourceTypeEnum;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
