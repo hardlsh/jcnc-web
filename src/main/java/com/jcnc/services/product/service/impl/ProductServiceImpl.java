@@ -81,6 +81,7 @@ public class ProductServiceImpl extends BaseService implements ProductService {
         image.setImageName(filename);
         image.setSize(CommonUtil.getFileSize(file.getSize()));
         image.setImagePath(Constants.MY_IMAGE_PATH + filename);
+        image.setType(type);
         if (image.getImageId() != null) {
             imageService.updateByPrimaryKeySelective(image);
         } else {

@@ -56,16 +56,6 @@ public class UserController extends BaseController {
     private Gson gson = new Gson();
 
     /**
-     * 跳转到用户管理页面
-     * @return
-     */
-    @RequestMapping("/toUser")
-    public ModelAndView toUser() {
-        ModelAndView mav = new ModelAndView("system/user");
-        return mav;
-    }
-
-    /**
      * 跳转到产品管理页面
      * @return
      */

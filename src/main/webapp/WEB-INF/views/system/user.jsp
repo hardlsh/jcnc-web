@@ -11,6 +11,9 @@
 					<div class="caption">
 						<i class="fa fa-globe"></i>用户管理
 					</div>
+					<div class="actions">
+						<a class="ajaxify btn green" href="${basePath}/index/logout.do">退出登录</a>
+					</div>
 				</div>
 				<div class="portlet-body">
 					<a class="ajaxify btn btn-primary" href="${basePath}/user/toProduct.do">产品管理</a>

@@ -60,7 +60,7 @@
             var resourceId = $(e.target).parents('li').attr('id');
             $("#hideResourceId").val(resourceId);//为隐藏域赋值
             $.ajax({
-                url : "${basePath}/resource/getResourceById.do",
+                url : "${basePath}/user/getResourceById.do",
                 data : {resourceId : resourceId},
                 dataType : "json",
                 type : "POST",
