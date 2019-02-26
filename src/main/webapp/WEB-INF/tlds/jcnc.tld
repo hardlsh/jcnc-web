@@ -6,8 +6,66 @@
 	<shortname>auth</shortname>
 	<uri>cn.mljr.malm</uri>
 
+	<!-- 字典项下拉选择框 -->
 	<tag>
-		<name>authCapitalSelect</name>
+		<name>selectTag</name>
+		<tagclass>com.jcnc.common.tag.SelectTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>dictCode</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>classes</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>placeholder</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>multiple</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>hasAll</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>onchange</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<!-- 产品下拉选择框 -->
+	<tag>
+		<name>productSelect</name>
 		<tagclass>com.jcnc.common.tag.ProductSelectTag</tagclass>
 		<!-- 标签体的类型 -->
 		<bodycontent>empty</bodycontent>

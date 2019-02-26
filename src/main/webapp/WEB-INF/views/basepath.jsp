@@ -20,6 +20,7 @@
 <link href="${basePath}/resources/css/layout.css" rel="stylesheet" type="text/css"/>
 <link href="${basePath}/resources/css/light.css" rel="stylesheet" type="text/css"/>
 <link href="${basePath}/resources/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/resources/css/bootstrap-select.css" rel="stylesheet" type="text/css"/>
 
 
 <%-- js start --%>
@@ -40,4 +41,6 @@
 <script type="text/javascript" src="${basePath}/resources/js/table-pagination.js" ></script>
 <script type="text/javascript" src="${basePath}/resources/plugins/datatables/media/js/jquery.dataTables.min.js" ></script>
 <script type="text/javascript" src="${basePath}/resources/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js" ></script>
+<script type="text/javascript" src="${basePath}/resources/js/bootstrap-select.js" ></script>
+
 <%-- js end --%>

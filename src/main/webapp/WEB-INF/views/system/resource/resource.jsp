@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
-<%@include file="../header.jsp"%>
-<jsp:include page="../basepath.jsp"/>
+<%@include file="../../header.jsp"%>
+<jsp:include page="../../basepath.jsp"/>
 <link rel="stylesheet" type="text/css" href="${basePath}/resources/plugins/bootstrap-tree/css/style.min.css"/>
 <script src="${basePath}/resources/plugins/bootstrap-tree/jstree.min.js"></script>
 <body>
@@ -15,6 +15,7 @@
 				</div>
 				<div class="actions">
 					<button id="addResource" class="btn btn-sm blue" type="button">新增资源</button>
+					<button id="goBack" class="btn btn-sm green" type="button">返回用户管理</button>
 					<input id="hideResourceId" name="resourceId" type="hidden"/>
 				</div>
 			</div>
@@ -35,10 +36,13 @@
 <script type="text/javascript">
     var resourceHelper = {
         availStatusEnum : '${availStatusEnum}',
+        resourceTypeEnum : '${resourceTypeEnum}',
+        resourceLevelEnum : '${resourceLevelEnum}',
 
         init : function () {
             var me = resourceHelper;
             $('#addResource').click(me.addResource);// 新增资源按钮
+            $('#goBack').click(me.goBack);//返回用户管理按钮
 
         },
         // 新增资源
@@ -48,8 +52,12 @@
                 bootbox.alert("请选择上级菜单,再新增资源");
                 return;
             }
-            $('#body2').load("${basePath}/resource/toAddResource.do?",{resourceId : resourceId});
-        }
+            location.href="${basePath}/user/toAddResource.do",{resourceId : resourceId};
+        },
+        //返回用户管理
+        goBack : function () {
+            location.href="${basePath}/index/toUser.do";
+        },
     };
 
     $(function() {
@@ -66,21 +74,20 @@
                 type : "POST",
                 success : function (data) {
                     if(data.resultCode!='0000') {
-                        alert(123);
                         bootbox.alert(data.resultMsg);
                     } else {
                         var resource = data.data;
                         var tableT = '<table class="table table-striped table-bordered table-hover table-condensed table-responsive">'+
                             '<tr>'+
                             '<th>操作</th>'+
-                            '<th>id</th>'+
+                            '<th>ID</th>'+
                             '<th>资源名称</th>'+
-                            '<th>parentId</th>'+
-                            '<th>资源地址</th>'+
-                            '<th>级别</th>'+
-                            '<th>序号</th>'+
+                            '<th>资源类型</th>'+
+                            '<th>父级名称</th>'+
+                            '<th>对应产品</th>'+
+                            '<th>资源级别</th>'+
+                            '<th>顺序</th>'+
                             '<th>状态</th>'+
-                            '<th>备注</th>'+
                             '</tr>'+
                             '<tr class="warning">'+
                             '<td>'+
@@ -88,15 +95,14 @@
                             '</td>'+
                             '<td>'+ resource.resourceId +'</td>'+
                             '<td>'+ resource.resourceName +'</td>'+
-                            '<td>'+ resource.parentId +'</td>'+
-                            '<td>'+ resource.resourcePath +'</td>'+
-                            '<td>'+ resource.level +'</td>'+
+                            '<td>'+ myJson.getText(resource.resourceType, resourceHelper.resourceTypeEnum) +'</td>'+
+                            '<td>'+ resource.parentName +'</td>'+
+                            '<td>'+ resource.productName +'</td>'+
+                            '<td>'+ myJson.getText(resource.level, resourceHelper.resourceLevelEnum) +'</td>'+
                             '<td>'+ resource.sequence +'</td>'+
                             '<td>'+ myJson.getText(resource.status, resourceHelper.availStatusEnum) +'</td>'+
-                            '<td>'+ resource.remark +'</td>'+
                             '</tr>'+
-                            '</table>'+
-                            '<input type="hidden" name="resourceId" id="resourceId" value="'+ resource.resourceId +'">'
+                            '</table>'
                         ;
                         $("#contextText").html(tableT);
                     }

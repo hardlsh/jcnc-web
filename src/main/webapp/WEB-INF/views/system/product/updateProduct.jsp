@@ -105,7 +105,7 @@
         },
         //返回用户管理
         goBack : function () {
-            location.href="${basePath}/user/toUser.do";
+            location.href="${basePath}/index/toUser.do";
         },
         //取消, 返回产品管理
         cancel : function () {

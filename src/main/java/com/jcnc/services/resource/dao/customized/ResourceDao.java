@@ -2,6 +2,7 @@ package com.jcnc.services.resource.dao.customized;
 
 import com.jcnc.services.resource.dao.generated.ResourceMapper;
 import com.jcnc.services.resource.model.customized.ResourceModel;
+import com.jcnc.services.resource.model.generated.Resource;
 
 import java.util.List;
 
@@ -12,9 +13,20 @@ import java.util.List;
  */
 public interface ResourceDao extends ResourceMapper{
     /**
+     * 根据资源名称，获取资源
+     * @param resourceName
+     * @return
+     */
+    Resource getResourceByName(String resourceName);
+    /**
      * 根据参数,获取用户资源
      * @param model
      * @return
      */
     List<ResourceModel> queryUserResources(ResourceModel model);
+    /**
+     * 新增资源
+     * @param resource
+     */
+    void insertResource(Resource resource);
 }

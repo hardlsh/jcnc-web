@@ -1,5 +1,6 @@
 package com.jcnc.services.resource.service.impl;
 
+import com.jcnc.common.enums.ResourceLevelEnum;
 import com.jcnc.common.service.BaseService;
 import com.jcnc.services.resource.dao.customized.ResourceDao;
 import com.jcnc.common.enums.AvailStatusEnum;
@@ -8,7 +9,6 @@ import com.jcnc.services.resource.model.generated.Resource;
 import com.jcnc.services.resource.model.generated.ResourceExample;
 import com.jcnc.services.resource.service.ResourceService;
 import com.jcnc.services.resource.vo.ResourceVo;
-import com.jcnc.services.user.enums.ResourceLevelEnum;
 import com.jcnc.common.enums.ResourceTypeEnum;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +27,11 @@ public class ResourceServiceImpl extends BaseService implements ResourceService{
 
     private ResourceDao getResourceDao(){
         return sqlSession.getMapper(ResourceDao.class);
+    }
+
+    @Override
+    public Resource getResourceByName(String resourceName){
+        return getResourceDao().getResourceByName(resourceName);
     }
 
     @Override
@@ -172,5 +177,10 @@ public class ResourceServiceImpl extends BaseService implements ResourceService{
             criteria.andLevelEqualTo(resource.getLevel());
         }
         return example;
+    }
+
+    @Override
+    public void insertResource(Resource resource){
+        getResourceDao().insertResource(resource);
     }
 }

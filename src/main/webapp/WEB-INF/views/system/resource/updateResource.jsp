@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
-<%@include file="../header.jsp"%>
-<jsp:include page="../basepath.jsp"/>
+<%@include file="../../header.jsp"%>
+<jsp:include page="../../basepath.jsp"/>
 <body>
 	<div class="row">
 		<div class="row col-md-12">

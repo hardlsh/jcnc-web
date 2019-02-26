@@ -14,6 +14,12 @@ import java.util.List;
  */
 public interface ResourceService {
     /**
+     * 根据资源名称，获取资源
+     * @param resourceName
+     * @return
+     */
+    Resource getResourceByName(String resourceName);
+    /**
      * 根据参数,获取组装好的资源
      * @param model
      * @return
@@ -30,4 +36,9 @@ public interface ResourceService {
      * @return
      */
     List<Resource> queryResourceByExample(Resource resource);
+    /**
+     * 新增资源
+     * @param resource
+     */
+    void insertResource(Resource resource);
 }

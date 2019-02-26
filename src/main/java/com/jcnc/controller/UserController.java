@@ -2,6 +2,8 @@ package com.jcnc.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
+import com.jcnc.common.enums.ResourceLevelEnum;
+import com.jcnc.common.enums.ResourceTypeEnum;
 import com.jcnc.common.param.UserParam;
 import com.jcnc.common.util.CommonUtil;
 import com.jcnc.common.util.EnumJsonConverter;
@@ -95,10 +97,23 @@ public class UserController extends BaseController {
      */
     @RequestMapping("/toResource")
     public ModelAndView toResource() {
-        ModelAndView mav = new ModelAndView("system/resource");
+        ModelAndView mav = new ModelAndView("system/resource/resource");
         List<ResourceVo> voList = resourceService.queryPackageAllResources();
+        mav.addObject("resourceTypeEnum", EnumJsonConverter.buildEnumJson(ResourceTypeEnum.class));
+        mav.addObject("resourceLevelEnum", EnumJsonConverter.buildEnumJson(ResourceLevelEnum.class));
         mav.addObject("availStatusEnum", EnumJsonConverter.buildEnumJson(AvailStatusEnum.class));
         mav.addObject("nodes", gson.toJson(voList));
+        return mav;
+    }
+
+    /**
+     * 跳转到新增资源页面
+     * @param resourceId
+     * @return
+     */
+    @RequestMapping("/toAddResource")
+    public ModelAndView toAddResource(Long resourceId) {
+        ModelAndView mav = new ModelAndView("system/resource/addResource");
         return mav;
     }
 
@@ -109,7 +124,7 @@ public class UserController extends BaseController {
      */
     @RequestMapping("/toUpdateResource")
     public ModelAndView toUpdateResource(Resource resource) {
-        ModelAndView mav = new ModelAndView("system/updateResource");
+        ModelAndView mav = new ModelAndView("system/resource/updateResource");
         //根据资源id,获取对应的资源
         List<Resource> resourceList = resourceService.queryResourceByExample(resource);
 
@@ -210,13 +225,6 @@ public class UserController extends BaseController {
     public Object updateSaveProduct(Product product) {
         JCResponse res;
         try {
-            Product record = productService.getProductByName(product.getProductName());
-            if (record != null) {
-                res = new JCResponse(RetCode.FAILURE);
-                res.setResultMsg("产品名称重复");
-                logger.info("【产品管理】修改产品保存_失败,产品名称重复");
-                return res;
-            }
             productService.updateProductById(product);
             res = new JCResponse(RetCode.SUCCESS);
         } catch (Exception e) {
@@ -247,6 +255,33 @@ public class UserController extends BaseController {
             res = new JCResponse(RetCode.FAILURE);
         }
         logger.info("【资源管理】修改资源_结束");
+        return res;
+    }
+
+    /**
+     * 新增资源保存
+     * @param resource
+     * @return
+     */
+    @RequestMapping("/addSaveResource")
+    @ResponseBody
+    public Object addSaveResource(Resource resource) {
+        JCResponse res;
+        try {
+            Resource record = resourceService.getResourceByName(resource.getResourceName());
+            if (record != null) {
+                res = new JCResponse(RetCode.FAILURE);
+                res.setResultMsg("资源名称重复");
+                logger.info("【资源管理】新增资源保存_失败,资源名称重复");
+                return res;
+            }
+            resourceService.insertResource(resource);
+            res = new JCResponse(RetCode.SUCCESS);
+        } catch (Exception e) {
+            logger.error("【资源管理】新增资源保存_异常,异常原因:", e);
+            res = new JCResponse(RetCode.FAILURE);
+        }
+        logger.info("【资源管理】新增资源保存_结束");
         return res;
     }
 

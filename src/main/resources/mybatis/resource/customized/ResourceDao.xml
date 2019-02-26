@@ -10,7 +10,16 @@
   		r.resource_id, r.resource_name, r.resource_type, r.parent_id, r.parent_name, r.product_id,
   		r.product_name, r.resource_path, r.level, r.sequence, r.status, r.remark
   	</sql>
-  	
+
+	<select id="getResourceByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+		SELECT
+			<include refid="R_Column_List"/>
+		FROM
+			tp_sys_resource r
+		WHERE
+			r.resource_name = #{resourceName, jdbcType=VARCHAR}
+	</select>
+
   	<select id="queryUserResources" resultMap="ResourceModel"
   		parameterType="com.jcnc.services.resource.model.customized.ResourceModel">
 		SELECT 
@@ -25,5 +34,15 @@
 		ORDER BY r.sequence
   	</select>
   	
-
+	<insert id="insertResource" parameterType="com.jcnc.services.resource.model.generated.Resource">
+		INSERT INTO
+			tp_sys_resource (resource_name, resource_type,
+      			parent_id, parent_name, product_id,
+      			product_name, resource_path, level,
+      			sequence, remark)
+    	VALUES (#{resourceName,jdbcType=VARCHAR}, #{resourceType,jdbcType=INTEGER},
+      			#{parentId,jdbcType=BIGINT}, #{parentName,jdbcType=VARCHAR}, #{productId,jdbcType=BIGINT},
+      			#{productName,jdbcType=VARCHAR}, #{resourcePath,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},
+      			#{sequence,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+	</insert>
 </mapper>

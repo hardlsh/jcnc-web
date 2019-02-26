@@ -56,8 +56,14 @@
         <table tableName="tp_sys_user" domainObjectName="User">
             <property name="useActualColumnNames" value="false" />
         </table>
-        -->
         <table tableName="tp_sys_resource" domainObjectName="Resource">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        -->
+        <table tableName="tp_sys_dict" domainObjectName="Dict">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table tableName="tp_sys_dict_item" domainObjectName="DictItem">
             <property name="useActualColumnNames" value="false"/>
         </table>
 

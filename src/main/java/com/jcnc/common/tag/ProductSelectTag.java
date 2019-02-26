@@ -55,9 +55,6 @@ public class ProductSelectTag extends TagSupport {
         product.setStatus(AvailStatusEnum.AVAILABLE.getKey());
         List<Product> productList = productService.queryProductList(product);
 
-
-
-
         StringBuffer sb = new StringBuffer();
         sb.append("<select ");
         if (StringUtils.isNotBlank(id)) {

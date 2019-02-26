@@ -155,7 +155,7 @@
 		},
 		//返回用户管理
         goBack : function () {
-            location.href="${basePath}/user/toUser.do";
+            location.href="${basePath}/index/toUser.do";
         },
 		// 上传图片按钮
         btnUpImg : function (productId, imageName) {
