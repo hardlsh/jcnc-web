@@ -2,6 +2,8 @@ package com.jcnc.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
+import com.jcnc.common.constant.Constants;
+import com.jcnc.common.enums.AvailStatusEnum;
 import com.jcnc.common.enums.ResourceLevelEnum;
 import com.jcnc.common.enums.ResourceTypeEnum;
 import com.jcnc.common.param.UserParam;
@@ -13,7 +15,6 @@ import com.jcnc.common.vo.RetCode;
 import com.jcnc.services.product.model.customized.ProductModel;
 import com.jcnc.services.product.model.generated.Product;
 import com.jcnc.services.product.service.ProductService;
-import com.jcnc.common.enums.AvailStatusEnum;
 import com.jcnc.services.resource.model.generated.Image;
 import com.jcnc.services.resource.model.generated.Resource;
 import com.jcnc.services.resource.service.ImageService;
@@ -114,6 +115,9 @@ public class UserController extends BaseController {
     @RequestMapping("/toAddResource")
     public ModelAndView toAddResource(Long resourceId) {
         ModelAndView mav = new ModelAndView("system/resource/addResource");
+        Resource resource = resourceService.getResourceById(resourceId);
+        resource.setLevel(resource.getLevel() + 1);
+        mav.addObject("resource", resource);
         return mav;
     }
 
@@ -189,6 +193,34 @@ public class UserController extends BaseController {
     }
 
     /**
+     * 根据资源级别,获取对应的可用资源
+     * @param resource
+     */
+    @RequestMapping("/getResourceByLevel")
+    @ResponseBody
+    public Object getResourceByLevel(Resource resource) {
+        logger.info("【资源管理】根据资源级别获取资源_开始,入参:" + gson.toJson(resource));
+        JCResponse res;
+        try {
+            if (resource.getLevel() == null) {
+                return new JCResponse(RetCode.INVALID_ARGS);
+            }
+            resource.setStatus(AvailStatusEnum.AVAILABLE.getKey());
+            if (resource.getLevel() > 0) {
+                resource.setLevel(resource.getLevel() - 1);
+            }
+            List<Resource> resourceList = resourceService.queryResourceByExample(resource);
+            res = new JCResponse(RetCode.SUCCESS);
+            res.setData(resourceList);
+        } catch (Exception e) {
+            logger.error("【资源管理】根据资源级别获取资源_异常,异常原因:", e);
+            res = new JCResponse(RetCode.FAILURE);
+        }
+        logger.info("【资源管理】根据资源级别获取资源_结束");
+        return res;
+    }
+
+    /**
      * 新增产品保存
      * @param product
      * @return
@@ -236,6 +268,41 @@ public class UserController extends BaseController {
     }
 
     /**
+     * 新增资源保存
+     * @param resource
+     * @return
+     */
+    @RequestMapping("/addSaveResource")
+    @ResponseBody
+    public Object addSaveResource(Resource resource) {
+        JCResponse res;
+        try {
+            Resource record = resourceService.getResourceByName(resource.getResourceName());
+            if (record != null) {
+                res = new JCResponse(RetCode.FAILURE);
+                res.setResultMsg("资源名称重复");
+                logger.info("【资源管理】新增资源保存_失败,资源名称重复");
+                return res;
+            }
+            String resourcePath = "";
+            if (resource.getLevel().equals(ResourceLevelEnum.FIRST_MENU.getKey())) {
+                resourcePath = Constants.PRODUCT_SHOW_PATH + resource.getProductId();
+            } else if (resource.getLevel().equals(ResourceLevelEnum.SECOND_MENU.getKey())) {
+                resourcePath = Constants.BASE_PRODUCT_PATH + resource.getProductId();
+            }
+            resource.setResourcePath(resourcePath);
+            resource.setResourceType(ResourceTypeEnum.MENU.getKey());
+            resourceService.insertResourceBusiness(resource);
+            res = new JCResponse(RetCode.SUCCESS);
+        } catch (Exception e) {
+            logger.error("【资源管理】新增资源保存_异常,异常原因:", e);
+            res = new JCResponse(RetCode.FAILURE);
+        }
+        logger.info("【资源管理】新增资源保存_结束");
+        return res;
+    }
+
+    /**
      * 根据资源id,修改对应的资源
      */
     @RequestMapping("/updateResource")
@@ -255,33 +322,6 @@ public class UserController extends BaseController {
             res = new JCResponse(RetCode.FAILURE);
         }
         logger.info("【资源管理】修改资源_结束");
-        return res;
-    }
-
-    /**
-     * 新增资源保存
-     * @param resource
-     * @return
-     */
-    @RequestMapping("/addSaveResource")
-    @ResponseBody
-    public Object addSaveResource(Resource resource) {
-        JCResponse res;
-        try {
-            Resource record = resourceService.getResourceByName(resource.getResourceName());
-            if (record != null) {
-                res = new JCResponse(RetCode.FAILURE);
-                res.setResultMsg("资源名称重复");
-                logger.info("【资源管理】新增资源保存_失败,资源名称重复");
-                return res;
-            }
-            resourceService.insertResource(resource);
-            res = new JCResponse(RetCode.SUCCESS);
-        } catch (Exception e) {
-            logger.error("【资源管理】新增资源保存_异常,异常原因:", e);
-            res = new JCResponse(RetCode.FAILURE);
-        }
-        logger.info("【资源管理】新增资源保存_结束");
         return res;
     }
 

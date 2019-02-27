@@ -31,6 +31,26 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    /**
+     * 跳转到产品图片展示页面
+     * @return
+     */
+    @RequestMapping("/toProductshow")
+    public ModelAndView toProductshow() {
+        ModelAndView mav = new ModelAndView("product/productshow");
+        return mav;
+    }
+
+    /**
+     * 跳转到产品基础页面
+     * @return
+     */
+    @RequestMapping("/toBaseproduct")
+    public ModelAndView toBaseproduct() {
+        ModelAndView mav = new ModelAndView("product/baseproduct");
+        return mav;
+    }
+
     @RequestMapping("/toMainProduct")
     public ModelAndView toMainProduct() {
         ModelAndView mav = new ModelAndView("product/main/mainproducts");

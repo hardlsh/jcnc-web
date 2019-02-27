@@ -14,6 +14,12 @@ import java.util.List;
  */
 public interface ResourceService {
     /**
+     * 根据资源id，获取资源
+     * @param resourceId
+     * @return
+     */
+    Resource getResourceById(Long resourceId);
+    /**
      * 根据资源名称，获取资源
      * @param resourceName
      * @return
@@ -37,8 +43,8 @@ public interface ResourceService {
      */
     List<Resource> queryResourceByExample(Resource resource);
     /**
-     * 新增资源
+     * 新增资源，并对应修改产品
      * @param resource
      */
-    void insertResource(Resource resource);
+    void insertResourceBusiness(Resource resource);
 }

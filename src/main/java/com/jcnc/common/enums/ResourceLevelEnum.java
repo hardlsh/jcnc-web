@@ -14,19 +14,21 @@ public enum ResourceLevelEnum {
     BUTTON(4, "按钮");
 
     @Getter
-    private int key;
+    private Integer key;
     @Getter
     private String desc;
 
-    private ResourceLevelEnum(int key, String desc) {
+    private ResourceLevelEnum(Integer key, String desc) {
         this.key = key;
         this.desc = desc;
     }
 
-    public static String getDescName(int key) {
-        for (ResourceLevelEnum item : ResourceLevelEnum.values()) {
-            if (item.getKey() == key) {
-                return item.getDesc();
+    public static String getDescName(Integer key) {
+        if (key != null) {
+            for (ResourceLevelEnum item : ResourceLevelEnum.values()) {
+                if (item.getKey().equals(key)) {
+                    return item.getDesc();
+                }
             }
         }
         return "";

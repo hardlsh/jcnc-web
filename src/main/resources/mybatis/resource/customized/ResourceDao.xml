@@ -11,6 +11,15 @@
   		r.product_name, r.resource_path, r.level, r.sequence, r.status, r.remark
   	</sql>
 
+	<select id="getResourceById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		SELECT
+			<include refid="R_Column_List"/>
+		FROM
+			tp_sys_resource r
+		WHERE
+			r.resource_id = #{resourceId, jdbcType=BIGINT}
+	</select>
+
 	<select id="getResourceByName" resultMap="BaseResultMap" parameterType="java.lang.String">
 		SELECT
 			<include refid="R_Column_List"/>

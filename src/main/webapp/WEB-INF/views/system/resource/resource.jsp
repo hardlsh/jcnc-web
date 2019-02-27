@@ -52,7 +52,7 @@
                 bootbox.alert("请选择上级菜单,再新增资源");
                 return;
             }
-            location.href="${basePath}/user/toAddResource.do",{resourceId : resourceId};
+            location.href="${basePath}/user/toAddResource.do?resourceId=" + resourceId;
         },
         //返回用户管理
         goBack : function () {

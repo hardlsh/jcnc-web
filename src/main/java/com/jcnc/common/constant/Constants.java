@@ -11,6 +11,14 @@ public class Constants {
      */
     public static final String MY_IMAGE_PATH = "C:/MyImage/";
     /**
+     * 产品图片展示路径
+     */
+    public static final String PRODUCT_SHOW_PATH = "product/toProductshow.do?productId=";
+    /**
+     * 产品基础页面路径
+     */
+    public static final String BASE_PRODUCT_PATH = "product/toBaseproduct.do?productId=";
+    /**
      * 产品展示，每行数量
      */
     public static final Integer COLUMN_NUM = 4;

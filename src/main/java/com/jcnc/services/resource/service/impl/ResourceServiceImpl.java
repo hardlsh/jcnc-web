@@ -1,16 +1,21 @@
 package com.jcnc.services.resource.service.impl;
 
-import com.jcnc.common.enums.ResourceLevelEnum;
-import com.jcnc.common.service.BaseService;
-import com.jcnc.services.resource.dao.customized.ResourceDao;
 import com.jcnc.common.enums.AvailStatusEnum;
+import com.jcnc.common.enums.ResourceLevelEnum;
+import com.jcnc.common.enums.ResourceTypeEnum;
+import com.jcnc.common.service.BaseService;
+import com.jcnc.services.product.model.generated.Product;
+import com.jcnc.services.product.service.ProductService;
+import com.jcnc.services.resource.dao.customized.ResourceDao;
 import com.jcnc.services.resource.model.customized.ResourceModel;
 import com.jcnc.services.resource.model.generated.Resource;
 import com.jcnc.services.resource.model.generated.ResourceExample;
 import com.jcnc.services.resource.service.ResourceService;
 import com.jcnc.services.resource.vo.ResourceVo;
-import com.jcnc.common.enums.ResourceTypeEnum;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +32,14 @@ public class ResourceServiceImpl extends BaseService implements ResourceService{
 
     private ResourceDao getResourceDao(){
         return sqlSession.getMapper(ResourceDao.class);
+    }
+
+    @Autowired
+    private ProductService productService;
+
+    @Override
+    public Resource getResourceById(Long resourceId) {
+        return getResourceDao().getResourceById(resourceId);
     }
 
     @Override
@@ -180,7 +193,14 @@ public class ResourceServiceImpl extends BaseService implements ResourceService{
     }
 
     @Override
-    public void insertResource(Resource resource){
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void insertResourceBusiness(Resource resource){
+        if (resource.getLevel().equals(ResourceLevelEnum.SECOND_MENU.getKey())) {
+            Product product = new Product();
+            product.setProductId(resource.getProductId());
+            product.setProductType(resource.getParentId());
+            productService.updateProductById(product);
+        }
         getResourceDao().insertResource(resource);
     }
 }

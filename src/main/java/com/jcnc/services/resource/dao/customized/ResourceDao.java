@@ -13,6 +13,12 @@ import java.util.List;
  */
 public interface ResourceDao extends ResourceMapper{
     /**
+     * 根据资源id，获取资源
+     * @param resourceId
+     * @return
+     */
+    Resource getResourceById(Long resourceId);
+    /**
      * 根据资源名称，获取资源
      * @param resourceName
      * @return

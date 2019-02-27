@@ -14,9 +14,9 @@ public class Product {
     private String productName;
 
     /**
-     *产品类型(0 主打产品, 1 品质产品)
+     *产品类型(对应一级菜单)
      */
-    private Integer productType;
+    private Long productType;
 
     /**
      *图片名称
@@ -44,7 +44,7 @@ public class Product {
     private Integer sequence;
 
     /**
-     *状态
+     *状态 0-不可用 1-可用
      */
     private Integer status;
 
@@ -92,16 +92,16 @@ public class Product {
     }
 
     /**
-     *产品类型(0 主打产品, 1 品质产品)
+     *产品类型(对应一级菜单)
      */
-    public Integer getProductType() {
+    public Long getProductType() {
         return productType;
     }
 
     /**
-     *产品类型(0 主打产品, 1 品质产品)
+     *产品类型(对应一级菜单)
      */
-    public void setProductType(Integer productType) {
+    public void setProductType(Long productType) {
         this.productType = productType;
     }
 
@@ -176,14 +176,14 @@ public class Product {
     }
 
     /**
-     *状态
+     *状态 0-不可用 1-可用
      */
     public Integer getStatus() {
         return status;
     }
 
     /**
-     *状态
+     *状态 0-不可用 1-可用
      */
     public void setStatus(Integer status) {
         this.status = status;
