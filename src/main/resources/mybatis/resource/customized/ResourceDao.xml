@@ -43,7 +43,8 @@
 		ORDER BY r.sequence
   	</select>
   	
-	<insert id="insertResource" parameterType="com.jcnc.services.resource.model.generated.Resource">
+	<insert id="insertResourceReturnId" parameterType="com.jcnc.services.resource.model.generated.Resource"
+			useGeneratedKeys="true" keyProperty="resourceId" keyColumn="resource_id">
 		INSERT INTO
 			tp_sys_resource (resource_name, resource_type,
       			parent_id, parent_name, product_id,

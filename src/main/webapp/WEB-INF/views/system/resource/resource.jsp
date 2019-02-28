@@ -91,7 +91,7 @@
                             '</tr>'+
                             '<tr class="warning">'+
                             '<td>'+
-                            '<a class="ajaxify btn default btn-xs purple" href="${basePath}/resource/toUpdateResource.do?resourceId='+resource.resourceId+'">修改</a>'+
+                            '<a class="ajaxify btn default btn-xs purple" href="${basePath}/user/toUpdateResource.do?resourceId='+resource.resourceId+'">修改</a>'+
                             '</td>'+
                             '<td>'+ resource.resourceId +'</td>'+
                             '<td>'+ resource.resourceName +'</td>'+

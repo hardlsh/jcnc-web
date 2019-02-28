@@ -3,7 +3,6 @@ package com.jcnc.controller;
 import com.jcnc.common.constant.Constants;
 import com.jcnc.common.vo.JCResponse;
 import com.jcnc.common.vo.RetCode;
-import com.jcnc.common.enums.ProductTypeEnum;
 import com.jcnc.services.product.model.generated.Product;
 import com.jcnc.services.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +54,6 @@ public class ProductController {
     public ModelAndView toMainProduct() {
         ModelAndView mav = new ModelAndView("product/main/mainproducts");
         Product product = new Product();
-        product.setProductType(ProductTypeEnum.MAIN_PRODUCT.getKey());
         List<Product> productList = productService.queryProductList(product);
 
         Integer rowNum = getRowNum(productList);
@@ -97,7 +95,6 @@ public class ProductController {
     public ModelAndView toQualityProduct() {
         ModelAndView mav = new ModelAndView("product/quality/qualityproducts");
         Product product = new Product();
-        product.setProductType(ProductTypeEnum.QUALITY_PRODUCT.getKey());
         List<Product> productList = productService.queryProductList(product);
 
         Integer rowNum = getRowNum(productList);

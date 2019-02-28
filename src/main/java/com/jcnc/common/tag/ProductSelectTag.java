@@ -101,13 +101,25 @@ public class ProductSelectTag extends TagSupport {
         if (productList != null && productList.size() > 0) {
             for (Product item : productList) {
                 if (sb.indexOf(item.getProductName()) == -1) {
-                    sb.append("<option value=\"" + item.getProductId()
-                            + "\" data-tokens=\"" + item.getProductName() + "|"
-                            + item.getProductId() + "\">" + item.getProductName() + "</option>");
+                    if (StringUtils.isNotBlank(value) && Long.valueOf(value).equals(item.getProductId())) {
+                        sb.append("<option selected=\"selected\" value=\"" + item.getProductId()
+                                + "\" data-tokens=\"" + item.getProductName() + "|"
+                                + item.getProductId() + "\">" + item.getProductName() + "</option>");
+                    } else {
+                        sb.append("<option value=\"" + item.getProductId()
+                                + "\" data-tokens=\"" + item.getProductName() + "|"
+                                + item.getProductId() + "\">" + item.getProductName() + "</option>");
+                    }
                 }
             }
         }
         sb.append(" </select>");
+
+        if (productList != null && productList.size() > 0) {
+            for (Product item : productList) {
+
+            }
+        }
 
         try {
             pageContext.getOut().write(sb.toString());

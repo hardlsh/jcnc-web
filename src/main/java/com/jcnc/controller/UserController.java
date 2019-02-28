@@ -123,25 +123,20 @@ public class UserController extends BaseController {
 
     /**
      * 跳转到修改资源页面
-     * @param resource
+     * @param record
      * @return
      */
     @RequestMapping("/toUpdateResource")
-    public ModelAndView toUpdateResource(Resource resource) {
+    public ModelAndView toUpdateResource(Resource record) {
         ModelAndView mav = new ModelAndView("system/resource/updateResource");
         //根据资源id,获取对应的资源
-        List<Resource> resourceList = resourceService.queryResourceByExample(resource);
-
-        Long parentId = resourceList.get(0).getParentId();
-        Resource parentResouce = new Resource();
-        parentResouce.setResourceId(parentId);
-        List<Resource> parentList = resourceService.queryResourceByExample(parentResouce);
-
-        mav.addObject("resource", resourceList.get(0));
-        if (parentList != null && parentList.size() == 1) {
-            mav.addObject("parentResouce", parentList.get(0));
+        Resource resource = resourceService.getResourceById(record.getResourceId());
+        Resource parentResource = resourceService.getResourceById(resource.getParentId());
+        mav.addObject("resource", resource);
+        if (parentResource != null) {
+            mav.addObject("parentResouce", parentResource);
         } else {
-            mav.addObject("parentResouce", resourceList.get(0));
+            mav.addObject("parentResouce", resource);
         }
         return mav;
     }
@@ -284,13 +279,6 @@ public class UserController extends BaseController {
                 logger.info("【资源管理】新增资源保存_失败,资源名称重复");
                 return res;
             }
-            String resourcePath = "";
-            if (resource.getLevel().equals(ResourceLevelEnum.FIRST_MENU.getKey())) {
-                resourcePath = Constants.PRODUCT_SHOW_PATH + resource.getProductId();
-            } else if (resource.getLevel().equals(ResourceLevelEnum.SECOND_MENU.getKey())) {
-                resourcePath = Constants.BASE_PRODUCT_PATH + resource.getProductId();
-            }
-            resource.setResourcePath(resourcePath);
             resource.setResourceType(ResourceTypeEnum.MENU.getKey());
             resourceService.insertResourceBusiness(resource);
             res = new JCResponse(RetCode.SUCCESS);

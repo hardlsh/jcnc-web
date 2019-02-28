@@ -13,7 +13,7 @@ public class Constants {
     /**
      * 产品图片展示路径
      */
-    public static final String PRODUCT_SHOW_PATH = "product/toProductshow.do?productId=";
+    public static final String PRODUCT_SHOW_PATH = "product/toProductshow.do?productType=";
     /**
      * 产品基础页面路径
      */

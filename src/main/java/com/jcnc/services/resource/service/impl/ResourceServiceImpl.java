@@ -1,5 +1,7 @@
 package com.jcnc.services.resource.service.impl;
+import java.util.Date;
 
+import com.jcnc.common.constant.Constants;
 import com.jcnc.common.enums.AvailStatusEnum;
 import com.jcnc.common.enums.ResourceLevelEnum;
 import com.jcnc.common.enums.ResourceTypeEnum;
@@ -195,12 +197,28 @@ public class ResourceServiceImpl extends BaseService implements ResourceService{
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void insertResourceBusiness(Resource resource){
+        String resourcePath = "";
         if (resource.getLevel().equals(ResourceLevelEnum.SECOND_MENU.getKey())) {
+            resourcePath = Constants.BASE_PRODUCT_PATH + resource.getProductId();
+        }
+        resource.setResourcePath(resourcePath);
+        getResourceDao().insertResourceReturnId(resource);
+
+        if (resource.getLevel().equals(ResourceLevelEnum.FIRST_MENU.getKey())) {
+            Resource showResource = new Resource();
+            showResource.setResourceName(resource.getResourceName() + "展示");
+            showResource.setResourceType(ResourceTypeEnum.MENU.getKey());
+            showResource.setParentId(resource.getResourceId());
+            showResource.setParentName(resource.getResourceName());
+            showResource.setResourcePath(Constants.PRODUCT_SHOW_PATH + resource.getResourceId());
+            showResource.setLevel(ResourceLevelEnum.SECOND_MENU.getKey());
+            showResource.setSequence(0);
+            getResourceDao().insertResourceReturnId(showResource);
+        } else if (resource.getLevel().equals(ResourceLevelEnum.SECOND_MENU.getKey())) {
             Product product = new Product();
             product.setProductId(resource.getProductId());
             product.setProductType(resource.getParentId());
             productService.updateProductById(product);
         }
-        getResourceDao().insertResource(resource);
     }
 }

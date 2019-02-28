@@ -64,7 +64,7 @@
 									<div class="col-md-5">
 										<jcnc:productSelect name="productId" id="productId"
 															classes="bs-select form-control input input-inline selectpicker show-tick" hasAll="true"
-															dataLiveSearch="true" dataWidth="100%" placeholder="请选择产品"/>
+															dataLiveSearch="true" dataWidth="100%" placeholder="请选择"/>
 									</div>
 								</div>
 							</div>
@@ -82,7 +82,7 @@
 								<div class="form-group">
 									<label class="control-label col-md-3">备注</label>
 									<div class="col-md-5">
-										<textarea name="productInfo" class="form-control" rows="3"></textarea>
+										<textarea name="remark" class="form-control" rows="3"></textarea>
 									</div>
 								</div>
 							</div>
@@ -138,9 +138,13 @@
                 return;
             }
             var parentName = $("#parentId").find("option:selected").text();
-            $('#hideParentName').val(parentName);
+            if (parentName != "请选择") {
+                $('#hideParentName').val(parentName);
+            }
 			var productName = $('#productId').find("option:selected").text();
-			$('#hideProductName').val(productName);
+            if (productName != "请选择") {
+                $('#hideProductName').val(productName);
+            }
 
             $('#save').attr({"disabled":"disabled"});
             var param = $("#filter_from").serialize();

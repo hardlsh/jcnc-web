@@ -31,8 +31,8 @@ public interface ResourceDao extends ResourceMapper{
      */
     List<ResourceModel> queryUserResources(ResourceModel model);
     /**
-     * 新增资源
+     * 新增资源，并返回主键id
      * @param resource
      */
-    void insertResource(Resource resource);
+    void insertResourceReturnId(Resource resource);
 }
