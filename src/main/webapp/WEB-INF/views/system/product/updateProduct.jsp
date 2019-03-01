@@ -3,6 +3,8 @@
 <html lang="en">
 <%@include file="../../header.jsp"%>
 <%@include file="../../basepath.jsp"%>
+
+<%@ taglib prefix="jcnc" uri="/WEB-INF/jcnc" %>
 <body>
 <div class="row">
 	<div class="col-md-12">
@@ -35,19 +37,8 @@
 								<div class="form-group">
 									<label class="control-label col-md-3">产品状态</label>
 									<div class="col-md-5">
-										<select class="bs-select form-control input-inline" name="status">
-											<option value="">请选择</option>
-											<c:choose>
-												<c:when test="${product.status == 0}">
-													<option value="0" selected="selected">不可用</option>
-													<option value="1">可用</option>
-												</c:when>
-												<c:otherwise>
-													<option value="0">不可用</option>
-													<option value="1" selected="selected">可用</option>
-												</c:otherwise>
-											</c:choose>
-										</select>
+										<jcnc:selectTag name="status" id="status" dictCode="AVAIL_STATUS" value="${product.status}"
+														classes="bs-select form-control input-inline" hasAll="true" placeholder="请选择"/>
 									</div>
 								</div>
 							</div>

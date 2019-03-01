@@ -42,6 +42,8 @@ public class SelectTag extends TagSupport {
 
     private String onchange;
 
+    private String disabled;
+
     @Override
     public int doStartTag() throws JspException {
         DictService dictService = (DictService) SpringUtil.getBean("dictServiceImpl");
@@ -66,13 +68,16 @@ public class SelectTag extends TagSupport {
         if (StringUtils.isNotBlank(style)) {
             sb.append(" style=\"" + style + "\"");
         }else{
-            sb.append(" style=\"width: 100px;\"");
+            sb.append(" style=\"width: auto;\"");
         }
         if (StringUtils.isNotBlank(multiple) && multiple.equalsIgnoreCase("true")) {
             sb.append(" multiple=\"multiple\" ");
         }
         if (StringUtils.isNotBlank(onchange)) {
             sb.append(" onchange=\"" + onchange + "\"");
+        }
+        if (StringUtils.isNotBlank(disabled)) {
+            sb.append(" disabled = disabled");
         }
 
         sb.append(" >");
@@ -171,5 +176,13 @@ public class SelectTag extends TagSupport {
 
     public void setOnchange(String onchange) {
         this.onchange = onchange;
+    }
+
+    public String getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(String disabled) {
+        this.disabled = disabled;
     }
 }

@@ -23,7 +23,8 @@
 					<div class="container">
 						<form id="filter_from" method="post">
 							<!-- 隐藏域 -->
-							<input type="hidden" id="oldResourecId" value="${parentResouce.resourceId }">
+							<input type="hidden" id="oldResourecId" value="${parentResouce.resourceId }"/>
+							<input type="hidden" id="oldResourcePath" vale="${resource.resourcePath }"/>
 							<div class="row">
 								<div class="form-group">
 									<label class="control-label col-md-3">资源名称</label>
@@ -35,10 +36,20 @@
 							<br/>
 							<div class="row">
 								<div class="form-group">
+									<label class="control-label col-md-3">资源状态</label>
+									<div class="col-md-5">
+										<jcnc:selectTag name="status" id="status" dictCode="AVAIL_STATUS" value="${resource.status}"
+														classes="bs-select form-control input-inline" hasAll="true" placeholder="请选择"/>
+									</div>
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="form-group">
 									<label class="control-label col-md-3">资源级别</label>
 									<div class="col-md-5">
-										<jcnc:selectTag name="level" id="level" dictCode="RESOURCE_LEVEL" value="${resource.level}"
-														classes="bs-select form-control input-sm input-inline" hasAll="true" placeholder="请选择"/>
+										<jcnc:selectTag id="level" disabled="disabled" dictCode="RESOURCE_LEVEL" value="${resource.level}"
+														classes="bs-select form-control input-inline" hasAll="true" placeholder="请选择"/>
 									</div>
 								</div>
 							</div>
@@ -49,7 +60,7 @@
 									<input id="hideParentName" name="parentName" type="hidden"/>
 									<div class="col-md-5">
 										<div class="checkbox-list">
-											<select class="bs-select form-control input-sm input-inline"
+											<select class="bs-select form-control input-inline"
 													id="parentId" name="parentId"> <option value="">请选择</option>
 											</select>
 										</div>
@@ -68,6 +79,35 @@
 									</div>
 								</div>
 							</div>
+							<br/>
+							<div class="row">
+								<div class="form-group">
+									<label class="control-label col-md-3">资源顺序</label>
+									<div class="col-md-5">
+										<input type="text" name="sequence" class="form-control" oninput = "value=value.replace(/[^\d]/g,'')"
+											   value="${resource.sequence}" placeholder="请输入资源顺序(数字)"/>
+									</div>
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="form-group">
+									<label class="control-label col-md-3">备注</label>
+									<div class="col-md-5">
+										<textarea name="remark" value="${resource.remark}" class="form-control" rows="3">${resource.remark}</textarea>
+									</div>
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="form-group">
+									<label class="control-label col-md-3"></label>
+									<div class="col-md-5">
+										<button type="button" id="save" class="btn blue">保  存</button>
+										<button type="button" id="cancel" class="btn btn-default ">取  消</button>
+									</div>
+								</div>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -82,6 +122,12 @@
             $('#goBackResource').click(me.goBackResource);//返回资源管理
             $('#goBack').click(me.goBack);//返回用户管理按钮
             $('#level').change(me.levelChange);// 资源级别
+            $('#save').click(me.save);//保存按钮
+            $('#cancel').click(me.cancel);//取消按钮
+
+            $('.selectpicker').selectpicker({
+                'selectedText': 'cat'
+            });
         },
         //返回资源管理
         goBackResource : function () {
@@ -91,6 +137,45 @@
         goBack : function () {
             location.href="${basePath}/index/toUser.do";
         },
+        //取消, 返回资源管理
+        cancel : function () {
+            location.href="${basePath}/user/toResource.do";
+        },
+        //保存
+        save : function () {
+            var resourcePath = $('#oldResourcePath').val();
+            var productId = $('#productId').val();
+            if (resourcePath != null && resourcePath != "" && (productId == null || productId == "")) {
+                bootbox.alert("具体产品资源，必须选择对应产品！");
+                return;
+            }
+            var parentName = $("#parentId").find("option:selected").text();
+            if (parentName != "请选择") {
+                $('#hideParentName').val(parentName);
+            }
+            var productName = $('#productId').find("option:selected").text();
+            if (productName != "请选择") {
+                $('#hideProductName').val(productName);
+            }
+
+            $('#save').attr({"disabled":"disabled"});
+            var param = $("#filter_from").serialize();
+            $.ajax({
+                url : "${basePath}/user/updateSaveResource.do",
+                data : param,
+                dataType: "json",
+                type : "POST",
+                success : function(data) {
+                    $('#save').removeAttr("disabled");
+                    if (data.resultCode != '0000') {
+                        bootbox.alert(data.resultMsg);
+                    } else {
+                        $.alert(data.resultMsg);
+                        $('#cancel').click();
+                    }
+                }
+            });
+        },
         // 资源级别
         levelChange : function() {
             var level = $("#level").val();
@@ -99,7 +184,7 @@
                 return;
             }
             $("#parentId option").remove();
-            $("#parentId").append('<option value="">请选择上级资源</option>');
+            $("#parentId").append('<option value="">请选择</option>');
             if (String(level) != "") {
                 $.ajax({
                     url : "${basePath}/user/getResourceByLevel.do",
@@ -132,6 +217,14 @@
                     }
                 });
             }
+        },
+        changeSelectProduct : function () {
+            var resourcePath = $('#oldResourcePath').val();
+            if (resourcePath == null || resourcePath == "") {
+                $("#selectProductDiv").hide();
+            } else {
+                $("#selectProductDiv").show();
+            }
         }
     }
 
@@ -139,6 +232,7 @@
         updateResourceHelper.init();
         // 页面初始化时,先执行
         updateResourceHelper.levelChange();
+        updateResourceHelper.changeSelectProduct();
     });
 </script>
 </body>

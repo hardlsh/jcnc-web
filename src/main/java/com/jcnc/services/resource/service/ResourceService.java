@@ -47,4 +47,9 @@ public interface ResourceService {
      * @param resource
      */
     void insertResourceBusiness(Resource resource);
+    /**
+     * 修改资源，并对应修改产品
+     * @param resource
+     */
+    void updateResourceBusiness(Resource resource);
 }

@@ -38,7 +38,7 @@
 									<label class="control-label col-md-3">资源级别</label>
 									<div class="col-md-5">
 										<jcnc:selectTag name="level" id="level" dictCode="RESOURCE_LEVEL" value="${resource.level}"
-														classes="bs-select form-control input-sm input-inline" hasAll="true" placeholder="请选择"/>
+														classes="bs-select form-control input-inline" hasAll="true" placeholder="请选择"/>
 									</div>
 								</div>
 							</div>
@@ -73,7 +73,8 @@
 								<div class="form-group">
 									<label class="control-label col-md-3">资源顺序</label>
 									<div class="col-md-5">
-										<input type="text" name="sequence" class="form-control" placeholder="请输入资源顺序(数字)"/>
+										<input type="text" name="sequence" class="form-control" oninput = "value=value.replace(/[^\d]/g,'')"
+											   placeholder="请输入资源顺序(数字)"/>
 									</div>
 								</div>
 							</div>
@@ -134,7 +135,7 @@
             var level = $('#level').val();
             var productId = $('#productId').val();
             if (level == 2 && (productId == null || productId == "")) {
-                bootbox.alert("二级菜单，必须选择对应产品！");
+                bootbox.alert("具体产品资源，必须选择对应产品！");
                 return;
             }
             var parentName = $("#parentId").find("option:selected").text();
@@ -155,7 +156,12 @@
                 type : "POST",
                 success : function(data) {
                     $('#save').removeAttr("disabled");
-                    bootbox.alert(data.resultMsg);
+                    if (data.resultCode != '0000') {
+                        bootbox.alert(data.resultMsg);
+                    } else {
+                        $.alert(data.resultMsg);
+                        $('#cancel').click();
+                    }
                 }
             });
         },
@@ -167,7 +173,7 @@
                 return;
             }
             $("#parentId option").remove();
-            $("#parentId").append('<option value="">请选择上级资源</option>');
+            $("#parentId").append('<option value="">请选择</option>');
             if (String(level) != "") {
                 $.ajax({
                     url : "${basePath}/user/getResourceByLevel.do",

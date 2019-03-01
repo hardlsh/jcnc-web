@@ -291,19 +291,16 @@ public class UserController extends BaseController {
     }
 
     /**
-     * 根据资源id,修改对应的资源
+     * 修改资源保存
+     * @param resource
+     * @return
      */
-    @RequestMapping("/updateResource")
+    @RequestMapping("/updateSaveResource")
     @ResponseBody
-    public Object updateResource(Resource resource) {
-        logger.info("【资源管理】修改资源_开始,入参:" + gson.toJson(resource));
+    public Object updateSaveResource(Resource resource) {
         JCResponse res;
         try {
-            if (StringUtils.isEmpty(resource.getResourceName()) || resource.getResourceType() == null) {
-                return new JCResponse(RetCode.INVALID_ARGS);
-            }
-//            int result = resourceService.updateResourceById(resource);
-//            logger.info("【资源管理】修改资源,修改条数:" + result);
+            resourceService.updateResourceBusiness(resource);
             res = new JCResponse(RetCode.SUCCESS);
         } catch (Exception e) {
             logger.error("【资源管理】修改资源_异常,异常原因:", e);

@@ -10,8 +10,7 @@ import lombok.Getter;
 public enum ResourceLevelEnum {
 	ROOT_MENU(0, "根菜单"),
     FIRST_MENU(1, "一级菜单"),
-    SECOND_MENU(2, "二级菜单"),
-    BUTTON(4, "按钮");
+    SECOND_MENU(2, "二级菜单");
 
     @Getter
     private Integer key;

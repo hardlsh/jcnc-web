@@ -210,6 +210,7 @@ public class ResourceServiceImpl extends BaseService implements ResourceService{
             showResource.setResourceType(ResourceTypeEnum.MENU.getKey());
             showResource.setParentId(resource.getResourceId());
             showResource.setParentName(resource.getResourceName());
+            showResource.setProductName("");
             showResource.setResourcePath(Constants.PRODUCT_SHOW_PATH + resource.getResourceId());
             showResource.setLevel(ResourceLevelEnum.SECOND_MENU.getKey());
             showResource.setSequence(0);
@@ -220,5 +221,11 @@ public class ResourceServiceImpl extends BaseService implements ResourceService{
             product.setProductType(resource.getParentId());
             productService.updateProductById(product);
         }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void updateResourceBusiness(Resource resource) {
+
     }
 }
